@@ -301,7 +301,7 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
 
   return (
     <Section id="model-engine-codes" className="model-engine-codes bg-[linear-gradient(180deg,#ffffff_0%,#f6f8fb_100%)]">
-      <Container className="max-w-[1240px]">
+      <Container className="max-w-[1400px]">
         <div className="engine-codes-section">
           <div className="ecs-container">
             <header className="ecs-header">

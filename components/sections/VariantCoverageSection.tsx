@@ -186,7 +186,7 @@ export default function VariantCoverageSection({ data }: Props) {
 
   return (
     <Section className="bg-white">
-      <Container className="max-w-[1120px]">
+      <Container className="max-w-[1400px]">
         <div className=" max-w-[760px] text-left">
           <div className="section-pill mb-[14px]">
             <GridIcon />

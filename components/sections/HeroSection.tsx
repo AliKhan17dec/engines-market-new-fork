@@ -466,7 +466,7 @@ export default function HeroSection({
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-[1200px] min-w-0 items-center sm:gap-8 px-3 py-7 sm:px-6 md:px-8 md:py-8 lg:grid-cols-[60fr_40fr] lg:gap-7 lg:px-8 lg:py-[52px]">
+      <div className="mx-auto grid max-w-[1400px] min-w-0 items-center sm:gap-8 px-3 py-7 sm:px-6 md:px-8 md:py-8 lg:grid-cols-[60fr_40fr] lg:gap-7 lg:px-8 lg:py-[52px]">
         {/* LEFT COLUMN */}
         <div className="flex min-w-0 flex-col">
           <span className="mb-[14px] inline-flex w-fit items-center rounded-[20px] bg-[#0d1b2e] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white md:mb-[18px] md:px-[14px] md:py-[6px] md:text-[10.5px]">

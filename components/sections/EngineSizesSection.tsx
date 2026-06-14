@@ -346,7 +346,7 @@ export default function EngineSizesSection({
         </div>
       ) : null}
 
-      <Container className="relative max-w-[1180px]">
+      <Container className="relative max-w-[1400px]">
         <div className="section-pill mb-[14px]">
           <TagIcon />
           <span>{data.tag}</span>

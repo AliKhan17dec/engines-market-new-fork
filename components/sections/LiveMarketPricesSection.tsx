@@ -177,7 +177,7 @@ export default function LiveMarketPricesSection({
 
   return (
     <Section className="bg-[#f8f9fa]">
-      <Container className="max-w-[1220px]">
+      <Container className="max-w-[1400px]">
         <div className="section-pill mb-[14px]">
           <span className="h-[7px] w-[7px] animate-pulse rounded-full bg-[#15803d]" />
           <span>{data.tag}</span>

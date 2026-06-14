@@ -345,7 +345,7 @@ export default function EngineTypesSection({
         </div>
       ) : null}
 
-      <Container className="relative max-w-[1180px]">
+      <Container className="relative max-w-[1400px]">
         <div className="section-pill mb-[14px]">
           <TbTag className="h-4 w-4" />
           <span>{data.tag}</span>

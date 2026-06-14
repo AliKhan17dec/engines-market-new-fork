@@ -137,7 +137,7 @@ export default function ReviewsSection({ data, useDataHeading = false }: Props) 
   return (
     <Section className="bg-white">
       <Container>
-        <div className="mx-auto max-w-[980px]">
+        <div className="mx-auto max-w-[1400px]">
           <div>
             <p className="section-pill">
               <TagIcon />
