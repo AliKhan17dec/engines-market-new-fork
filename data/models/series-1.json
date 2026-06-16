@@ -188,7 +188,7 @@
       }
     },
     "liveMarketPrices": {
-      "tag": "Live UK Engine Market Data",
+      "tag": "Average Market Prices",
       "h2": "What Are UK Drivers Paying for BMW 1 Series Engine Replacement?",
       "h3": "The table below outlines typical UK rebuilt engine supply costs across BMW 1 Series variants, detailing verified failure causes, chassis codes, engine specifications, and current market pricing data.",
       "introBullets": [
@@ -360,7 +360,7 @@
         ]
       },
       "headingLines": [
-        "What Are UK Drivers Paying for BMW 1 Series Engine Replacement?"
+        "BMW 1 Series Engine Replacement Prices"
       ],
       "imageAlt": "BMW 1 Series live market price reference",
       "filterTabs": [
@@ -556,7 +556,7 @@
       ],
       "cards": [
         {
-          "h3": "BMW 1 Series 116d Engine Replacement",
+          "h3": "1 Series 116d",
           "slug": "1-series-116d-engine",
           "subtitle": "N47D16/B47D16 1.6L Diesel Â· 116hp Â· 2011-2024",
           "priceRange": "£1,300-£2,900",
@@ -568,10 +568,10 @@
           "fuel": "Diesel",
           "power": "116hp",
           "years": "2011-2024",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series 118d Engine Replacement",
+          "h3": "1 Series 118d",
           "slug": "1-series-118d-engine",
           "subtitle": "N47D20/B47D20 2.0L Diesel Â· 143-150hp Â· 2004-2024",
           "priceRange": "£1,350-£3,500",
@@ -583,10 +583,10 @@
           "fuel": "Diesel",
           "power": "143-150hp",
           "years": "2004-2024",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series 120d Engine Replacement",
+          "h3": "1 Series 120d",
           "slug": "1-series-120d-engine",
           "subtitle": "N47D20/B47D20 2.0L Diesel Â· 177-190hp Â· 2004-2024",
           "priceRange": "£1,500-£3,800",
@@ -598,10 +598,10 @@
           "fuel": "Diesel",
           "power": "177-190hp",
           "years": "2004-2024",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series 125d Engine Replacement",
+          "h3": "1 Series 125d",
           "slug": "1-series-125d-engine",
           "subtitle": "N47S 2.0L Twin-Turbo Diesel · 218-224hp · 2012-2019 · Rebuilt: £2,200-£4,500",
           "priceRange": "£2,200-£4,500",
@@ -612,10 +612,10 @@
           "fuel": "Diesel",
           "power": "218-224hp",
           "years": "2012-2019",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series 114i Engine Replacement",
+          "h3": "1 Series 114i",
           "slug": "1-series-114i-engine",
           "subtitle": "N13B16/B38B15 1.6L/1.5L Petrol Â· 102hp Â· 2011-2024",
           "priceRange": "£1,150-£2,500",
@@ -627,10 +627,10 @@
           "fuel": "Petrol",
           "power": "102hp",
           "years": "2011-2024",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series 116i Engine Replacement",
+          "h3": "1 Series 116i",
           "slug": "1-series-116i-engine",
           "subtitle": "N43B20/N13B16/B38B15 1.6L/1.5L Petrol Â· 102-136hp Â· 2004-2024",
           "priceRange": "£1,150-£2,650",
@@ -643,10 +643,10 @@
           "fuel": "Petrol",
           "power": "102-136hp",
           "years": "2004-2024",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series 118i Engine Replacement",
+          "h3": "1 Series 118i",
           "slug": "1-series-118i-engine",
           "subtitle": "N43B20/N13B16/B38B15 1.6L/1.5L Petrol Â· 136-140hp Â· 2004-2024",
           "priceRange": "£1,200-£3,000",
@@ -659,10 +659,10 @@
           "fuel": "Petrol",
           "power": "136-140hp",
           "years": "2004-2024",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series 120i Engine Replacement",
+          "h3": "1 Series 120i",
           "slug": "1-series-120i-engine",
           "subtitle": "N46B20/N20B20/B48B20 2.0L Petrol Â· 170-184hp Â· 2004-2024",
           "priceRange": "£1,600-£3,700",
@@ -675,10 +675,10 @@
           "fuel": "Petrol",
           "power": "170-184hp",
           "years": "2004-2024",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series 125i Engine Replacement",
+          "h3": "1 Series 125i",
           "slug": "1-series-125i-engine",
           "subtitle": "N52B30/N20B20 2.5L/2.0L Petrol Â· 218-228hp Â· 2004-2019",
           "priceRange": "£2,300-£4,800",
@@ -690,10 +690,10 @@
           "fuel": "Petrol",
           "power": "218-228hp",
           "years": "2004-2019",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series M135i Engine Replacement",
+          "h3": "1 Series M135i",
           "slug": "1-series-m135i-engine",
           "subtitle": "N55B30 3.0L Turbo Petrol · 326hp · 2012-2019 · Rebuilt: £3,500-£7,200",
           "priceRange": "£3,500-£7,200",
@@ -704,10 +704,10 @@
           "fuel": "Petrol",
           "power": "326hp",
           "years": "2012-2019",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series M140i Engine Replacement",
+          "h3": "1 Series M140i",
           "slug": "1-series-m140i-engine",
           "subtitle": "B58B30 3.0L Turbo Petrol · 340hp · 2016-2019 · Rebuilt: £4,200-£8,500",
           "priceRange": "£4,200-£8,500",
@@ -718,10 +718,10 @@
           "fuel": "Petrol",
           "power": "340hp",
           "years": "2016-2019",
-          "image": ""
+          "image": "/bmw.webp"
         },
         {
-          "h3": "BMW 1 Series 118d xDrive Engine Replacement",
+          "h3": "1 Series 118d xDrive",
           "slug": "1-series-118d-xdrive-engine",
           "subtitle": "N47D20/B47D20 2.0L Diesel Â· 143-150hp Â· 2012-2024",
           "priceRange": "£1,800-£4,200",
@@ -733,7 +733,7 @@
           "fuel": "Diesel",
           "power": "143-150hp",
           "years": "2012-2024",
-          "image": ""
+          "image": "/bmw.webp"
         }
       ],
       "directory": {

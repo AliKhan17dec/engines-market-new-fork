@@ -182,7 +182,7 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
                         0{card.number}
                       </span>
 
-                      <div className={`mx-auto flex items-center justify-center rounded-[14px] p-2 ${card.number === 1 ? "w-70 h-22" : "h-12 w-12 sm:h-14 sm:w-14"}`}>
+                      <div className={`mx-auto flex items-center justify-center rounded-[14px] p-2 ${card.number === 1 ? "w-70 h-22" : "w-22 h-22"}`}>
                         <img
                           src={card.number === 1 ? "/Home/reg-here.webp" : card.number === 2 ? "/Home/save-money.webp" : "/Home/quote-button 1.png"}
                           alt={`Step ${card.number} icon`}
@@ -204,7 +204,10 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
                       </span>
                     </div>
 
-                    <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-[#0d1b2e] bg-[#0d1b2e] p-2 sm:p-4 text-white shadow-[0_24px_48px_rgba(7,25,54,0.2)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px]  bg-[#0d1b2e] p-2 sm:p-4 text-white border-3 border-[#2969af] shadow-[0_0_8px_rgba(37,99,235,0.6),0_0_15px_rgba(37,99,235,0.3)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                      <div className="flex flex-col items-center gap-4">
+                      </div>
+
                       <h3 className="mt-5 text-center font-['Manrope'] text-[24px] font-bold leading-[1] text-white">
                         {card.back.heading}
                       </h3>
@@ -233,8 +236,8 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
           })}
         </div>
 
-       <div className="mx-auto mt-6 rounded-[12px] px-4 py-4 sm:mx-0 lg:mt-[24px] flex flex-nowrap sm:flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 items-stretch sm:items-center">
-  
+        <div className="mx-auto mt-6 rounded-[12px] px-4 py-4 sm:mx-0 lg:mt-[24px] flex flex-nowrap sm:flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 items-stretch sm:items-center">
+
   {/* 12-Month Warranty */}
   <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#15803D] shrink-0">
@@ -244,6 +247,9 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
     <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">12-Month Warranty</span>
   </div>
 
+  {/* Separator */}
+  <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
+
   {/* Supply & Fit Available */}
   <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#15803D] shrink-0">
@@ -251,6 +257,9 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
     </svg>
     <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">Supply & Fit Available</span>
   </div>
+
+  {/* Separator */}
+  <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
 
   {/* Nationwide Delivery */}
   <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
@@ -262,6 +271,9 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
     </svg>
     <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">Nationwide Delivery</span>
   </div>
+
+  {/* Separator */}
+  <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
 
   {/* Trusted UK Suppliers */}
   <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">

@@ -6,6 +6,7 @@ import type { LiveMarketPriceEntry, LiveMarketPricesData, ModelsSectionData } fr
 import { CtaStrip } from "@/components/ui/CalloutCards";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import { GiNetworkBars } from "react-icons/gi";
 
 type Props = {
   data: LiveMarketPricesData;
@@ -176,186 +177,226 @@ export default function LiveMarketPricesSection({
   const sectionImage = imageSrc || "";
 
   return (
-    <Section className="bg-[#f8f9fa]">
+    <Section className="bg-[#f8f9fa] sm:px-2 py-7 sm:py-8 lg:py-10">
+      {/* Mobile Image: Full width, appears before the Container on phone screens */}
+      {/* <div className="relative mb-6 h-[340px] w-full overflow-hidden lg:hidden">
+        {sectionImage ? (
+          <Image
+            src={sectionImage}
+            alt={data.imageAlt ?? "Market data visualization"}
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+        ) : null}
+      </div> */}
+
+      <div className="relative mb-6 h-[340px] w-full overflow-hidden lg:hidden">
+        {sectionImage ? (
+          <Image
+            src="/model.webp"
+            alt={data.imageAlt ?? "Market data visualization"}
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+        ) : null}
+      </div>
+
+
       <Container className="max-w-[1400px]">
-        <div className="section-pill mb-[14px]">
-          <span className="h-[7px] w-[7px] animate-pulse rounded-full bg-[#15803d]" />
-          <span>{data.tag}</span>
-        </div>
-
-        <h2 className="max-w-[700px] font-['Manrope'] text-[26px] font-extrabold leading-[1.18] tracking-[-0.4px] text-[#0d1b2e] md:text-[30px] md:tracking-[-0.7px] lg:text-[43px] lg:leading-[1.06] lg:tracking-[-1px]">
-          {headingLines.map((line, index) => {
-            const isAccent = headingLines.length > 1 && index === headingLines.length - 1;
-            return (
-              <span key={`${line}-${index}`} className={`block ${isAccent ? "text-[#15803d]" : ""}`}>
-                {line}
-              </span>
-            );
-          })}
-        </h2>
-
-        <p className="mt-[10px] max-w-[700px] text-[13px] leading-[1.6] text-[#6b7280] md:text-[14px]">
-          {data.h3}
-        </p>
-
-        <div className="mt-6 grid gap-6 lg:grid-cols-[0.76fr_1.24fr] lg:items-start">
-          <div className="relative overflow-hidden rounded-[16px] border border-[#e5e7eb] bg-white shadow-[0_2px_12px_rgba(13,27,46,0.07)]">
-            <div className="relative aspect-[4/3.6] min-h-[340px] lg:min-h-[520px]">
-              {sectionImage ? (
-                <Image
-                  src={sectionImage}
-                  alt={data.imageAlt ?? ""}
-                  fill
-                  className="object-contain object-center p-3 lg:p-4"
-                  sizes="(max-width: 1024px) 100vw, 38vw"
-                />
-              ) : null}
-            </div>
+        <div className=" max-w-190 text-start">
+          <div className="section-pill">
+            <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
+            <span>{data.tag}</span>
           </div>
 
-          <div className=" lg:flex lg:h-full lg:flex-col">
-            {isDocumentMode ? (
-              <div className="rounded-t-[14px] bg-[#0d1b2e] px-4 py-[12px] shadow-[0_2px_12px_rgba(13,27,46,0.16)]">
-                <div className="text-[12px] font-bold uppercase tracking-[0.08em] text-white">
-                  Average Market Prices
-                </div>
-              </div>
-            ) : filterTabs.length ? (
-              <div className="rounded-[10px] bg-[#0d1b2e] p-[10px] shadow-[0_2px_12px_rgba(13,27,46,0.16)]">
-                <div className="flex items-center gap-[6px]">
-                  <div className="flex min-w-0 flex-1 items-center gap-[6px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    {pinnedTabs.map((tab) => {
-                      const active = activeTab === tab.key;
+          <div className="mt-4 flex flex-col">
+            <h2 className="font-['Manrope'] text-[28px] font-bold leading-[1.12] text-[#0d1b2e] sm:text-[30px] lg:text-[32px]">
+              {headingLines.map((line, index) => {
+                const isAccent = headingLines.length > 1 && index === headingLines.length - 1;
+                return (
+                  <span key={`${line}-${index}`} className={`block ${isAccent ? "text-[#15803d]" : ""}`}>
+                    {line}
+                  </span>
+                );
+              })}
+            </h2>
+          </div>
+        </div>
 
-                      return (
-                        <button
-                          key={tab.key}
-                          type="button"
-                          onClick={() => setActiveTab(tab.key)}
-                          className={`flex-none rounded-full border px-[12px] py-[7px] text-[11.5px] font-medium transition ${
-                            active
-                              ? "border-[#15803d] bg-[#15803d] text-white"
-                              : "border-white/15 bg-transparent text-white/80 hover:bg-white/10 hover:text-white"
-                          }`}
-                        >
-                          {tab.label}
-                        </button>
-                      );
-                    })}
-                  </div>
+        <div className="mt-6 grid gap-4 lg:grid-cols-[0.4fr_0.6fr] lg:items-stretch">
+          {/* Desktop Image: Hidden on mobile, shown on lg and up */}
+          {/* <div className="relative hidden min-h-55 overflow-hidden lg:min-h-full lg:block">
+            {sectionImage ? (
+              <Image
+                src={sectionImage}
+                alt={data.imageAlt ?? "Market data visualization"}
+                fill
+                className="object-contain"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            ) : null}
+          </div> */}
+          {/* Desktop Image: Hidden on mobile, shown on lg and up */}
+          <div className="relative hidden min-h-55 overflow-hidden lg:min-h-full lg:block">
+            {sectionImage ? (
+              <Image
+                src="/model.webp"
+                alt={data.imageAlt ?? "Market data visualization"}
+                fill
+                className="object-contain"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            ) : null}
+          </div>
 
-                  {overflowTabs.length ? (
-                    <div className="relative">
-                      <button
-                        type="button"
-                        onClick={() => setDrawerOpen((current) => !current)}
-                        className="flex h-[30px] w-[30px] flex-none items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/80 transition hover:bg-white/20 hover:text-white"
-                      >
-                        <ChevronDownIcon open={drawerOpen} />
-                      </button>
+          {/* Right Table Container: Fixed height on desktop, flex column layout */}
+          <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#0b1a2e] via-[#0f2035] to-[#0a1628] shadow-[0_10px_28px_rgba(0,0,0,0.4)] w-full overflow-hidden flex flex-col h-[600px] lg:h-[700px]">
+            
+            {/* Header/Nav: Prevents shrinking */}
+            {!isDocumentMode && filterTabs.length ? (
+              <nav className="relative z-10 mb-4 flex-shrink-0" aria-label="Filter live engine data by brand">
+                <div className="rounded-t-xl bg-[#0d1f3c] shadow-[0_10px_24px_rgba(13,31,60,0.15)]">
+                  <div className="flex items-center gap-1 px-2 py-2">
+                    <div className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                      {pinnedTabs.map((tab) => {
+                        const active = activeTab === tab.key;
 
-                      {drawerOpen ? (
-                        <div className="absolute right-0 top-[calc(100%+8px)] z-20 flex min-w-[180px] flex-col gap-1 rounded-[12px] border border-[#e5e7eb] bg-white p-2 shadow-[0_14px_34px_rgba(13,27,46,0.16)]">
-                          {overflowTabs.map((tab) => (
-                            <button
-                              key={tab.key}
-                              type="button"
-                              onClick={() => {
-                                setActiveTab(tab.key);
-                                setDrawerOpen(false);
-                              }}
-                              className="rounded-[9px] px-3 py-[10px] text-left text-[11px] font-bold text-[#0d1b2e] transition hover:bg-[#f8fafc]"
-                            >
-                              {tab.label}
-                            </button>
-                          ))}
-                        </div>
-                      ) : null}
+                        return (
+                          <button
+                            key={tab.key}
+                            type="button"
+                            onClick={() => {
+                              setActiveTab(tab.key);
+                              setDrawerOpen(false);
+                            }}
+                            className={`flex-none rounded-full border px-3 py-2 text-[11.5px] font-medium transition ${
+                              active
+                                ? "border-[#15803d] bg-[#15803d] text-white"
+                                : "border-white/15 bg-transparent text-white/75 hover:bg-white/12 hover:text-white"
+                            }`}
+                          >
+                            {tab.label}
+                          </button>
+                        );
+                      })}
                     </div>
-                  ) : null}
+
+                    {overflowTabs.length ? (
+                      <div className="relative ml-2 flex-none">
+                        <button
+                          type="button"
+                          onClick={() => setDrawerOpen((current) => !current)}
+                          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/75 transition hover:bg-white/20 hover:text-white"
+                          aria-expanded={drawerOpen}
+                          aria-label="Show more brands"
+                        >
+                          <ChevronDownIcon open={drawerOpen} />
+                        </button>
+
+                        {drawerOpen ? (
+                          <div className="absolute right-0 top-[calc(100%+8px)] z-20 flex min-w-49 flex-col gap-1 rounded-xl border border-white/15 bg-[#0f2035] p-2 shadow-[0_16px_36px_rgba(0,0,0,0.5)]">
+                            {overflowTabs.map((tab) => (
+                              <button
+                                key={tab.key}
+                                type="button"
+                                onClick={() => {
+                                  setActiveTab(tab.key);
+                                  setDrawerOpen(false);
+                                }}
+                                className="rounded-[9px] px-3 py-2.5 text-left text-[11px] font-bold text-white transition hover:bg-white/10"
+                              >
+                                {tab.label}
+                              </button>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+              </nav>
+            ) : isDocumentMode ? (
+              <div className="rounded-t-xl bg-[#0d1f3c] px-4 py-3 flex-shrink-0 shadow-[0_10px_24px_rgba(13,31,60,0.15)]">
+                <div className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#2563eb] drop-shadow-[0_0_10px_rgba(37,99,235,0.8),0_0_20px_rgba(37,99,235,0.4)] flex items-center gap-2">
+                  <GiNetworkBars /> Average Market Prices
                 </div>
               </div>
             ) : null}
 
-            <div className="space-y-2 lg:flex lg:h-full lg:flex-col lg:space-y-0">
-              <div className="overflow-hidden rounded-b-[14px] border border-white/10 bg-gradient-to-br from-[#0b1a2e] via-[#0f2035] to-[#0a1628] shadow-[0_10px_28px_rgba(0,0,0,0.4)] lg:flex lg:h-[520px] lg:flex-col">
-                {isDocumentMode ? null : (
-                  <div className="border-b border-[#e4e7ee] bg-[#f9fafc] px-4 py-[10px] text-[11px] font-medium text-[#9aa3b5]">
-                    Showing {visibleRows.length} {visibleRows.length === 1 ? (ui.showingSingleLabel ?? "entry") : (ui.showingPluralLabel ?? "entries")}
-                    {activeFilter?.key && activeFilter.key !== "all"
-                      ? ` for ${activeFilter.label}`
-                      : ` ${ui.acrossAllLabel ?? "across all models"}`}
-                  </div>
-                )}
-
-                <div className="max-h-[520px] overflow-y-auto lg:flex-1 lg:max-h-none">
-                  {visibleRows.length ? (
-                    <ul className="list-none">
-                      {visibleRows.map((row, index) => (
-                        <li
-                          key={`${row.Year}-${row.Model}-${row["Engine Code"]}-${index}`}
-                          className="border-b border-white/10 px-[14px] py-[11px] transition hover:bg-[rgba(45,122,58,0.04)] last:border-b-0 md:px-[16px]"
-                        >
-                          <div className="mb-[4px] flex items-baseline justify-between gap-[8px]">
-                            <span className="min-w-0 flex-1 truncate text-[14px] font-semibold text-white">
-                              {row.Model}
-                            </span>
-                            <span className="flex-none whitespace-nowrap text-[11px] font-normal text-white">
-                              {row.Year}
-                            </span>
-                            <span className="flex-none whitespace-nowrap text-[15px] font-bold text-[#2d7a3a]">
-                              {row["Avg. Quoted Price"]}
-                            </span>
-                          </div>
-
-                          <div className="flex items-center justify-between gap-[8px]">
-                            <span className="min-w-0 flex-1 truncate text-[11.5px] text-white">
-                              {row["Reported Issue"]}
-                            </span>
-                            <div className="flex flex-none gap-[4px]">
-                              <span className="rounded-full bg-white/5 border border-white/10 px-2 py-0.75 text-[10px] font-medium text-white/80">
-                                {row["Engine Code"]}
-                              </span>
-                              <span className="rounded-full bg-white/5 border border-white/10 px-2 py-0.75 text-[10px] font-medium text-white/80">
-                                {row.Fuel}
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <div className="px-4 py-10 text-center text-[13px] text-[#5a6478]">
-                      {isDocumentMode ? (ui.noEntriesLabel || "") : (ui.noEntriesLabel ?? "No entries match that model filter yet.")}
-                    </div>
-                  )}
+            {/* Scrollable Area Wrapper: Takes up remaining space */}
+            <div className="flex-1 flex flex-col overflow-hidden overflow-x-hidden w-full">
+              {!isDocumentMode && (
+                <div className="border-b border-[#e4e7ee] bg-[#f9fafc] px-4 py-[10px] text-[11px] font-medium text-[#9aa3b5] flex-shrink-0">
+                  Showing {visibleRows.length} {visibleRows.length === 1 ? (ui.showingSingleLabel ?? "entry") : (ui.showingPluralLabel ?? "entries")}
+                  {activeFilter?.key && activeFilter.key !== "all"
+                    ? ` for ${activeFilter.label}`
+                    : ` ${ui.acrossAllLabel ?? "across all models"}`}
                 </div>
+              )}
 
-                {isDocumentMode ? null : (
-                  <div className="border-t border-[#e4e7ee] bg-[#f9fafc] px-4 py-[10px]">
-                    <div className="flex items-center gap-[6px] text-[11px] font-medium text-[#9aa3b5]">
-                      <RefreshIcon />
-                      <span>
-                        {ui.updatedLabel ?? "Last updated:"} <span className="font-semibold text-[#6b7280]">{formatUpdatedAt(clock)}</span>
-                      </span>
+              <div className="flex-1 overflow-y-auto pr-4 [scrollbar-width:thin] [scrollbar-color:#ffffff_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-white/80">
+                {visibleRows.length ? (
+                  <ul className="list-none">
+                    {visibleRows.map((row, index) => (
+                      <li
+                        key={`${row.Year}-${row.Model}-${row["Engine Code"]}-${index}`}
+                        className="border-b border-white/10 px-4 py-3 transition hover:bg-white/5 last:border-b-0"
+                      >
+                        <div className="mb-1.5 flex items-baseline justify-between gap-2">
+                          <span className="min-w-0 flex-1 truncate text-[14px] font-semibold text-white">
+                            {row.Model}
+                          </span>
+                          <span className="hidden whitespace-nowrap text-[11px] text-white sm:inline">
+                            {row.Year}
+                          </span>
+                          <span className="whitespace-nowrap text-[15px] font-bold text-[#4ade80]">
+                            {row["Avg. Quoted Price"]}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="min-w-0 flex-1 truncate text-[11.5px] text-white">
+                            {row["Reported Issue"]}
+                          </span>
+                          <div className="flex flex-none gap-1">
+                            <span className="rounded-full bg-white/5 border border-white/10 px-2 py-0.75 text-[10px] font-medium text-white/80">
+                              {row["Engine Code"]}
+                            </span>
+                            <span className="rounded-full bg-white/5 border border-white/10 px-2 py-0.75 text-[10px] font-medium text-white/80">
+                              {row.Fuel}
+                            </span>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="flex-1 flex items-center justify-center px-4 py-10 text-center text-[13px] text-white/45">
+                    <div>
+                      <strong className="block text-white">No entries for this brand.</strong>
+                      <span>Try selecting a different filter above.</span>
                     </div>
                   </div>
                 )}
               </div>
 
-              {isDocumentMode ? (
-                <div className="rounded-[10px] px-4 py-[10px]">
-                  <div className="flex items-center gap-[6px] text-[11px] font-medium text-[#0d1b2e]">
-                    <RefreshIcon />
-                    <span>
-                      {isDocumentMode ? (ui.updatedLabel || "") : (ui.updatedLabel ?? "Last updated:")} <span className="font-semibold text-[#0d1b2e]">{formatUpdatedAt(clock)}</span>
-                    </span>
-                  </div>
-                </div>
-              ) : null}
             </div>
+            
+            
           </div>
+          
+          
         </div>
+        <div className="flex justify-end items-center gap-[6px] px-4 py-3 text-[11px] font-medium text-[#9aa3b5] border-t border-white/10">
+              <RefreshIcon />
+              <span>
+                {ui.updatedLabel ?? "Last updated:"} <span className="font-semibold text-[#6b7280]">{formatUpdatedAt(clock)}</span>
+              </span>
+            </div>
 
         {isDocumentMode ? null : (
           <div className="mt-5">
