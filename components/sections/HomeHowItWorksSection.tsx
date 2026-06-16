@@ -103,7 +103,7 @@ export default function HomeHowItWorksSection({ steps }: Props) {
                     <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-[#dbe4ef] bg-white p-2 sm:p-4 shadow-[0_18px_40px_rgba(13,27,46,0.08)] [backface-visibility:hidden] text-center">
 
 
-                      <span className="mt-0 font-['Manrope'] text-right text-2xl font-extrabold uppercase tracking-[0.18em] text-gray-400">
+                      <span className="mt-0 font-['Manrope'] text-left text-2xl font-extrabold uppercase tracking-[0.18em] text-gray-400">
                         0{step.number}
                       </span>
 
