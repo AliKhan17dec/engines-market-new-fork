@@ -24,10 +24,22 @@ async function walk(dir, fileList = []) {
 async function main() {
   try {
     console.log("Generating image manifest...");
-    const allImages = await walk(BRANDS_DIR);
+    const brandsImages = await walk(BRANDS_DIR);
+    const rootFiles = await readdir(PUBLIC_DIR);
+    const rootImages = rootFiles
+      .filter(file => /\.(png|jpe?g|webp|svg)$/i.test(file))
+      .map(file => "/" + file);
     
-    // Convert to a Set for O(1) lookup in a Map-like structure
-    // but JSON doesn't support Set, so we'll use an object as a hash map
+    const brandsLogosDir = path.join(PUBLIC_DIR, "BrandsLogos");
+    let brandsLogos = [];
+    try {
+      brandsLogos = await walk(brandsLogosDir);
+    } catch (e) {
+      console.warn("BrandsLogos directory not found, skipping...");
+    }
+
+    const allImages = [...brandsImages, ...rootImages, ...brandsLogos];
+    
     const manifest = {};
     for (const img of allImages) {
       manifest[img] = 1;
