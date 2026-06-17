@@ -204,7 +204,7 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
                       </span>
                     </div>
 
-                    <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px]  bg-[#0d1b2e] p-2 sm:p-4 text-white border-3 border-[#2969af] shadow-[0_0_8px_rgba(37,99,235,0.6),0_0_15px_rgba(37,99,235,0.3)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px]  bg-[#0d1b2e] p-2 sm:p-4 text-white border-3 border-[#2969af] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
                       <div className="flex flex-col items-center gap-4">
                       </div>
 
@@ -238,53 +238,53 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
 
         <div className="mx-auto mt-6 rounded-[12px] px-4 py-4 sm:mx-0 lg:mt-[24px] flex flex-nowrap sm:flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 items-stretch sm:items-center">
 
-  {/* 12-Month Warranty */}
-  <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#15803D] shrink-0">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
-    <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">12-Month Warranty</span>
-  </div>
+          {/* 12-Month Warranty */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#15803D] shrink-0">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+              <path d="m9 12 2 2 4-4" />
+            </svg>
+            <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">12-Month Warranty</span>
+          </div>
 
-  {/* Separator */}
-  <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
+          {/* Separator */}
+          <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
 
-  {/* Supply & Fit Available */}
-  <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#15803D] shrink-0">
-      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-    </svg>
-    <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">Supply & Fit Available</span>
-  </div>
+          {/* Supply & Fit Available */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#15803D] shrink-0">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+            </svg>
+            <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">Supply & Fit Available</span>
+          </div>
 
-  {/* Separator */}
-  <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
+          {/* Separator */}
+          <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
 
-  {/* Nationwide Delivery */}
-  <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#15803D] shrink-0">
-      <rect width="16" height="13" x="1" y="3" rx="2" />
-      <path d="M16 8h4l3 3v5h-7V8z" />
-      <circle cx="5.5" cy="18.5" r="2.5" />
-      <circle cx="18.5" cy="18.5" r="2.5" />
-    </svg>
-    <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">Nationwide Delivery</span>
-  </div>
+          {/* Nationwide Delivery */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#15803D] shrink-0">
+              <rect width="16" height="13" x="1" y="3" rx="2" />
+              <path d="M16 8h4l3 3v5h-7V8z" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+            <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">Nationwide Delivery</span>
+          </div>
 
-  {/* Separator */}
-  <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
+          {/* Separator */}
+          <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
 
-  {/* Trusted UK Suppliers */}
-  <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#15803D] shrink-0">
-      <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
-    <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">Trusted UK Suppliers</span>
-  </div>
+          {/* Trusted UK Suppliers */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#15803D] shrink-0">
+              <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+              <path d="m9 12 2 2 4-4" />
+            </svg>
+            <span className="text-[10px] leading-tight font-medium text-slate-700 text-center sm:text-sm sm:leading-none">Trusted UK Suppliers</span>
+          </div>
 
-</div>
+        </div>
 
       </Container>
     </Section>

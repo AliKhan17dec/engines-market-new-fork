@@ -205,6 +205,47 @@ function MobileProblemCard({
 }) {
   const detail = splitProblemDetail(problem.group, problem.h4);
 
+  const getTierColors = (tier: string) => {
+    const label = normalizeText(tier).toLowerCase();
+    
+    if (label.includes("full replacement") || label.includes("recommended") || label.includes("best value")) {
+      return {
+        border: "border-[#22c55e]",
+        bg: "bg-[#f0fdf4]",
+        headerBg: "bg-[#22c55e]",
+        headerText: "text-white",
+        dealerBg: "bg-[#0d1b2e]",
+        dealerText: "text-white",
+        specialistBg: "bg-[#22c55e]",
+        specialistText: "text-white",
+      };
+    }
+    
+    if (label.includes("intermediate") || label.includes("moderate")) {
+      return {
+        border: "border-[#f59e0b]",
+        bg: "bg-[#fffbeb]",
+        headerBg: "bg-[#f59e0b]",
+        headerText: "text-white",
+        dealerBg: "bg-[#0d1b2e]",
+        dealerText: "text-white",
+        specialistBg: "bg-[#22c55e]",
+        specialistText: "text-white",
+      };
+    }
+    
+    return {
+      border: "border-[#3b82f6]",
+      bg: "bg-[#eff6ff]",
+      headerBg: "bg-[#3b82f6]",
+      headerText: "text-white",
+      dealerBg: "bg-[#0d1b2e]",
+      dealerText: "text-white",
+      specialistBg: "bg-[#22c55e]",
+      specialistText: "text-white",
+    };
+  };
+
   return (
     <div className="mb-[10px] overflow-hidden rounded-[12px] border border-[#e5e7eb] bg-white shadow-[0_2px_8px_rgba(13,27,46,0.05)]">
       <button
@@ -225,7 +266,7 @@ function MobileProblemCard({
       </button>
 
       {open ? (
-        <div className="border-t border-[#f1f5f9] px-4 py-4">
+        <div className="border-t border-[#f1f5f9] px-2 py-4">
           <div className="space-y-3">
             <div className="rounded-[10px] border border-[#e5e7eb] bg-[#f8f9fa] p-3">
               <div className="mb-1 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.6px] text-[#0d1b2e]">
@@ -252,23 +293,36 @@ function MobileProblemCard({
 
           {problem.repairOptions?.length ? (
             <div className="mt-4 space-y-3">
-              {problem.repairOptions.map((option, optionIndex) => (
-                <div key={`${option.tier || "repair-option"}-${optionIndex}`} className="rounded-[12px] border border-[#e5e7eb] bg-white p-3">
-                  <div className="font-['Manrope'] text-[12px] font-bold text-[#0d1b2e]">{option.tier}</div>
-                  <div className="mt-2 grid grid-cols-2 gap-2">
-                    <div className="rounded-[8px] bg-[#f8f9fa] p-2">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.05em] text-[#9ca3af]">Dealer</div>
-                      <div className="mt-1 text-[12px] font-bold text-[#64748b]">{option.dealerPrice}</div>
+              {problem.repairOptions.map((option, optionIndex) => {
+                const colors = getTierColors(option.tier);
+                
+                return (
+                  <div 
+                    key={`${option.tier || "repair-option"}-${optionIndex}`} 
+                    className={`rounded-[12px] border-2 ${colors.border} ${colors.bg}/20 p-2`}
+                  >
+                    <div className={`rounded-[8px] text-black px-3 py-2 mb-3`}>
+                      <div className="font-['Manrope'] text-[13px] font-bold">{option.tier}</div>
                     </div>
-                    <div className="rounded-[8px] bg-[#f8fbff] p-2">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.05em] text-[#0d1b2e]">Specialist</div>
-                      <div className="mt-1 text-[12px] font-extrabold text-[#0d1b2e]">{option.specialistPrice}</div>
+                    
+                    <div className="grid grid-cols-2 gap-2 mb-3">
+                      <div className={`rounded-[8px] bg-[#173971] ${colors.dealerText} p-2`}>
+                        <div className="text-[10px] font-bold uppercase tracking-[0.05em] opacity-90">DEALER</div>
+                        <div className="mt-1 text-[13px] font-bold">{option.dealerPrice}</div>
+                      </div>
+                      <div className={`rounded-[8px] bg-[#2c6724] ${colors.specialistText} p-2`}>
+                        <div className="text-[10px] font-bold uppercase tracking-[0.05em] opacity-90">SPECIALIST</div>
+                        <div className="mt-1 text-[13px] font-bold">{option.specialistPrice}</div>
+                      </div>
+                    </div>
+                    
+                    <p className="text-[12px] leading-[1.55] text-[#374151] mb-2">{option.whatItInvolves}</p>
+                    <div className={`rounded-[8px] text-[11.5px] leading-[1.5] text-[#6b7280]`}>
+                      {option.longevity}
                     </div>
                   </div>
-                  <p className="mt-3 text-[11.5px] leading-[1.55] text-[#374151]">{option.whatItInvolves}</p>
-                  <div className="mt-2 rounded-[8px] bg-[#f8f9fa] p-2 text-[11px] leading-[1.5] text-[#6b7280]">{option.longevity}</div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ) : null}
 
@@ -293,9 +347,24 @@ function MobileProblemCard({
 export default function CommonProblemsSection({ data, bgImage }: Props) {
   const [active, setActive] = useState(0);
   const [openMobile, setOpenMobile] = useState(0);
+  const [isTextExpanded, setIsTextExpanded] = useState(false);
+
   const current = useMemo(() => data.problems[active] ?? data.problems[0], [active, data.problems]);
   const heading = splitHeading(data.h2);
   const currentDetail = current ? splitProblemDetail(current.group, current.h4) : null;
+
+  // Text truncation logic
+  const maxLength = 170;
+  const isLongText = data.h3.length > maxLength;
+  let displayText = data.h3;
+  if (isLongText && !isTextExpanded) {
+    let truncated = data.h3.substring(0, maxLength);
+    const lastSpace = truncated.lastIndexOf(" ");
+    if (lastSpace > 0) {
+      truncated = truncated.substring(0, lastSpace);
+    }
+    displayText = truncated.trim() + "...";
+  }
 
   const supportItems = [
     { label: "12-Month Warranty", icon: <WarrantyIcon /> },
@@ -328,16 +397,26 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
 
         <div className="hidden gap-5 lg:grid lg:grid-cols-[320px_minmax(0,1fr)] lg:items-start">
           <div className="rounded-[14px] border border-[#e5e7eb] bg-white p-5 shadow-[0_2px_10px_rgba(13,27,46,0.05)]">
-            <h2 className="text-[26px] font-extrabold leading-[1.18] tracking-[-0.5px] text-[#0d1b2e]">
+            <h2 className="text-[26px] font-extrabold leading-[1.18] tracking-[-0.5px] text-[#0d1b2e]" style={{ fontSize: '26px' }}>
               <span>{heading.primary}</span>
-              {heading.accent ? (
-                <>
-                  <br />
-                  <span className="text-[#15803d]">{heading.accent}</span>
-                </>
-              ) : null}
             </h2>
-            <p className="mt-4 text-[12px] leading-[1.7] text-[#6b7280]">{data.h3}</p>
+
+            {/* Updated Desktop Paragraph */}
+            <p className="mt-4 text-[12px] leading-[1.7] text-[#6b7280]">
+              {displayText}
+              {isLongText && (
+                <>
+                  {" "}
+                  <button
+                    type="button"
+                    onClick={() => setIsTextExpanded((prev) => !prev)}
+                    className="font-semibold text-[#15803d] hover:underline focus:outline-none"
+                  >
+                    {isTextExpanded ? "see less" : "see more"}
+                  </button>
+                </>
+              )}
+            </p>
 
             <div className="mt-5 space-y-2">
               {data.problems.map((problem, index) => {
@@ -348,11 +427,10 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
                     key={`${problem.group || "problem"}-${index}`}
                     type="button"
                     onClick={() => setActive(index)}
-                    className={`flex w-full items-center gap-3 rounded-[10px] border px-3 py-3 text-left transition ${
-                      activeProblem
-                        ? "border-[#bbf7d0] bg-[#f0fdf4]"
+                    className={`flex w-full items-center gap-3 rounded-[10px] border px-3 py-3 text-left transition ${activeProblem
+                        ? "border border-green-400 shadow-[0_0_15px_rgba(74,222,128,0.5),inset_0_0_12px_rgba(74,222,128,0.3)]"
                         : "border-[#e5e7eb] bg-white hover:border-[#cbd5e1] hover:bg-slate-50"
-                    }`}
+                      }`}
                   >
                     <div className={`flex h-9 w-9 flex-none items-center justify-center rounded-[8px] ${activeProblem ? "bg-[#15803d] text-white" : "bg-[#0d1b2e] text-white"}`}>
                       <ProblemIcon index={index} />
@@ -443,13 +521,12 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
                               <tr key={`${option.tier || "repair-option"}-${optionIndex}`} className="border-b border-[#f1f5f9] align-top last:border-b-0">
                                 <td className="px-[12px] py-[12px] text-[11.5px] text-[#374151]">
                                   <div className="font-['Manrope'] text-[12px] font-bold text-[#0d1b2e]">{option.tier}</div>
-                                  <div className={`mt-2 inline-flex rounded-[999px] px-2 py-[3px] text-[9px] font-bold uppercase tracking-[0.05em] ${
-                                    variant === "recommended"
+                                  <div className={`mt-2 inline-flex rounded-[999px] px-2 py-[3px] text-[9px] font-bold uppercase tracking-[0.05em] ${variant === "recommended"
                                       ? "bg-[#f0fdf4] text-[#15803d]"
                                       : variant === "moderate"
                                         ? "bg-[#fff7ed] text-[#c2410c]"
                                         : "bg-[#f8fafc] text-[#64748b]"
-                                  }`}>
+                                    }`}>
                                     {variant === "recommended" ? "Best Value" : variant === "moderate" ? "Intermediate" : "Minor"}
                                   </div>
                                 </td>
@@ -480,36 +557,36 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
                 />
               </div>
 
-              {(data.finalCta.h4 || data.finalCta.paragraph || data.finalCta.buttonText) ? (
-                <div className="mt-4 rounded-[14px] border border-[#dbe6f3] bg-[#f8fbff] p-4 md:p-5">
-                  {data.finalCta.h4 ? (
-                    <h4 className="font-['Manrope'] text-[18px] font-extrabold leading-[1.2] tracking-[-0.03em] text-[#0d1b2e]">
-                      {data.finalCta.h4}
-                    </h4>
-                  ) : null}
 
-                  {data.finalCta.paragraph ? (
-                    <p className="mt-3 max-w-[760px] text-[12px] leading-[1.75] text-[#4b5563]">
-                      {data.finalCta.paragraph}
-                    </p>
-                  ) : null}
-
-                  {data.finalCta.buttonText ? (
-                    <a
-                      href="#quote-form"
-                      data-quote-context={data.finalCta.h4 || current.group}
-                      data-quote-source="common-problems-final-cta"
-                      className="mt-4 inline-flex min-h-[44px] items-center justify-center rounded-[10px] bg-[#15803d] px-5 text-[12.5px] font-semibold text-white transition hover:bg-[#166534]"
-                    >
-                      {data.finalCta.buttonText}
-                    </a>
-                  ) : null}
-                </div>
-              ) : null}
             </div>
           ) : null}
         </div>
+        {(data.finalCta.h4 || data.finalCta.paragraph || data.finalCta.buttonText) ? (
+          <div className="hidden md:block mt-4 rounded-[14px] border border-[#dbe6f3] bg-[#f8fbff] p-4 md:p-5">
+            {data.finalCta.h4 ? (
+              <h4 className="font-['Manrope'] text-[18px] font-extrabold leading-[1.2] tracking-[-0.03em] text-[#0d1b2e]">
+                {data.finalCta.h4}
+              </h4>
+            ) : null}
 
+            {data.finalCta.paragraph ? (
+              <p className="mt-3 max-w-[760px] text-[12px] leading-[1.75] text-[#4b5563]">
+                {data.finalCta.paragraph}
+              </p>
+            ) : null}
+
+            {data.finalCta.buttonText ? (
+              <a
+                href="#quote-form"
+                data-quote-context={data.finalCta.h4 || current.group}
+                data-quote-source="common-problems-final-cta"
+                className="mt-4 inline-flex min-h-[44px] items-center justify-center rounded-[10px] bg-[#15803d] px-5 text-[12.5px] font-semibold text-white transition hover:bg-[#166534]"
+              >
+                {data.finalCta.buttonText}
+              </a>
+            ) : null}
+          </div>
+        ) : null}
         <div className="lg:hidden">
           <h2 className="text-[26px] font-extrabold leading-[1.2] tracking-[-0.4px] text-[#0d1b2e] md:text-[36px] md:leading-[1.15] md:tracking-[-0.7px]">
             <span>{heading.primary}</span>
@@ -520,7 +597,23 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
               </>
             ) : null}
           </h2>
-          <p className="mb-5 mt-[10px] text-[13px] leading-[1.65] text-[#6b7280]">{data.h3}</p>
+
+          {/* Updated Mobile Paragraph */}
+          <p className="mb-5 mt-[10px] text-[13px] leading-[1.65] text-[#6b7280]">
+            {displayText}
+            {isLongText && (
+              <>
+                {" "}
+                <button
+                  type="button"
+                  onClick={() => setIsTextExpanded((prev) => !prev)}
+                  className="font-semibold text-[#15803d] hover:underline focus:outline-none"
+                >
+                  {isTextExpanded ? "see less" : "see more"}
+                </button>
+              </>
+            )}
+          </p>
 
           {data.problems.map((problem, index) => (
             <MobileProblemCard

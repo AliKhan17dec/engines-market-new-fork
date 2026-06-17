@@ -434,7 +434,7 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
 
                 <div className="mt-5 grid gap-3 lg:grid-cols-3">
                   {renderableDirectoryGroups.map((group) => (
-                    <article key={group.title} className="rounded-sm border border-slate-200 bg-white p-4">
+                    <article key={group.title} className="rounded-sm shadow-[0_0_0_2px_rgba(42,109,214,0.9),0_0_15px_rgba(42,109,214,0.5),0_0_35px_rgba(42,109,214,0.35),0_0_60px_rgba(42,109,214,0.25),0_8px_25px_rgba(42,109,214,0.3)] bg-white p-4">
                       <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#15803d]">{group.title}</p>
                       <div className="mt-3 flex flex-wrap gap-[7px]">
                         {group.items.map((item, index) => {

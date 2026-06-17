@@ -198,19 +198,24 @@ export function RecommendationCard({
   linkProps,
 }: RecommendationCardProps) {
   return (
-    <div className="rounded-[14px] border border-[#0d1b2e] bg-white px-4 py-4 shadow-[0_10px_24px_rgba(13,27,46,0.06)]">
+    <div className="rounded-[14px] bg-white px-4 py-4 shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)]">
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-        <div className="flex items-start gap-3">
-          <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[#f5f8fc] text-[#0d1b2e]">
-            <ShieldIcon />
-          </div>
-          <div className="min-w-0">
-            <div className="text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#64748b]">{label}</div>
-            {title ? <div className="mt-1 text-[13px] font-extrabold leading-[1.35] text-[#0d1b2e]">{title}</div> : null}
-            <p className="mt-1 text-[12px] leading-[1.65] text-[#475569]">{body}</p>
-            <ChipRow chips={chips} tone="recommendation" />
-          </div>
-        </div>
+        <div className="flex flex-col">
+  {/* Top Row: Icon and Header (Label/Title) */}
+  <div className="flex items-start gap-3">
+    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[#f5f8fc] text-[#0d1b2e]">
+      <ShieldIcon />
+    </div>
+    <div className="min-w-0">
+      <div className="text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#64748b]">{label}</div>
+      {title ? <div className="mt-1 text-[13px] font-extrabold leading-[1.35] text-[#0d1b2e]">{title}</div> : null}
+    </div>
+  </div>
+
+  {/* Body Text: Moved here to start from the left edge (under the icon) */}
+  <p className="mt-2 text-[12px] leading-[1.65] text-w">{body}</p>
+  <ChipRow chips={chips} tone="recommendation" />
+</div>
 
         {ctaText ? (
           <a
