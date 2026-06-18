@@ -466,7 +466,7 @@ export default function HeroSection({
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-[1400px] min-w-0 items-center sm:gap-8 px-3 py-7 sm:px-6 md:px-8 md:py-8 lg:grid-cols-[60fr_40fr] lg:gap-7 lg:px-8 lg:py-[52px]">
+      <div className="mx-auto grid max-w-[1400px] min-w-0 items-center sm:gap-8 px-3 py-7 sm:px-6 md:px-8 md:py-8 lg:grid-cols-[55fr_45fr] lg:gap-7 lg:px-8 lg:py-[52px]">
         {/* LEFT COLUMN */}
         <div className="flex min-w-0 flex-col">
           <span className="mb-[14px] inline-flex w-fit items-center rounded-[20px] bg-[#0d1b2e] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white md:mb-[18px] md:px-[14px] md:py-[6px] md:text-[10.5px]">
@@ -492,23 +492,23 @@ export default function HeroSection({
           </p>
 
           <div className="mt-[18px] grid min-w-0 grid-cols-4 gap-1.5 md:mt-6 md:flex md:flex-wrap lg:flex-nowrap lg:overflow-x-auto lg:pb-1 [&::-webkit-scrollbar]:hidden">
-  {data.trustBadges.slice(0, 4).map((badge, index) => {
-    const Icon = badgeIcons[index] ?? ShieldIcon;
+            {data.trustBadges.slice(0, 4).map((badge, index) => {
+              const Icon = badgeIcons[index] ?? ShieldIcon;
 
-    return (
-      <div
-        key={badge}
-        className="flex flex-col items-center justify-center gap-1 rounded-lg bg-[#13253f] px-2 py-2 text-[11px] font-semibold text-white md:flex-row md:items-center md:justify-start md:px-[14px] md:py-[9px] md:text-[12.5px]"
-      >
-        {/* Added flex-shrink-0 and fixed size to icon so it doesn't squish */}
-        <Icon className="w-4 h-4 flex-shrink-0" />
-        
-        {/* Removed whitespace-nowrap so text wraps exactly like in your screenshot */}
-        <span className="leading-tight text-center md:text-left">{badge}</span>
-      </div>
-    );
-  })}
-</div>
+              return (
+                <div
+                  key={badge}
+                  className="flex flex-col items-center justify-center gap-1 rounded-lg bg-[#13253f] px-2 py-2 text-[11px] font-semibold text-white md:flex-row md:items-center md:justify-start md:px-[14px] md:py-[9px] md:text-[12.5px]"
+                >
+                  {/* Added flex-shrink-0 and fixed size to icon so it doesn't squish */}
+                  <Icon className="w-4 h-4 flex-shrink-0" />
+
+                  {/* Removed whitespace-nowrap so text wraps exactly like in your screenshot */}
+                  <span className="leading-tight text-center md:text-left">{badge}</span>
+                </div>
+              );
+            })}
+          </div>
 
           {displayModels.length ? (
             <div className="mt-5 flex min-w-0 flex-col md:mt-7">
@@ -595,7 +595,7 @@ export default function HeroSection({
                   alt={data.imageAlt ?? brandName}
                   fill
                   className="object-contain p-2"
-                  sizes="(max-width: 767px) 100vw, (min-width: 768px) 500px"
+                  sizes="(max-width: 767px) 100vw, (min-width: 768px) 600px"
                   onError={() => setShowHeroImage(false)}
                 />
               </div>
@@ -609,7 +609,7 @@ export default function HeroSection({
           {/* FORM MOVED HERE */}
           <form
             id="hero-reg-form"
-            className="flex w-full max-w-full flex-col gap-[10px] px-0 sm:px-2"
+            className="flex w-full max-w-md flex-col gap-[10px] px-0 sm:px-2"
             onSubmit={openQuoteCheckout}
           >
             <label

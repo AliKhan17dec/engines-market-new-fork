@@ -475,10 +475,25 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
           </div>
 
           {data.closing ? (
-            <p className="mx-auto mt-4 max-w-[980px] text-[13px] leading-[1.75] text-slate-600">
-              {data.closing}
-            </p>
-          ) : null}
+  <div className="mt-4 flex items-center gap-2">
+    <svg
+      className="h-4 w-4 flex-shrink-0 text-slate-600"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+    <p className="text-[13px] leading-[1.75] text-slate-600">
+      {data.closing}
+    </p>
+  </div>
+) : null}
         </Container>
       </Section>
     </>

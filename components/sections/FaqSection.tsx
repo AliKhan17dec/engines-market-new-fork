@@ -32,8 +32,8 @@ export default function FaqSection({ data, strictData = false }: Props) {
   return (
     <Section className="bg-white">
       <Container>
-        <div className="mx-auto max-w-[860px] text-center">
-          <p className="section-pill mb-1.5 mx-auto">{data.tag}</p>
+        <div className="max-w-[860px]">
+          <p className="section-pill mb-1.5">{data.tag}</p>
           <h2>
             {headingLines.map((line, index) => (
               <span key={`${line}-${index}`} className={`block ${headingLines.length > 1 && index === headingLines.length - 1 ? "text-[#15803d]" : ""}`}>
