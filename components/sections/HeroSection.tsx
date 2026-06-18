@@ -530,7 +530,7 @@ export default function HeroSection({
                     className={`py-[10px] md:py-3 ${index < displayModels.length - 1 ? "border-b border-[#f3f4f6]" : ""}`}
                   >
                     <div className="flex min-w-0 items-start overflow-hidden">
-                      <div className="mr-2 flex h-[34px] w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-md bg-white md:mr-[10px] md:h-[40px] md:w-[72px]">
+                      <div className="mr-2 flex h-[34px] w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-md md:mr-[10px] md:h-[60px] md:w-[72px]">
                         {model.image ? (
                           <Image
                             src={model.image}

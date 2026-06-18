@@ -374,7 +374,7 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
   ];
 
   return (
-    <Section className="relative overflow-hidden bg-[#f8f9fa]">
+    <Section className="relative overflow-hidden bg-[#f7f8fb]">
       {bgImage ? (
         <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-[200px] lg:block">
           <div
@@ -391,7 +391,6 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
 
       <Container className="relative max-w-[1400px]">
         <div className="section-pill mb-[14px]">
-          <WarningTriangleIcon />
           <span>{data.tag}</span>
         </div>
 

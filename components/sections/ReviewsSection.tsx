@@ -244,7 +244,7 @@ export default function ReviewsSection({ data, useDataHeading = false }: Props) 
             </div>
           </div>
 
-          <div className="mt-5 rounded-[12px] border-2 border-[#2969af] shadow-[0_0_8px_rgba(37,99,235,0.6),0_0_15px_rgba(37,99,235,0.3)] bg-white px-4 py-4">
+          <div className="mt-5 rounded-[12px] border border-[#2969af] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)] bg-white px-4 py-4">
             <div className="flex items-start gap-3">
               <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0d1b2e] text-white">
                 <ReviewBadgeIcon />

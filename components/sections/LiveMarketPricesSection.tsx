@@ -177,7 +177,7 @@ export default function LiveMarketPricesSection({
   const sectionImage = imageSrc || "";
 
   return (
-    <Section className="bg-[#f8f9fa] sm:px-2 py-7 sm:py-8 lg:py-10">
+    <Section className="bg-[#f5f5f5] sm:px-2 py-7 sm:py-8 lg:py-10">
       {/* Mobile Image: Full width, appears before the Container on phone screens */}
       {/* <div className="relative mb-6 h-[340px] w-full overflow-hidden lg:hidden">
         {sectionImage ? (
@@ -215,15 +215,22 @@ export default function LiveMarketPricesSection({
 
           <div className="mt-4 flex flex-col">
             <h2 className="font-['Manrope'] text-[28px] font-bold leading-[1.12] text-[#0d1b2e] sm:text-[30px] lg:text-[32px]">
-              {headingLines.map((line, index) => {
-                const isAccent = headingLines.length > 1 && index === headingLines.length - 1;
-                return (
-                  <span key={`${line}-${index}`} className={`block ${isAccent ? "text-[#15803d]" : ""}`}>
-                    {line}
-                  </span>
-                );
-              })}
-            </h2>
+  {headingLines.map((line, index) => {
+    const parts = line.split(/(Engine Replacement)/);
+
+    return (
+      <span key={`${line}-${index}`} className="block">
+        {parts.map((part, i) =>
+          part === "Engine Replacement" ? (
+            <span key={i} className="text-[#15803d]">{part}</span>
+          ) : (
+            <span key={i}>{part}</span>
+          )
+        )}
+      </span>
+    );
+  })}
+</h2>
           </div>
         </div>
 

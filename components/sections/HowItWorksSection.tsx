@@ -126,7 +126,7 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
   }));
 
   return (
-    <Section id={sectionId} className="relative overflow-hidden bg-[#f8f9fa] py-7 sm:py-8 lg:py-10">
+    <Section id={sectionId} className="relative overflow-hidden bg-[#f7f8fb] py-7 sm:py-8 lg:py-10">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
           className="absolute right-0 top-0 hidden h-[340px] w-[440px] opacity-[0.08] lg:block"
@@ -204,7 +204,7 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
                       </span>
                     </div>
 
-                    <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px]  bg-[#0d1b2e] p-2 sm:p-4 text-white border-3 border-[#2969af] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px]  bg-[#0d1b2e] p-2 sm:p-4 text-white border-1 border-[#2969af] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
                       <div className="flex flex-col items-center gap-4">
                       </div>
 

@@ -198,7 +198,7 @@ export function RecommendationCard({
   linkProps,
 }: RecommendationCardProps) {
   return (
-    <div className="rounded-[14px] bg-white px-4 py-4 shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)]">
+    <div className="rounded-[14px] bg-white px-4 py-4 shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)]">
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="flex flex-col">
   {/* Top Row: Icon and Header (Label/Title) */}
@@ -241,16 +241,18 @@ export function WarningCard({
   linkProps,
 }: WarningCardProps) {
   return (
-    <div className="rounded-[14px] border border-[#f6d4a8] bg-[linear-gradient(180deg,#fffaf2_0%,#fff5e9_100%)] px-4 py-4 shadow-[0_8px_20px_rgba(217,119,6,0.07)]">
+    // Changed shadow to a stronger orange glow (0.35 opacity) with a wider blur (16px)
+    <div className="rounded-[14px] border border-[#f4a46f] bg-[#fdf4ee] px-4 py-4 shadow-[0_4px_16px_rgba(251,146,60,0.35)]">
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="flex items-start gap-3">
-          <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[#fff1d8] text-[#f59e0b]">
+          {/* Removed the circular background to match the screenshot's bare triangle icon exactly */}
+          <div className="flex h-15 w-15 flex-none items-center justify-center text-[#ea580c]">
             <WarningIcon />
           </div>
           <div className="min-w-0">
-            <div className="text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#d97706]">{label}</div>
-            <div className="mt-1 text-[13px] font-extrabold leading-[1.35] text-[#92400e]">{title}</div>
-            <p className="mt-1 text-[12px] leading-[1.65] text-[#9a3412]">{body}</p>
+            <div className="text-[13px] font-extrabold uppercase tracking-[0.12em] text-[#dc2626]">{label}</div>
+            <div className="mt-1 text-[13px] font-extrabold leading-[1.35] text-[#5f4440]">{title}</div>
+            <p className="mt-1 text-[12px] leading-[1.65] text-[#4b5563]">{body}</p>
             <ChipRow chips={chips} tone="warning" />
           </div>
         </div>
@@ -259,7 +261,7 @@ export function WarningCard({
           <a
             href={linkProps?.href ?? "#quote-form"}
             {...linkProps}
-            className={`inline-flex min-h-[42px] items-center justify-center gap-2 rounded-[10px] border border-[#f1c88b] bg-white px-4 text-[11px] font-bold text-[#b45309] transition hover:bg-[#fff8ee] md:min-w-[220px] ${linkProps?.className ?? ""}`}
+            className={`inline-flex min-h-[42px] items-center justify-center gap-2 rounded-[10px] border border-[#fdba74] bg-white px-4 text-[11px] font-bold text-[#ea580c] transition hover:bg-[#fff7ed] md:min-w-[220px] ${linkProps?.className ?? ""}`}
           >
             <span>{ctaText}</span>
             <ArrowIcon className="h-[12px] w-[12px]" />

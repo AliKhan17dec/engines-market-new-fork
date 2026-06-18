@@ -347,7 +347,7 @@ function YearPanel({
                   <SectionLabel icon={<TagIcon />} label={engineCodesLabel} />
                   <div className="mt-1 flex flex-wrap gap-[6px]">
                     {(item.engineCodesCovered ?? []).map((code, index) => (
-                      <span key={`${code}-${index}`} className="rounded-[7px] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)] border border-[#0d1b2e] bg-[#f8fbff] px-[10px] py-[5px] text-[11.5px] font-bold text-[#0d1b2e]">
+                      <span key={`${code}-${index}`} className="rounded-[7px] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)] border border-[#0d1b2e] bg-[#f8fbff] px-[10px] py-[5px] text-[11.5px] font-bold text-[#0d1b2e]">
                         {code}
                       </span>
                     ))}
@@ -425,7 +425,7 @@ function YearPanel({
                   <SectionLabel icon={<TagIcon />} label={engineCodesLabel} />
                   <div className="mt-1 flex flex-wrap gap-[7px]">
                     {(item.engineCodesCovered ?? []).map((code, index) => (
-                      <span key={`${code}-${index}`} className="rounded-[7px] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)] bg-[#f8fbff] px-[11px] py-[5px] text-[12px] font-bold text-[#0d1b2e]">
+                      <span key={`${code}-${index}`} className="rounded-[7px] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)] bg-[#f8fbff] px-[11px] py-[5px] text-[12px] font-bold text-[#0d1b2e]">
                         {code}
                       </span>
                     ))}

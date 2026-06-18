@@ -197,7 +197,7 @@ function FuelPanel({
   });
 
   // Blue glow shadow for content boxes
-  const blueGlowShadow = "shadow-[0_0_0_2px_rgba(42,109,214,0.9),0_0_15px_rgba(42,109,214,0.5),0_0_35px_rgba(42,109,214,0.35),0_0_60px_rgba(42,109,214,0.25),0_8px_25px_rgba(42,109,214,0.3)]";
+  const blueGlowShadow = "shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)]";
   
   // Green glow shadow for CTA box
   const greenGlowShadow = "shadow-[0_0_15px_rgba(74,222,128,0.5),inset_0_0_12px_rgba(74,222,128,0.3)]";
@@ -422,7 +422,7 @@ export default function FuelTypesSection({ data, bgImage, strictData = false }: 
                         onClick={() => setActiveItemIndex(index)}
                         className={`flex flex-1 items-center justify-center gap-1 md:gap-2 rounded-[8px] px-2 md:px-4 py-3 text-[11px] md:text-[13px] font-bold transition-all duration-200 ${
                           isActive
-                            ? "bg-[#0d1b2e] text-white shadow-md"
+                            ? "bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] border-[#2a6dd6] text-white shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)]"
                             : "text-[#475569] hover:bg-[#f8fafc]"
                         }`}
                       >

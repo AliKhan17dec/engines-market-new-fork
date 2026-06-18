@@ -252,7 +252,7 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
         }
       `}</style>
 
-      <Section className="bg-white">
+      <Section className="bg-[#f7f8fb]">
         <Container className="max-w-[1400px]">
           <div className=" max-w-[760px] text-left">
             <div className="section-pill mb-[14px]">

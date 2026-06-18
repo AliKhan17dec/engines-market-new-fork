@@ -54,7 +54,7 @@
           "line1": "1 Series Diesel Engines - from £1,250 to £3,600",
           "line2": "-> Rebuilt units from £1,250 · Common codes: N47D20, B47D20, N47D16, B37C15",
           "detail": "-> Rebuilt units from £1,250 · Common codes: N47D20, B47D20, N47D16, B37C15",
-          "image": "",
+          "image": "/images/engines/96da5878-45b8-406b-8fc7-32f8a60d5c5c_removalai_preview.webp",
           "imageAlt": "BMW 1 Series diesel engine replacement - N47D20 B47D20 rebuilt reconditioned UK"
         },
         {
@@ -63,7 +63,7 @@
           "line1": "1 Series Petrol Engines - from £1,150 to £3,200",
           "line2": "-> Rebuilt units from £1,150 · Common codes: N13B16, B38B15, B48B20, N20B20",
           "detail": "-> Rebuilt units from £1,150 · Common codes: N13B16, B38B15, B48B20, N20B20",
-          "image": "",
+          "image": "/images/engines/194ff4f9-dd13-4c28-b2fc-4307d63ae0ce_removalai_preview.webp",
           "imageAlt": "BMW 1 Series petrol engine replacement - N13B16 B38B15 B48B20 rebuilt reconditioned UK"
         },
         {
@@ -72,7 +72,7 @@
           "line1": "1 Series Performance Engines - from £2,500 to £6,800",
           "line2": "-> Rebuilt units from £2,500 · Common codes: N55B30, B58B30, B48B20 (M135i, M140i)",
           "detail": "-> Rebuilt units from £2,500 · Common codes: N55B30, B58B30, B48B20 (M135i, M140i)",
-          "image": "",
+          "image": "/images/engines/16924a6b-58ec-44d8-9ed5-ccd89f220a22_removalai_preview.webp",
           "imageAlt": "BMW M135i M140i engine replacement - N55B30 B58B30 rebuilt reconditioned UK specialist"
         }
       ],
@@ -1374,7 +1374,7 @@
     },
     "commonProblems": {
       "tag": "Common Problems",
-      "h2": "BMW 1 Series Engine Problems - What It Costs to Fix & When Replacement Makes Sense",
+      "h2": "BMW 1 Series - Engine Problems",
       "h3": "The BMW 1 Series delivers premium refinement, but its N47 diesel, N55 performance, and early B-series petrol units carry well-documented mechanical weaknesses that dominate UK replacement demand. Every rebuilt engine supplied through our network features upgraded internal components designed to resolve these original engineering flaws, backed by a minimum 12‑month unlimited mileage warranty. The guide below breaks down realistic UK repair costs against full replacement, helping you decide whether a targeted repair or a complete engine swap offers the best long‑term value for your specific variant.",
       "problems": [
         {
@@ -1790,8 +1790,7 @@
       ],
       "closing": "Not sure which engine size your BMW 1 Series needs? Enter your registration number above - we’ll identify the exact displacement, engine code and compatible replacement options instantly. All engines supplied through EngineMarket include a minimum 12‑month unlimited mileage warranty from UK BMW 1 Series specialists.",
       "headingLines": [
-        "BMW 1 Series Engines by Size",
-        "Find the Right Displacement for Your Variant"
+        "BMW 1 Series Engines by Size"
       ],
       "ui": {
         "swapLabel": "Swap panel",

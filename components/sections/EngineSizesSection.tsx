@@ -98,27 +98,6 @@ function TagIcon() {
   );
 }
 
-function SwapIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-[15px] w-[15px]" fill="none" aria-hidden="true">
-      <path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3-3m-3 3 3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function ChevronDownIcon({ open }: { open: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className={`h-[14px] w-[14px] transition ${open ? "rotate-180" : ""}`}
-      fill="none"
-      aria-hidden="true"
-    >
-      <polyline points="6,9 12,15 18,9" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-[13px] w-[13px]" fill="none" aria-hidden="true">
@@ -293,42 +272,15 @@ export default function EngineSizesSection({
 }: Props) {
   const ui = data.ui ?? {};
   const groups = data.groups;
-  const initialVisible = groups.length >= 2 ? [0, 1] : [0];
-  const [visibleGroupIndices, setVisibleGroupIndices] = useState<number[]>(initialVisible);
+  
+  // Simplified state management (removed dropdown/swap logic)
   const [activeGroupIndex, setActiveGroupIndex] = useState(0);
   const [openItemIndex, setOpenItemIndex] = useState(0);
-  const [desktopSwapOpen, setDesktopSwapOpen] = useState(false);
-  const [mobileSwapOpen, setMobileSwapOpen] = useState(false);
 
   const split = splitHeading(data.h2);
   const headingLines = data.headingLines?.length ? data.headingLines : [split.primary, split.accent].filter(Boolean);
   const activeGroup = groups[activeGroupIndex] ?? groups[0];
   const activeKind = tagVariant(activeGroup?.title ?? "diesel");
-
-  const visibleGroups = visibleGroupIndices.map((index) => groups[index]).filter(Boolean);
-  const hiddenGroupIndices = groups
-    .map((_, index) => index)
-    .filter((index) => !visibleGroupIndices.includes(index));
-
-  const desktopSwapIn = (incomingIndex: number) => {
-    setVisibleGroupIndices((current) => {
-      if (current.includes(incomingIndex)) return current;
-      const replaceSlot = current.findIndex((index) => index !== activeGroupIndex);
-      const slot = replaceSlot >= 0 ? replaceSlot : Math.max(current.length - 1, 0);
-      const next = [...current];
-      next[slot] = incomingIndex;
-      return next;
-    });
-    setActiveGroupIndex(incomingIndex);
-    setOpenItemIndex(0);
-    setDesktopSwapOpen(false);
-  };
-
-  const mobileSelectGroup = (groupIndex: number) => {
-    setActiveGroupIndex(groupIndex);
-    setOpenItemIndex(0);
-    setMobileSwapOpen(false);
-  };
 
   return (
     <Section className="relative overflow-hidden bg-[#f8f9fa]">
@@ -348,11 +300,11 @@ export default function EngineSizesSection({
 
       <Container className="relative max-w-[1400px]">
         <div className="section-pill mb-[14px]">
-          <TagIcon />
+          {/* <TagIcon /> */}
           <span>{data.tag}</span>
         </div>
 
-        <h2 className="max-w-[720px] font-['Manrope'] text-[26px] font-extrabold leading-[1.16] tracking-[-0.5px] text-[#0d1b2e] md:text-[30px] lg:text-[34px]">
+        <h2 className="max-w-[820px] font-['Manrope'] text-[26px] font-extrabold leading-[1.16] tracking-[-0.5px] text-[#0d1b2e] md:text-[30px] lg:text-[34px]">
           {headingLines.map((line, index) => (
             <span key={`${line}-${index}`} className={`block ${headingLines.length > 1 && index === headingLines.length - 1 ? "text-[#15803d]" : ""}`}>
               {line}
@@ -361,114 +313,43 @@ export default function EngineSizesSection({
         </h2>
         <p className="mt-[10px] max-w-[560px] text-[13px] leading-[1.65] text-[#64748b]">{data.intro}</p>
 
-        <div className="relative mt-5 lg:hidden">
-          <div className="rounded-[10px] bg-[#0d1b2e] p-[3px]">
-            <div className="flex items-center justify-between gap-2 rounded-[8px] bg-[#0d1b2e] px-3 py-[10px] text-white">
-              <div className="flex min-w-0 items-center gap-2">
-                <FuelTabIcon kind={activeKind} />
-                <span className="truncate text-[12px] font-bold">{activeGroup?.title}</span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setMobileSwapOpen((current) => !current)}
-                className="inline-flex items-center gap-2 rounded-[6px] border border-white/10 bg-white/5 px-2 py-[6px] text-white"
-              >
-                <SwapIcon />
-                <ChevronDownIcon open={mobileSwapOpen} />
-              </button>
-            </div>
-          </div>
-
-          {mobileSwapOpen ? (
-            <div className="absolute right-0 top-[calc(100%+8px)] z-20 w-[240px] rounded-[12px] border border-[#e5e7eb] bg-white p-2 shadow-[0_12px_30px_rgba(13,27,46,0.14)]">
-              <div className="px-2 pb-2 text-[10px] font-bold uppercase tracking-[0.5px] text-[#94a3b8]">{ui.swapLabel ?? "Swap panel"}</div>
-              <div className="flex flex-col gap-1">
-                {groups
-                  .map((group, index) => ({ group, index }))
-                  .filter(({ index }) => index !== activeGroupIndex)
-                  .map(({ group, index }) => (
-                    <button
-                      key={group.title}
-                      type="button"
-                      onClick={() => mobileSelectGroup(index)}
-                      className="flex items-center gap-2 rounded-[9px] px-3 py-[10px] text-left text-[11px] font-bold text-[#0d1b2e] transition hover:bg-[#f8fafc]"
-                    >
-                      <FuelTabIcon kind={tagVariant(group.title)} />
-                      <span>{group.title}</span>
-                    </button>
-                  ))}
-              </div>
-            </div>
-          ) : null}
-        </div>
-
-        <div className="relative mt-5 hidden lg:block">
-          <div className="rounded-[10px] bg-[#0d1b2e] p-[3px]">
+        {/* Unified Responsive Tab Navigation */}
+        <div className="mt-5">
+          <div className="rounded-[10px] bg-[#0d1b2e]">
             <div className="flex items-stretch gap-[3px]">
-              {visibleGroups.map((group, slot) => {
-                const groupIndex = visibleGroupIndices[slot];
+              {groups.map((group, index) => {
+                const isActive = index === activeGroupIndex;
                 const kind = tagVariant(group.title);
-                const active = groupIndex === activeGroupIndex;
+                const shortLabel = fuelBadgeLabel(kind).toUpperCase();
 
                 return (
                   <button
                     key={group.title}
                     type="button"
                     onClick={() => {
-                      setActiveGroupIndex(groupIndex);
+                      setActiveGroupIndex(index);
                       setOpenItemIndex(0);
                     }}
-                    className={`flex min-w-0 flex-1 items-center justify-center gap-[8px] rounded-[7px] px-4 py-[11px] font-['Manrope'] text-[12px] font-bold transition ${
-                      active
-                        ? "bg-white text-[#15803d] shadow-[0_1px_4px_rgba(13,27,46,0.08)]"
+                    className={`flex flex-1 items-center justify-center gap-1 md:gap-[8px] rounded-[7px] px-2 md:px-4 py-[10px] md:py-[11px] font-['Manrope'] text-[11px] md:text-[12px] font-bold transition-all duration-200 ${
+                      isActive
+                        ? "bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] border-[#2a6dd6] text-white shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)]"
                         : "bg-transparent text-white/90 hover:text-white"
                     }`}
                   >
-                    <FuelTabIcon kind={kind} />
-                    <span className="truncate">{group.title}</span>
+                    {isActive && (
+                      <span className="hidden md:inline-flex">
+                        <FuelTabIcon kind={kind} />
+                      </span>
+                    )}
+                    <span className="hidden md:inline truncate">
+                      {isActive ? group.title.toUpperCase() : shortLabel}
+                    </span>
+                    <span className="md:hidden truncate">
+                      {shortLabel}
+                    </span>
                   </button>
                 );
               })}
-
-              {hiddenGroupIndices.length ? (
-                <div className="relative">
-                  <button
-                    type="button"
-                    onClick={() => setDesktopSwapOpen((current) => !current)}
-                    className={`flex h-full items-center gap-2 rounded-[7px] px-4 py-[11px] text-[12px] font-bold transition ${
-                      hiddenGroupIndices.includes(activeGroupIndex)
-                        ? "bg-white text-[#15803d]"
-                        : "bg-transparent text-white/90 hover:text-white"
-                    }`}
-                  >
-                    <SwapIcon />
-                    <span>{hiddenGroupIndices.length} more</span>
-                    <ChevronDownIcon open={desktopSwapOpen} />
-                  </button>
-
-                  {desktopSwapOpen ? (
-                    <div className="absolute right-0 top-[calc(100%+8px)] z-20 w-[250px] rounded-[12px] border border-[#e5e7eb] bg-white p-2 shadow-[0_14px_34px_rgba(13,27,46,0.16)]">
-                      <div className="px-2 pb-2 text-[10px] font-bold uppercase tracking-[0.5px] text-[#94a3b8]">{ui.swapLabel ?? "Swap panel"}</div>
-                      <div className="flex flex-col gap-1">
-                        {hiddenGroupIndices.map((index) => {
-                          const group = groups[index];
-                          return (
-                            <button
-                              key={group.title}
-                              type="button"
-                              onClick={() => desktopSwapIn(index)}
-                              className="flex items-center gap-2 rounded-[9px] px-3 py-[10px] text-left text-[11px] font-bold text-[#0d1b2e] transition hover:bg-[#f8fafc]"
-                            >
-                              <FuelTabIcon kind={tagVariant(group.title)} />
-                              <span>{group.title}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
             </div>
           </div>
         </div>
