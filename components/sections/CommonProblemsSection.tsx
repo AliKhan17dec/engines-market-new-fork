@@ -207,7 +207,7 @@ function MobileProblemCard({
 
   const getTierColors = (tier: string) => {
     const label = normalizeText(tier).toLowerCase();
-    
+
     if (label.includes("full replacement") || label.includes("recommended") || label.includes("best value")) {
       return {
         border: "border-[#22c55e]",
@@ -220,7 +220,7 @@ function MobileProblemCard({
         specialistText: "text-white",
       };
     }
-    
+
     if (label.includes("intermediate") || label.includes("moderate")) {
       return {
         border: "border-[#f59e0b]",
@@ -233,7 +233,7 @@ function MobileProblemCard({
         specialistText: "text-white",
       };
     }
-    
+
     return {
       border: "border-[#3b82f6]",
       bg: "bg-[#eff6ff]",
@@ -295,16 +295,16 @@ function MobileProblemCard({
             <div className="mt-4 space-y-3">
               {problem.repairOptions.map((option, optionIndex) => {
                 const colors = getTierColors(option.tier);
-                
+
                 return (
-                  <div 
-                    key={`${option.tier || "repair-option"}-${optionIndex}`} 
+                  <div
+                    key={`${option.tier || "repair-option"}-${optionIndex}`}
                     className={`rounded-[12px] border-2 ${colors.border} ${colors.bg}/20 p-2`}
                   >
                     <div className={`rounded-[8px] text-black px-3 py-2 mb-3`}>
                       <div className="font-['Manrope'] text-[13px] font-bold">{option.tier}</div>
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-2 mb-3">
                       <div className={`rounded-[8px] bg-[#173971] ${colors.dealerText} p-2`}>
                         <div className="text-[10px] font-bold uppercase tracking-[0.05em] opacity-90">DEALER</div>
@@ -315,7 +315,7 @@ function MobileProblemCard({
                         <div className="mt-1 text-[13px] font-bold">{option.specialistPrice}</div>
                       </div>
                     </div>
-                    
+
                     <p className="text-[12px] leading-[1.55] text-[#374151] mb-2">{option.whatItInvolves}</p>
                     <div className={`rounded-[8px] text-[11.5px] leading-[1.5] text-[#6b7280]`}>
                       {option.longevity}
@@ -427,8 +427,8 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
                     type="button"
                     onClick={() => setActive(index)}
                     className={`flex w-full items-center gap-3 rounded-[10px] border px-3 py-3 text-left transition ${activeProblem
-                        ? "border border-green-400 shadow-[0_0_15px_rgba(74,222,128,0.5),inset_0_0_12px_rgba(74,222,128,0.3)]"
-                        : "border-[#e5e7eb] bg-white hover:border-[#cbd5e1] hover:bg-slate-50"
+                      ? "border border-green-400 shadow-[0_0_15px_rgba(74,222,128,0.5),inset_0_0_12px_rgba(74,222,128,0.3)]"
+                      : "border-[#e5e7eb] bg-white hover:border-[#cbd5e1] hover:bg-slate-50"
                       }`}
                   >
                     <div className={`flex h-9 w-9 flex-none items-center justify-center rounded-[8px] ${activeProblem ? "bg-[#15803d] text-white" : "bg-[#0d1b2e] text-white"}`}>
@@ -480,12 +480,35 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
                   <p className="text-[11.5px] leading-[1.55] text-[#374151]">{current.affectedModels}</p>
                 </div>
 
-                <div className="rounded-[10px] border border-[#f1f5f9] px-4 py-3">
-                  <div className="mb-2 flex items-center gap-2 text-[#0d1b2e]">
-                    <MetaIcon type="mileage" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.06em] text-[#0d1b2e]">Typical Failure Mileage</span>
+                <div className="rounded-[10px] border border-[#f1f5f9] px-2 py-2 text-center">
+                  {/* Header */}
+                  <div className="mb-4 flex items-center justify-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f1f5f9]">
+                      <MetaIcon type="mileage" className="h-4 w-4 text-[#0d1b2e]" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.06em] text-[#0d1b2e]">
+                      Failure Mileage Range
+                    </span>
                   </div>
-                  <p className="text-[11.5px] leading-[1.55] text-[#374151]">{current.typicalFailureMileage}</p>
+
+                  {/* Gauge/Meter Image */}
+                  <div className="mb-4 flex justify-center">
+                    <img
+                      src="/meterr.webp"
+                      alt="Mileage gauge indicator"
+                      className="h-15 w-auto object-contain"
+                    />
+                  </div>
+
+                  {/* Mileage Range */}
+                  <div className="mb-1 text-[15px] font-bold text-[#2563eb]">
+                    {current.typicalFailureMileage}
+                  </div>
+
+                  {/* Subtitle */}
+                  <p className="text-[12px] text-gray-800">
+                    Typical failure window
+                  </p>
                 </div>
 
                 <div className="rounded-[10px] border border-[#f1f5f9] px-4 py-3">
@@ -521,10 +544,10 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
                                 <td className="px-[12px] py-[12px] text-[11.5px] text-[#374151]">
                                   <div className="font-['Manrope'] text-[12px] font-bold text-[#0d1b2e]">{option.tier}</div>
                                   <div className={`mt-2 inline-flex rounded-[999px] px-2 py-[3px] text-[9px] font-bold uppercase tracking-[0.05em] ${variant === "recommended"
-                                      ? "bg-[#f0fdf4] text-[#15803d]"
-                                      : variant === "moderate"
-                                        ? "bg-[#fff7ed] text-[#c2410c]"
-                                        : "bg-[#f8fafc] text-[#64748b]"
+                                    ? "bg-[#f0fdf4] text-[#15803d]"
+                                    : variant === "moderate"
+                                      ? "bg-[#fff7ed] text-[#c2410c]"
+                                      : "bg-[#f8fafc] text-[#64748b]"
                                     }`}>
                                     {variant === "recommended" ? "Best Value" : variant === "moderate" ? "Intermediate" : "Minor"}
                                   </div>
