@@ -126,7 +126,7 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
   }));
 
   return (
-    <Section id={sectionId} className="relative overflow-hidden bg-[#f7f8fb] py-7 sm:py-8 lg:py-10">
+    <Section id={sectionId} className="relative overflow-hidden bg-[#f7f8fb] px-2 py-7 sm:py-8 lg:py-10">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
           className="absolute right-0 top-0 hidden h-[340px] w-[440px] opacity-[0.08] lg:block"
@@ -204,7 +204,7 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
                       </span>
                     </div>
 
-                    <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px]  bg-[#0d1b2e] p-2 sm:p-4 text-white border-1 border-[#2969af] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px]  bg-[#0d1b2e] p-2 sm:p-4 text-white border-[0.5px] border-[#2969af] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_5px_rgba(42,109,214,0.4),0_0_12px_rgba(42,109,214,0.3),0_0_20px_rgba(42,109,214,0.2),0_3px_10px_rgba(42,109,214,0.25)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
                       <div className="flex flex-col items-center gap-4">
                       </div>
 
@@ -236,7 +236,7 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
           })}
         </div>
 
-        <div className="mx-auto mt-6 rounded-[12px] px-4 py-4 sm:mx-0 lg:mt-[24px] flex flex-nowrap sm:flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 items-stretch sm:items-center">
+        <div className="mx-auto mt-2 sm:mt-6 rounded-[12px] px-4 py-4 sm:mx-0 lg:mt-[24px] flex flex-nowrap sm:flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 items-stretch sm:items-center">
 
           {/* 12-Month Warranty */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-full bg-slate-50 flex-1 sm:flex-none">

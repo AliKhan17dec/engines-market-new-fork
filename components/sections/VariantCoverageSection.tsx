@@ -253,7 +253,7 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
       `}</style>
 
       <Section className="bg-[#f7f8fb]">
-        <Container className="max-w-[1400px]">
+        <Container className="max-w-[1400px] px-2">
           <div className=" max-w-[760px] text-left">
             <div className="section-pill mb-[14px]">
               <span>{data.tag}</span>
@@ -434,7 +434,7 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
 
                 <div className="mt-5 grid gap-3 lg:grid-cols-3">
                   {renderableDirectoryGroups.map((group) => (
-                    <article key={group.title} className="rounded-sm shadow-[0_0_0_2px_rgba(42,109,214,0.9),0_0_15px_rgba(42,109,214,0.5),0_0_35px_rgba(42,109,214,0.35),0_0_60px_rgba(42,109,214,0.25),0_8px_25px_rgba(42,109,214,0.3)] bg-white p-4">
+                    <article key={group.title} className="rounded-sm border-[0.5px] border-[#2a6dd6] shadow-[0_0_3px_rgba(42,109,214,0.4),0_0_6px_rgba(42,109,214,0.2),0_2px_4px_rgba(42,109,214,0.15)] bg-white p-4">
                       <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#15803d]">{group.title}</p>
                       <div className="mt-3 flex flex-wrap gap-[7px]">
                         {group.items.map((item, index) => {

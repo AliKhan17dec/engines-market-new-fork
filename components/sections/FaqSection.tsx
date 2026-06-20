@@ -144,9 +144,30 @@ export default function FaqSection({ data, strictData = false }: Props) {
                   </div>
                 )}
 
-                <a href="#quote-form" data-quote-context={item.question} data-quote-source="faq" className="mt-4 inline-block text-[14px] font-semibold text-green-700 transition hover:underline">
-                  {item.cta}
-                </a>
+                <a 
+  href="#quote-form" 
+  data-quote-context={item.question} 
+  data-quote-source="faq" 
+  className="mt-4 inline-flex items-center gap-2 text-[14px] font-semibold text-green-700 border border-[#2a6dd6] bg-white shadow-[0_0_12px_rgba(42,109,214,0.2)] transition p-2 rounded-lg"
+>
+  {item.cta}
+  
+  {/* Right Arrow Icon */}
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    strokeWidth={2} 
+    stroke="currentColor" 
+    className="w-4 h-4"
+  >
+    <path 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" 
+    />
+  </svg>
+</a>
               </div>
             </details>
           ))}

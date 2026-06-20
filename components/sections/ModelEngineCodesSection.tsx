@@ -299,9 +299,9 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
   return (
     <Section id="model-engine-codes" className="bg-[linear-gradient(180deg,#ffffff_0%,#f6f8fb_100%)]">
       <Container className="max-w-[1400px]">
-        <div className="py-[42px] px-[18px] pb-[64px] md:py-[42px] md:px-[18px] md:pb-[64px] max-[720px]:py-[34px] max-[720px]:px-[12px] max-[720px]:pb-[50px]">
+        <div className="pb-[32px]  max-[720px]:px-[12px] max-[720px]:pb-[25px]">
           <div className="max-w-[1240px] mx-auto">
-            <header className="max-w-[1000px]">
+            <header className="max-w-[1400px]">
               {strictData ? (data.tag ? <div className="inline-flex items-center justify-center min-h-[34px] px-[16px] rounded-full bg-[linear-gradient(180deg,#16355d_0%,#081a34_100%)] text-white text-[12px] font-extrabold tracking-[0.12em] uppercase shadow-[0_8px_20px_rgba(8,26,52,0.14)] mb-[14px]">{data.tag}</div> : null) : <div className="inline-flex items-center justify-center min-h-[34px] px-[16px] rounded-full bg-[linear-gradient(180deg,#16355d_0%,#081a34_100%)] text-white text-[12px] font-extrabold tracking-[0.12em] uppercase shadow-[0_8px_20px_rgba(8,26,52,0.14)] mb-[14px]">{data.tag || guide.tag}</div>}
               <h2 className="mb-[10px] text-[clamp(31px,4vw,52px)] leading-[1.03] tracking-[-0.04em] text-[#10203a] max-[720px]:text-[32px]">
                 {headingLines.map((line, index) => (
@@ -317,9 +317,9 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
       </Container>
 
       {renderableGroups.length > 1 && (
-        <div className="max-w-[800px] mx-auto bg-[linear-gradient(180deg,#0d1b2e_0%,#081a34_100%)] py-[24px] max-[720px]:py-[18px] shadow-[0_4px_20px_rgba(8,26,52,0.15)]">
-          <div className="max-w-[1240px] mx-auto px-[18px] max-[720px]:px-[12px]">
-            <div className="flex gap-[8px] rounded-[16px] bg-white/4 shadow-[inset_0_2px_8px_rgba(0,0,0,0.2)] max-[720px]:gap-[6px] max-[720px]:p-[5px]">
+        <div className=" mx-auto  py-[2px] max-[720px]:py-[9px]">
+          <div className="max-w-[1240px] mx-auto px-[18px] max-[720px]:px-[5px]">
+            <div className="flex gap-[8px] rounded-[16px] bg-black shadow-[inset_0_2px_8px_rgba(0,0,0,0.2)] max-[720px]:gap-[6px] max-[720px]:p-[5px]">
               {renderableGroups.map((entry, index) => {
                 const isActive = index === safeActiveIndex;
                 return (
@@ -327,7 +327,7 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
                     key={entry.group.name}
                     type="button"
                     className={`flex-1 min-w-0 inline-flex items-center justify-center gap-[8px] py-[12px] px-[16px] rounded-[12px] border border-transparent text-[14px] font-bold tracking-[0.01em] cursor-pointer transition-all duration-200 text-[#bfd0e1] max-[720px]:py-[10px] max-[720px]:px-[12px] max-[720px]:text-[13px] max-[720px]:gap-[6px] ${isActive
-                      ? "bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] border-[#2a6dd6] text-white shadow-[0_0_0_2px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)]"
+                      ? "bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] border-[#2a6dd6] text-white rounded-[6px] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_4px_rgba(42,109,214,0.3),0_0_10px_rgba(42,109,214,0.2),0_0_20px_rgba(42,109,214,0.1),0_3px_8px_rgba(42,109,214,0.2)]"
                       : "bg-transparent hover:text-white hover:bg-white/6"
                       }`}
                     onClick={() => handleTabClick(index)}
@@ -347,10 +347,10 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
       )}
 
       <Container className="max-w-[1400px]">
-        <div className="py-[42px] px-[18px] pb-[64px] max-[720px]:py-[34px] max-[720px]:px-[12px] max-[720px]:pb-[50px]">
+        <div className="pt-[21px] px-[18px] pb-[64px] max-[720px]:pt-[17px] max-[720px]:px-[12px] max-[720px]:pb-[50px]">
           <div className="max-w-[1240px] mx-auto">
             {activeGroupEntry ? (
-              <section className="mt-[24px]">
+              <section className="mt-[12px]">
                 <div className="flex items-center gap-[12px] mb-[12px]">
                   <span className="w-[38px] h-[38px] rounded-[12px] bg-[#f5f8fc] text-[#0d1b2e] grid place-items-center flex-shrink-0">
                     {getFuelIcon(activeGroupEntry.group.name, "w-[24px] h-[24px]")}
@@ -465,220 +465,221 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
                               );
 
                               return (
-                                <div>
-                                  <div className="grid grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-x-[12px] bg-[linear-gradient(135deg,#081a34_0%,#0d2848_100%)] rounded-b-[18px] shadow-[0_18px_30px_rgba(11,31,57,0.26)] overflow-hidden pt-0 px-[12px] pb-[2px] max-[920px]:grid-cols-1 max-[720px]:px-[10px] max-[720px]:pb-[2px]">
-                                    <div className="grid grid-cols-[150px_minmax(0,1fr)] text-white overflow-hidden max-[920px]:grid-cols-[132px_minmax(0,1fr)] max-[720px]:grid-cols-[120px_minmax(0,1fr)]">
+                                <div className="grid grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-x-[12px] bg-[linear-gradient(135deg,#081a34_0%,#0d2848_100%)] rounded-b-[18px] shadow-[0_18px_30px_rgba(11,31,57,0.26)] overflow-hidden pt-0 px-[12px] pb-[2px] max-[920px]:grid-cols-1 max-[720px]:px-[10px] max-[720px]:pb-[2px]">
+                                  <div className="grid grid-cols-[150px_minmax(0,1fr)] text-white overflow-hidden max-[920px]:grid-cols-[132px_minmax(0,1fr)] max-[720px]:grid-cols-[120px_minmax(0,1fr)] py-2  sm:p-2">
 
-                                      {/* Image Column - Tighter padding */}
-                                      <div className="p-[4px] flex items-center">
-                                        <div className="w-full max-h-[150px] rounded-[16px] grid place-items-center text-center">
-                                          <div className="engine-image relative w-full aspect-square max-h-[150px]">
-                                            {detailImage ? (
-                                              <Image
-                                                src={detailImage}
-                                                alt={`${repairEngineCodeValue(detail?.code || activeEngine.code)} engine`}
-                                                fill
-                                                className="object-contain"
-                                                sizes="150px"
-                                              />
-                                            ) : null}
-                                          </div>
+                                    {/* Image Column - Tighter padding */}
+                                    <div className="p-[0px] flex items-center">
+                                      <div className="w-full max-h-[150px] rounded-[16px] grid place-items-center text-center">
+                                        <div className="engine-image relative w-full aspect-square max-h-[150px]">
+                                          {detailImage ? (
+                                            <Image
+                                              src={detailImage}
+                                              alt={`${repairEngineCodeValue(detail?.code || activeEngine.code)} engine`}
+                                              fill
+                                              className="object-contain"
+                                              sizes="150px"
+                                            />
+                                          ) : null}
                                         </div>
                                       </div>
+                                    </div>
 
-                                      {/* Text Column - Tighter padding and gap */}
-                                      <div className="py-[4px] px-[16px] pt-[4px] pl-[12px] grid gap-[3px]">
-                                        <div className="grid grid-cols-[minmax(0,1fr)_180px] gap-[8px] items-start max-[920px]:grid-cols-[minmax(0,1fr)_188px] max-[720px]:grid-cols-1">
-                                          <div>
-                                            {/* Reduced margins */}
-                                            <div className="mb-[2px] text-white text-[15px] font-extrabold leading-[1.25] tracking-[-0.02em]">{engineHeading}</div>
-                                            {ui.historyLabel && <span className="block mb-[1px] text-white text-[13px] font-extrabold leading-[1.2]">{ui.historyLabel}</span>}
-                                            {historyText && <p className="text-[#e1ebf5] text-[11px] leading-[1.4]">{historyText}</p>}
-                                          </div>
+                                    {/* Text Column - Tighter padding and gap */}
+                                    <div className="py-[4px] px-[16px] pt-[4px] pl-[12px] grid gap-[3px]">
 
-                                          {/* Price & Quote Column */}
-                                          <div className="w-full max-w-[178px] justify-self-end py-[2px] pl-[16px] max-[720px]:hidden">
+                                      {/* UPDATED: Increased the second column width from 180px to 240px */}
+                                      <div className="grid grid-cols-[minmax(0,1fr)_240px] gap-[8px] items-start max-[920px]:grid-cols-[minmax(0,1fr)_248px] max-[720px]:grid-cols-1">
+                                        <div>
+                                          {/* Reduced margins */}
+                                          <div className="mb-[2px] text-white text-[15px] font-extrabold leading-[1.25] tracking-[-0.02em]">{engineHeading}</div>
+                                          {ui.historyLabel && <span className="block mb-[1px] text-white text-[15px] font-extrabold leading-[1.2]">{ui.historyLabel}</span>}
+                                          {historyText && <p className="text-[#e1ebf5] text-[12px] leading-[1.4]">{historyText}</p>}
+                                        </div>
 
-                                            {/* Glass Price Box - Minimal padding */}
-                                            <div className="relative overflow-hidden rounded-xl border border-green-400 bg-[#0d1526]/50 backdrop-blur-xl shadow-[0_0_15px_rgba(74,222,128,0.5),inset_0_0_12px_rgba(74,222,128,0.3)] mb-1">
-                                              <div
-                                                className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none"
-                                                style={{ clipPath: 'polygon(60% 0, 100% 0, 100% 100%, 40% 100%)' }}
-                                              />
-                                              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                                        {/* Price & Quote Column */}
+                                        {/* UPDATED: Increased max-w from 178px to 238px */}
+                                        <div className="w-full max-w-[238px] justify-self-end py-[2px] pl-[16px] max-[720px]:hidden">
 
-                                              <div className="relative z-10 px-3 py-1.5">
-                                                {ui.summaryPriceLabel && (
-                                                  <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase">
-                                                    {ui.summaryPriceLabel}
-                                                  </small>
-                                                )}
-                                                <strong className="block text-[#42d272] text-[18px] leading-[1] tracking-[-0.05em] my-[1px]">
-                                                  {toPriceText(activeEngine.avgRebuiltPrice)}
-                                                </strong>
-                                                {ui.supplyLabel && (
-                                                  <span className="block text-[#bfd0e1] text-[9px] leading-[1.4]">
-                                                    {ui.supplyLabel}
-                                                  </span>
-                                                )}
-                                              </div>
+                                          {/* Glass Price Box - Minimal padding */}
+                                          <div className="relative overflow-hidden rounded-xl border border-green-400 bg-[#0d1526]/50 backdrop-blur-xl shadow-[0_0_15px_rgba(74,222,128,0.5),inset_0_0_12px_rgba(74,222,128,0.3)] mb-1">
+                                            <div
+                                              className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none"
+                                              style={{ clipPath: 'polygon(60% 0, 100% 0, 100% 100%, 40% 100%)' }}
+                                            />
+                                            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+
+                                            <div className="relative z-10 px-3 py-1.5">
+                                              {ui.summaryPriceLabel && (
+                                                <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase">
+                                                  {ui.summaryPriceLabel}
+                                                </small>
+                                              )}
+                                              <strong className="block text-[#42d272] text-[18px] leading-[1] tracking-[-0.05em] my-[1px]">
+                                                {toPriceText(activeEngine.avgRebuiltPrice)}
+                                              </strong>
+                                              {ui.supplyLabel && (
+                                                <span className="block text-[#bfd0e1] text-[9px] leading-[1.4]">
+                                                  {ui.supplyLabel}
+                                                </span>
+                                              )}
                                             </div>
-
-                                            {/* Quote Button - Minimal padding */}
-                                            {quoteText && (
-                                              <a
-  className="group flex w-full items-center justify-between gap-2 rounded-xl bg-[#050b14] py-1 px-2 shadow-[0_0_0_1px_rgba(30,144,255,1),0_0_12px_rgba(30,144,255,0.4),inset_0_0_8px_rgba(30,144,255,0.1)] transition hover:shadow-[0_0_0_1px_rgba(30,144,255,1),0_0_20px_rgba(30,144,255,0.6),inset_0_0_12px_rgba(30,144,255,0.2)]"
-  href="#quote-form"
-  data-quote-engine-code={repairEngineCodeValue(detail?.code || activeEngine.code)}
-  data-quote-context={activeEngine.compatibleModels}
->
-  <div className="flex-shrink-0 text-[#1e90ff]">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" y1="13" x2="8" y2="13" />
-      <line x1="16" y1="17" x2="8" y2="17" />
-      <circle cx="18" cy="18" r="3.5" fill="#050b14" stroke="currentColor" />
-      <text x="18" y="20" fontSize="7" fontWeight="bold" fill="currentColor" textAnchor="middle" fontFamily="sans-serif">£</text>
-    </svg>
-  </div>
-  <span className="flex-1 text-[10px] font-bold leading-snug text-[#f1f5f9]">
-    {quoteText}
-  </span>
-</a>
-                                            )}
                                           </div>
-                                        </div>
 
-                                        {/* Variants Section - Desktop only (hidden on mobile) */}
-                                        <div className="grid gap-[2px] border-t border-white/16 pt-[4px] max-[720px]:hidden">
-                                          {ui.variantsLabel && <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase">{ui.variantsLabel}</small>}
-                                          <div className="flex flex-wrap gap-[6px]">
-                                            {buildVariants(activeEngine, detail).map((variant) => (
-                                              <span key={variant} className="inline-flex items-center justify-center min-h-[20px] px-[8px] rounded-md bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] text-white text-[8px] font-bold leading-[1] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)]">{variant}</span>
-                                            ))}
-                                          </div>
+                                          {/* Quote Button - Minimal padding */}
+                                          {quoteText && (
+                                            <a
+                                              className="group flex w-full items-center justify-between gap-2 rounded-xl bg-[#050b14] py-2 px-2 shadow-[0_0_0_1px_rgba(30,144,255,1),0_0_12px_rgba(30,144,255,0.4),inset_0_0_8px_rgba(30,144,255,0.1)] transition hover:shadow-[0_0_0_1px_rgba(30,144,255,1),0_0_20px_rgba(30,144,255,0.6),inset_0_0_12px_rgba(30,144,255,0.2)]"
+                                              href="#quote-form"
+                                              data-quote-engine-code={repairEngineCodeValue(detail?.code || activeEngine.code)}
+                                              data-quote-context={activeEngine.compatibleModels}
+                                            >
+                                              <div className="flex-shrink-0 text-[#1e90ff]">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                                  <polyline points="14 2 14 8 20 8" />
+                                                  <line x1="16" y1="13" x2="8" y2="13" />
+                                                  <line x1="16" y1="17" x2="8" y2="17" />
+                                                  <circle cx="18" cy="18" r="3.5" fill="#050b14" stroke="currentColor" />
+                                                  <text x="18" y="20" fontSize="7" fontWeight="bold" fill="currentColor" textAnchor="middle" fontFamily="sans-serif">£</text>
+                                                </svg>
+                                              </div>
+                                              <span className="flex-1 text-[12px] font-bold leading-snug text-[#f1f5f9]">
+                                                {quoteText}
+                                              </span>
+                                            </a>
+                                          )}
                                         </div>
                                       </div>
-                                    </div>
 
-                                    {/* Variants Section - Mobile only (below image + text row) */}
-                                    <div className="hidden max-[720px]:grid gap-[2px] border-t border-white/16 pt-[4px] px-[10px] pb-[4px]">
-                                      {ui.variantsLabel && <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase">{ui.variantsLabel}</small>}
-                                      <div className="flex flex-wrap gap-[6px]">
-                                        {buildVariants(activeEngine, detail).map((variant) => (
-                                          <span key={variant} className="inline-flex items-center justify-center min-h-[20px] px-[8px] rounded-md bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] text-white text-[8px] font-bold leading-[1] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)]">{variant}</span>
-                                        ))}
-                                      </div>
-                                    </div>
-
-                                    {/* Specs & Failures Columns - Tighter top padding */}
-                                    <div className="grid grid-cols-2 gap-[8px] pt-[4px]">
-                                      <section className="border border-[#dfe7ef] rounded-[4px] bg-white py-[4px] px-[9px] pb-[4px]">
-                                        {ui.specsTitle && (
-                                          <h4 className="mb-[3px] flex items-center gap-[8px] text-[12px] tracking-[-0.02em] text-[#10203a]">
-                                            <span className="w-[24px] h-[24px] rounded-[10px] grid place-items-center flex-shrink-0 bg-[#eef5fb] text-[#274564]">
-                                              <SpecsIcon />
-                                            </span>
-                                            {ui.specsTitle}
-                                          </h4>
-                                        )}
-                                        <ul className="list-none m-0 pt-4 grid gap-[8px]">
-                                          {ui.fuelLabel && (
-                                            <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px]">
-                                              <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.fuelLabel}</span>
-                                              <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{detail?.fuel || activeEngine.fuel}</strong>
-                                            </li>
-                                          )}
-                                          {ui.sizeLabel && (
-                                            <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px]">
-                                              <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.sizeLabel}</span>
-                                              <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{detail?.size || activeEngine.size}</strong>
-                                            </li>
-                                          )}
-                                          {ui.powerLabel && (
-                                            <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px]">
-                                              <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.powerLabel}</span>
-                                              <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{detail?.power || activeEngine.power}</strong>
-                                            </li>
-                                          )}
-                                          {ui.yearsLabel && (
-                                            <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px]">
-                                              <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.yearsLabel}</span>
-                                              <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{years}</strong>
-                                            </li>
-                                          )}
-                                        </ul>
-                                      </section>
-
-                                      <section className="border border-[#dfe7ef] rounded-[4px] bg-white py-[4px] px-[9px] pb-[4px]">
-                                        {ui.failuresTitle && (
-                                          <h4 className="mb-[3px] flex items-center gap-[8px] text-[12px] tracking-[-0.02em] text-[#10203a]">
-                                            <span className="w-[24px] h-[24px] rounded-[10px] grid place-items-center flex-shrink-0 bg-[#fff2f2] text-[#c73a3a]">
-                                              <WarningIcon />
-                                            </span>
-                                            {ui.failuresTitle}
-                                          </h4>
-                                        )}
-                                        <ul className="list-none m-0 pt-4 grid gap-[2px]">
-                                          {buildFailures(detail, activeGroupEntry.group.failureNote).map((failure) => (
-                                            <li key={failure} className="relative pl-[12px] text-[#2d3e55] text-[12px] leading-[1.28] before:content-[''] before:absolute before:top-[6px] before:left-0 before:w-[6px] before:h-[6px] before:rounded-full before:bg-[#c73a3a] before:shadow-[0_0_0_3px_rgba(199,58,58,0.14)]">{failure}</li>
+                                      {/* Variants Section - Desktop only (hidden on mobile) */}
+                                      <div className="grid gap-[2px] border-t border-white/16 pt-[4px] max-[720px]:hidden">
+                                        {ui.variantsLabel && <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase">{ui.variantsLabel}</small>}
+                                        <div className="flex flex-wrap gap-[6px]">
+                                          {buildVariants(activeEngine, detail).map((variant) => (
+                                            <span key={variant} className="inline-flex items-center justify-center min-h-[20px] px-[8px] rounded-md bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] text-white text-[10px] font-bold leading-[1] border-[0.5px] border-[#2a6dd6] shadow-[0_0_3px_rgba(42,109,214,0.4),0_0_6px_rgba(42,109,214,0.2),0_2px_4px_rgba(42,109,214,0.15)]">{variant}</span>
                                           ))}
-                                        </ul>
-                                      </section>
-                                    </div>
-
-                                    {/* Mobile Bottom Section - Same styling as desktop */}
-                                    <div className="hidden max-[720px]:grid gap-[4px] py-[2px] pt-5 pb-[2px]">
-                                      {/* Glass Price Box - Same as desktop */}
-                                      <div className="relative overflow-hidden rounded-xl border border-green-400 bg-[#0d1526]/50 backdrop-blur-xl shadow-[0_0_15px_rgba(74,222,128,0.5),inset_0_0_12px_rgba(74,222,128,0.3)]">
-                                        <div
-                                          className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none"
-                                          style={{ clipPath: 'polygon(60% 0, 100% 0, 100% 100%, 40% 100%)' }}
-                                        />
-                                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-
-                                        <div className="relative z-10 px-3 py-1.5">
-                                          {ui.summaryPriceLabel && (
-                                            <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase">
-                                              {ui.summaryPriceLabel}
-                                            </small>
-                                          )}
-                                          <strong className="block text-[#42d272] text-[18px] leading-[1] tracking-[-0.05em] my-[1px]">
-                                            {toPriceText(activeEngine.avgRebuiltPrice)}
-                                          </strong>
-                                          {ui.supplyLabel && (
-                                            <span className="block text-[#bfd0e1] text-[9px] leading-[1.4]">
-                                              {ui.supplyLabel}
-                                            </span>
-                                          )}
                                         </div>
                                       </div>
-
-                                      {/* Quote Button - Same as desktop */}
-                                      {quoteText && (
-                                        <a
-  className="group flex w-full items-center justify-between gap-2 rounded-xl bg-[#050b14] py-5 px-2 shadow-[0_0_0_1px_rgba(30,144,255,1),0_0_12px_rgba(30,144,255,0.4),inset_0_0_8px_rgba(30,144,255,0.1)] transition hover:shadow-[0_0_0_1px_rgba(30,144,255,1),0_0_20px_rgba(30,144,255,0.6),inset_0_0_12px_rgba(30,144,255,0.2)]"
-  href="#quote-form"
-  data-quote-engine-code={repairEngineCodeValue(detail?.code || activeEngine.code)}
-  data-quote-context={activeEngine.compatibleModels}
->
-  <div className="flex-shrink-0 text-[#1e90ff]">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" y1="13" x2="8" y2="13" />
-      <line x1="16" y1="17" x2="8" y2="17" />
-      <circle cx="18" cy="18" r="3.5" fill="#050b14" stroke="currentColor" />
-      <text x="18" y="20" fontSize="7" fontWeight="bold" fill="currentColor" textAnchor="middle" fontFamily="sans-serif">£</text>
-    </svg>
-  </div>
-  <span className="flex-1 text-[10px] font-bold leading-snug text-[#f1f5f9]">
-    {quoteText}
-  </span>
-</a>
-                                      )}
                                     </div>
+                                  </div>
+
+                                  {/* Variants Section - Mobile only (below image + text row) */}
+                                  <div className="hidden max-[720px]:grid gap-[2px] border-t border-white/16 pt-[4px] sm:px-[10px] pb-[4px] mb-2">
+                                    {ui.variantsLabel && <small className="block text-[#bfd0e1] text-[12px] font-extrabold tracking-[0.12em] uppercase">{ui.variantsLabel}</small>}
+                                    <div className="flex flex-wrap gap-[6px]">
+                                      {buildVariants(activeEngine, detail).map((variant) => (
+                                        <span key={variant} className="inline-flex items-center justify-center min-h-[20px] px-[8px] rounded-md bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] text-white text-[12px] font-bold leading-[1] border-[0.5px] border-[#2a6dd6] shadow-[0_0_3px_rgba(42,109,214,0.4),0_0_6px_rgba(42,109,214,0.2),0_2px_4px_rgba(42,109,214,0.15)]">{variant}</span>
+                                      ))}
+                                    </div>
+                                  </div>
+
+                                  {/* Specs & Failures Columns - Tighter top padding (Now narrower due to parent layout changes) */}
+                                  <div className="grid grid-cols-2 gap-[8px] sm:p-2">
+                                    <section className="border border-[#dfe7ef] rounded-[4px] bg-white py-[4px] px-[9px] pb-[4px]">
+                                      {ui.specsTitle && (
+                                        <h4 className="mb-[3px] flex items-center gap-[8px] text-[12px] tracking-[-0.02em] text-[#10203a]">
+                                          <span className="w-[24px] h-[24px] rounded-[10px] grid place-items-center flex-shrink-0 bg-[#eef5fb] text-[#274564]">
+                                            <SpecsIcon />
+                                          </span>
+                                          {ui.specsTitle}
+                                        </h4>
+                                      )}
+                                      <ul className="list-none m-0 pt-4 grid gap-[8px]">
+                                        {ui.fuelLabel && (
+                                          <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px]">
+                                            <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.fuelLabel}</span>
+                                            <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{detail?.fuel || activeEngine.fuel}</strong>
+                                          </li>
+                                        )}
+                                        {ui.sizeLabel && (
+                                          <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px]">
+                                            <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.sizeLabel}</span>
+                                            <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{detail?.size || activeEngine.size}</strong>
+                                          </li>
+                                        )}
+                                        {ui.powerLabel && (
+                                          <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px]">
+                                            <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.powerLabel}</span>
+                                            <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{detail?.power || activeEngine.power}</strong>
+                                          </li>
+                                        )}
+                                        {ui.yearsLabel && (
+                                          <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px]">
+                                            <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.yearsLabel}</span>
+                                            <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{years}</strong>
+                                          </li>
+                                        )}
+                                      </ul>
+                                    </section>
+
+                                    <section className="border border-[#dfe7ef] rounded-[4px] bg-white py-[4px] px-[9px] pb-[4px]">
+                                      {ui.failuresTitle && (
+                                        <h4 className="mb-[3px] flex items-center gap-[8px] text-[12px] tracking-[-0.02em] text-[#10203a]">
+                                          <span className="w-[24px] h-[24px] rounded-[10px] grid place-items-center flex-shrink-0 bg-[#fff2f2] text-[#c73a3a]">
+                                            <WarningIcon />
+                                          </span>
+                                          {ui.failuresTitle}
+                                        </h4>
+                                      )}
+                                      <ul className="list-none m-0 pt-4 grid gap-[2px]">
+                                        {buildFailures(detail, activeGroupEntry.group.failureNote).map((failure) => (
+                                          <li key={failure} className="relative pl-[12px] text-[#2d3e55] text-[12px] leading-[1.28] before:content-[''] before:absolute before:top-[6px] before:left-0 before:w-[6px] before:h-[6px] before:rounded-full before:bg-[#c73a3a] before:shadow-[0_0_0_3px_rgba(199,58,58,0.14)]">{failure}</li>
+                                        ))}
+                                      </ul>
+                                    </section>
+                                  </div>
+
+                                  {/* Mobile Bottom Section - Same styling as desktop */}
+                                  <div className="hidden max-[720px]:grid gap-[10px] py-[2px] pt-5 pb-[2px]">
+                                    {/* Glass Price Box - Same as desktop */}
+                                    <div className="relative overflow-hidden rounded-xl border border-green-400 bg-[#0d1526]/50 backdrop-blur-xl shadow-[0_0_15px_rgba(74,222,128,0.5),inset_0_0_12px_rgba(74,222,128,0.3)]">
+                                      <div
+                                        className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none"
+                                        style={{ clipPath: 'polygon(60% 0, 100% 0, 100% 100%, 40% 100%)' }}
+                                      />
+                                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+
+                                      <div className="relative z-10 px-3 py-1.5">
+                                        {ui.summaryPriceLabel && (
+                                          <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase">
+                                            {ui.summaryPriceLabel}
+                                          </small>
+                                        )}
+                                        <strong className="block text-[#42d272] text-[18px] leading-[1] tracking-[-0.05em] my-[1px]">
+                                          {toPriceText(activeEngine.avgRebuiltPrice)}
+                                        </strong>
+                                        {ui.supplyLabel && (
+                                          <span className="block text-[#bfd0e1] text-[9px] leading-[1.4]">
+                                            {ui.supplyLabel}
+                                          </span>
+                                        )}
+                                      </div>
+                                    </div>
+
+                                    {/* Quote Button - Same as desktop */}
+                                    {quoteText && (
+                                      <a
+                                        className="group flex w-full items-center justify-between gap-2 rounded-xl bg-[#050b14] py-5 px-2 shadow-[0_0_0_1px_rgba(30,144,255,1),0_0_12px_rgba(30,144,255,0.4),inset_0_0_8px_rgba(30,144,255,0.1)] transition hover:shadow-[0_0_0_1px_rgba(30,144,255,1),0_0_20px_rgba(30,144,255,0.6),inset_0_0_12px_rgba(30,144,255,0.2)] mb-2"
+                                        href="#quote-form"
+                                        data-quote-engine-code={repairEngineCodeValue(detail?.code || activeEngine.code)}
+                                        data-quote-context={activeEngine.compatibleModels}
+                                      >
+                                        <div className="flex-shrink-0 text-[#1e90ff]">
+                                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                            <polyline points="14 2 14 8 20 8" />
+                                            <line x1="16" y1="13" x2="8" y2="13" />
+                                            <line x1="16" y1="17" x2="8" y2="17" />
+                                            <circle cx="18" cy="18" r="3.5" fill="#050b14" stroke="currentColor" />
+                                            <text x="18" y="20" fontSize="7" fontWeight="bold" fill="currentColor" textAnchor="middle" fontFamily="sans-serif">£</text>
+                                          </svg>
+                                        </div>
+                                        <span className="flex-1 text-[10px] font-bold leading-snug text-[#f1f5f9]">
+                                          {quoteText}
+                                        </span>
+                                      </a>
+                                    )}
                                   </div>
                                 </div>
                               );

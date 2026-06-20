@@ -5,6 +5,7 @@ import type { CommonProblemsData } from "@/types/brand";
 import { RecommendationCard } from "@/components/ui/CalloutCards";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import { FaCar } from "react-icons/fa";
 
 type Props = {
   data: CommonProblemsData;
@@ -13,6 +14,70 @@ type Props = {
 
 function normalizeText(text: string) {
   return text.replace(/[–—]/g, "-");
+}
+
+function formatAffectedModelLabel(value: string, isPrimary: boolean) {
+  const normalized = normalizeText(value).trim();
+
+  if (!isPrimary) {
+    return normalized;
+  }
+
+  const seriesMatch = normalized.match(/(?:^|\s)(?:Series|Class)\s+(.+)$/i);
+  if (seriesMatch?.[1]) {
+    return seriesMatch[1].trim();
+  }
+
+  const tokens = normalized.split(/\s+/);
+  if (tokens.length > 2) {
+    return tokens.slice(-2).join(" ");
+  }
+
+  return normalized;
+}
+
+function parseAffectedModelsSummary(affectedModels: string) {
+  const normalized = normalizeText(affectedModels).trim();
+  const match = normalized.match(/^(.*?)(?:\s*\(([^()]*)\)\s*)?$/);
+  const vehiclePart = match?.[1]?.trim() ?? normalized;
+  const metaPart = match?.[2]?.trim() ?? "";
+
+  const vehicles = vehiclePart
+    .split(",")
+    .map((item, index) => formatAffectedModelLabel(item, index === 0))
+    .filter(Boolean);
+
+  const yearMatch = metaPart.match(/\b\d{4}\s*-\s*\d{4}\b/);
+  const productionYears = yearMatch ? yearMatch[0].replace(/\s*-\s*/g, " - ") : "";
+  const engineText = metaPart
+    .replace(yearMatch?.[0] ?? "", "")
+    .replace(/^[,\s-]+/, "")
+    .trim();
+
+  const engine = engineText
+    ? engineText
+        .split(/\s*(?:&|\/|,)\s*/)
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .join(" / ")
+    : "";
+
+  return {
+    vehicles,
+    productionYears,
+    engine,
+  };
+}
+
+function VehicleIcon({ className = "h-[18px] w-[18px]" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path d="M3 13.5h18l-1.2-4.2c-.2-.7-.9-1.2-1.6-1.2H7.2c-.7 0-1.3.4-1.6 1.1L3 13.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M5.2 13.5V9.4h13.6v4.1" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <circle cx="7.5" cy="17.5" r="1.7" fill="currentColor" />
+      <circle cx="16.5" cy="17.5" r="1.7" fill="currentColor" />
+    </svg>
+  );
 }
 
 function splitHeading(text: string) {
@@ -112,10 +177,10 @@ function ProblemIcon({ index }: { index: number }) {
   return icons[index % icons.length];
 }
 
-function MetaIcon({ type }: { type: "models" | "mileage" | "root" }) {
+function MetaIcon({ type, className }: { type: "models" | "mileage" | "root"; className?: string }) {
   if (type === "models") {
     return (
-      <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className={className ?? "h-[18px] w-[18px]"} fill="none" aria-hidden="true">
         <rect x="3" y="8" width="18" height="8" rx="2" stroke="currentColor" strokeWidth="1.8" />
         <circle cx="7.5" cy="17.5" r="1.8" stroke="currentColor" strokeWidth="1.8" />
         <circle cx="16.5" cy="17.5" r="1.8" stroke="currentColor" strokeWidth="1.8" />
@@ -126,7 +191,7 @@ function MetaIcon({ type }: { type: "models" | "mileage" | "root" }) {
 
   if (type === "mileage") {
     return (
-      <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className={className ?? "h-[18px] w-[18px]"} fill="none" aria-hidden="true">
         <path d="M4 14a8 8 0 1 1 16 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         <path d="m12 14 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         <circle cx="12" cy="14" r="1.2" fill="currentColor" />
@@ -135,7 +200,7 @@ function MetaIcon({ type }: { type: "models" | "mileage" | "root" }) {
   }
 
   return (
-    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 24 24" className={className ?? "h-[18px] w-[18px]"} fill="none" aria-hidden="true">
       <path
         d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"
         stroke="currentColor"
@@ -189,6 +254,63 @@ function PoundIcon() {
     <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" aria-hidden="true">
       <path d="M15 6a3 3 0 1 0-6 0v11m-2-5h8m-8 4h7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
+  );
+}
+
+function AffectedVehiclesCard({
+  affectedModels,
+  mobile = false,
+}: {
+  affectedModels: string;
+  mobile?: boolean;
+}) {
+  const summary = parseAffectedModelsSummary(affectedModels);
+  const vehicles = summary.vehicles.length ? summary.vehicles : [affectedModels];
+
+  return (
+    <div className={`rounded-[10px] border border-[#e7edf6] bg-white shadow-[0_1px_0_rgba(15,23,42,0.02)] ${mobile ? "px-2 py-2" : "px-2 py-2"}`}>
+      <div className={`flex items-center gap-2 ${mobile ? "mb-2" : "mb-3"}`}>
+        <div className={`flex flex-none items-center justify-center rounded-full bg-[#f3f6fb] text-black ${mobile ? "h-7 w-7" : "h-8 w-8"}`}>
+          <FaCar className={mobile ? "h-[16px] w-[16px]" : "h-[20px] w-[20px]"} />
+        </div>
+        <div className="min-w-0">
+          <div className={`font-['Manrope'] font-extrabold uppercase tracking-[0.03em] text-[#172554] ${mobile ? "text-[9px]" : "text-[10px]"}`}>
+            Most Affected Vehicles
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2">
+        {vehicles.slice(0, 4).map((vehicle, index) => (
+          <div
+            key={`${vehicle}-${index}`}
+            className={`flex items-center rounded-[6px] bg-[#f8f9fa] p-1.5 ${mobile ? "" : ""}`}
+          >
+            <div className={`flex flex-none items-center justify-center text-[#2563eb] ${mobile ? "h-5 w-5" : "h-7 w-7"}`}>
+              <FaCar className={mobile ? "h-[9px] w-[9px]" : "h-[10px] w-[10px]"} />
+            </div>
+            <div className={`min-w-0 truncate whitespace-nowrap font-['Manrope'] font-extrabold leading-none tracking-[-0.03em] text-[#0f172a] ${mobile ? "text-[12px] ml-1.5" : "text-[14px]"}`}>
+              {vehicle}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {summary.productionYears ? (
+        <div className={`mt-2.5 space-y-1 font-['Manrope'] leading-[1.35] text-[#0f172a] ${mobile ? "text-[11px]" : "mt-3 space-y-1.5 text-[13px]"}`}>
+          <p>
+            <span className="font-extrabold">Production Years:</span>{" "}
+            <span className="font-medium text-[#334155]">{summary.productionYears}</span>
+          </p>
+          {summary.engine ? (
+            <p>
+              <span className="font-extrabold">Engine:</span>{" "}
+              <span className="font-medium text-[#334155]">{summary.engine}</span>
+            </p>
+          ) : null}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -266,29 +388,52 @@ function MobileProblemCard({
       </button>
 
       {open ? (
-        <div className="border-t border-[#f1f5f9] px-2 py-4">
-          <div className="space-y-3">
-            <div className="rounded-[10px] border border-[#e5e7eb] bg-[#f8f9fa] p-3">
-              <div className="mb-1 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.6px] text-[#0d1b2e]">
-                <MetaIcon type="models" />
-                <span>Affected Models</span>
+        <div className="border-t border-[#f1f5f9] px-3 py-4">
+          {/* 2-column grid for top cards */}
+          <div className="grid grid-cols-2 gap-2.5">
+            <AffectedVehiclesCard affectedModels={problem.affectedModels} mobile />
+
+            <div className="rounded-[10px] border border-[#f1f5f9] bg-white px-2 py-2 text-center shadow-[0_1px_0_rgba(15,23,42,0.02)]">
+              {/* Header */}
+              <div className="mb-3 flex items-center justify-center gap-1.5">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f1f5f9]">
+                  <MetaIcon type="mileage" className="h-4 w-4 text-[#0d1b2e]" />
+                </div>
+                <span className="text-[9px] font-bold uppercase tracking-[0.05em] text-[#0d1b2e]">
+                  Failure Mileage Range
+                </span>
               </div>
-              <p className="text-[12px] leading-[1.55] text-[#374151]">{problem.affectedModels}</p>
-            </div>
-            <div className="rounded-[10px] border border-[#e5e7eb] bg-[#f8f9fa] p-3">
-              <div className="mb-1 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.6px] text-[#0d1b2e]">
-                <MetaIcon type="mileage" />
-                <span>Typical Failure Mileage</span>
+
+              {/* Gauge/Meter Image */}
+              <div className="mb-3 flex justify-center">
+                <img
+                  src="/meterr.webp"
+                  alt="Mileage gauge indicator"
+                  className="h-14 w-auto object-contain"
+                />
               </div>
-              <p className="text-[12px] leading-[1.55] text-[#374151]">{problem.typicalFailureMileage}</p>
-            </div>
-            <div className="rounded-[10px] border border-[#e5e7eb] bg-[#f8f9fa] p-3">
-              <div className="mb-1 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.6px] text-[#0d1b2e]">
-                <MetaIcon type="root" />
-                <span>Root Cause</span>
+
+              {/* Mileage Range */}
+              <div className="mb-1 text-[13px] font-bold text-[#2563eb]">
+                {problem.typicalFailureMileage}
               </div>
-              <p className="text-[12px] leading-[1.55] text-[#374151]">{problem.rootCause}</p>
+
+              {/* Subtitle */}
+              <p className="text-[10px] text-gray-600">
+                Typical failure window
+              </p>
             </div>
+          </div>
+
+          {/* Root Cause - Full Width */}
+          <div className="mt-3 rounded-[10px] border border-[#e7edf6] bg-white px-3 py-3 shadow-[0_1px_0_rgba(15,23,42,0.02)]">
+            <div className="mb-2 flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f1f5f9]">
+                <MetaIcon type="root" className="h-4 w-4 text-[#0d1b2e]" />
+              </div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.05em] text-[#0d1b2e]">Root Cause</span>
+            </div>
+            <p className="text-[11.5px] leading-[1.5] text-[#374151]">{problem.rootCause}</p>
           </div>
 
           {problem.repairOptions?.length ? (
@@ -389,7 +534,7 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
         </div>
       ) : null}
 
-      <Container className="relative max-w-[1400px]">
+      <Container className="relative max-w-[1400px] px-2">
         <div className="section-pill mb-[14px]">
           <span>{data.tag}</span>
         </div>
@@ -472,19 +617,13 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
               </div>
 
               <div className="mt-4 grid gap-3 md:grid-cols-3">
-                <div className="rounded-[10px] border border-[#f1f5f9] px-4 py-3">
-                  <div className="mb-2 flex items-center gap-2 text-[#0d1b2e]">
-                    <MetaIcon type="models" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.06em] text-[#0d1b2e]">Affected Models</span>
-                  </div>
-                  <p className="text-[11.5px] leading-[1.55] text-[#374151]">{current.affectedModels}</p>
-                </div>
+                <AffectedVehiclesCard affectedModels={current.affectedModels} />
 
                 <div className="rounded-[10px] border border-[#f1f5f9] px-2 py-2 text-center">
                   {/* Header */}
                   <div className="mb-4 flex items-center justify-center gap-2">
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f1f5f9]">
-                      <MetaIcon type="mileage" className="h-4 w-4 text-[#0d1b2e]" />
+                      <MetaIcon type="mileage" className="h-6 w-6 text-[#0d1b2e]" />
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-[0.06em] text-[#0d1b2e]">
                       Failure Mileage Range
@@ -512,8 +651,10 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
                 </div>
 
                 <div className="rounded-[10px] border border-[#f1f5f9] px-4 py-3">
-                  <div className="mb-2 flex items-center gap-2 text-[#0d1b2e]">
-                    <MetaIcon type="root" />
+                  <div className="mb-2 flex items-center gap-2 text-[#0d1b2e] ">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f1f5f9]">
+                      <MetaIcon type="root" className="h-5 w-5 text-[#0d1b2e]" />
+                    </div>
                     <span className="text-[10px] font-bold uppercase tracking-[0.06em] text-[#0d1b2e]">Root Cause</span>
                   </div>
                   <p className="text-[11.5px] leading-[1.55] text-[#374151]">{current.rootCause}</p>
@@ -592,7 +733,7 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
             ) : null}
 
             {data.finalCta.paragraph ? (
-              <p className="mt-3 max-w-[760px] text-[12px] leading-[1.75] text-[#4b5563]">
+              <p className="mt-3 max-w-full text-[12px] leading-[1.75] text-[#4b5563]">
                 {data.finalCta.paragraph}
               </p>
             ) : null}
@@ -647,7 +788,7 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
             />
           ))}
 
-          {(data.finalCta.h4 || data.finalCta.paragraph || data.finalCta.buttonText) ? (
+          {/* {(data.finalCta.h4 || data.finalCta.paragraph || data.finalCta.buttonText) ? (
             <div className="mt-4 rounded-[14px] border border-[#dbe6f3] bg-[#f8fbff] p-4">
               {data.finalCta.h4 ? (
                 <h4 className="font-['Manrope'] text-[18px] font-extrabold leading-[1.2] tracking-[-0.03em] text-[#0d1b2e]">
@@ -672,7 +813,7 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
                 </a>
               ) : null}
             </div>
-          ) : null}
+          ) : null} */}
         </div>
 
         {data.finalCta.disclaimer ? (

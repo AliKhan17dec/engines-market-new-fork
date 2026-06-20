@@ -197,8 +197,8 @@ function FuelPanel({
   });
 
   // Blue glow shadow for content boxes
-  const blueGlowShadow = "shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)]";
-  
+  const blueGlowShadow = "shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_5px_rgba(42,109,214,0.4),0_0_12px_rgba(42,109,214,0.3),0_0_20px_rgba(42,109,214,0.2),0_3px_10px_rgba(42,109,214,0.25)]";
+
   // Green glow shadow for CTA box
   const greenGlowShadow = "shadow-[0_0_15px_rgba(74,222,128,0.5),inset_0_0_12px_rgba(74,222,128,0.3)]";
 
@@ -228,7 +228,7 @@ function FuelPanel({
         <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
           {/* Common Engine Families */}
           {families.length ? (
-            <div className={`rounded-[12px] border border-[#2a6dd6] bg-white ${blueGlowShadow}`}>
+            <div className="rounded-lg border-[0.5px] border-[#2a6dd6] bg-white shadow-[0_0_12px_rgba(42,109,214,0.2)]">
               {familiesLabel ? (
                 <div className="border-b border-[#eef2f7] px-4 py-[10px] text-[10px] font-black uppercase tracking-[0.08em] text-[#2a6dd6]">
                   {familiesLabel}
@@ -255,7 +255,7 @@ function FuelPanel({
 
           {/* Found In */}
           {foundIn.length ? (
-            <div className={`rounded-[12px] border border-[#2a6dd6] bg-white ${blueGlowShadow}`}>
+            <div className="rounded-lg border border-[#2a6dd6] bg-white shadow-[0_0_12px_rgba(42,109,214,0.2)]">
               {foundInLabel ? (
                 <div className="border-b border-[#eef2f7] px-4 py-[10px] text-[10px] font-black uppercase tracking-[0.08em] text-[#2a6dd6]">
                   {foundInLabel}
@@ -282,7 +282,7 @@ function FuelPanel({
 
           {/* Known For */}
           {knownFor.length ? (
-            <div className={`rounded-[12px] border border-[#2a6dd6] bg-white ${blueGlowShadow}`}>
+            <div className="rounded-lg border border-[#2a6dd6] bg-white shadow-[0_0_12px_rgba(42,109,214,0.2)]">
               {knownForLabel ? (
                 <div className="border-b border-[#eef2f7] px-4 py-[10px] text-[10px] font-black uppercase tracking-[0.08em] text-[#2a6dd6]">
                   {knownForLabel}
@@ -303,7 +303,7 @@ function FuelPanel({
 
           {/* Typical Models */}
           {typicalModels.length ? (
-            <div className={`rounded-[12px] border border-[#2a6dd6] bg-white ${blueGlowShadow}`}>
+            <div className="rounded-lg border border-[#2a6dd6] bg-white shadow-[0_0_12px_rgba(42,109,214,0.2)]">
               {modelsLabel ? (
                 <div className="border-b border-[#eef2f7] px-4 py-[10px] text-[10px] font-black uppercase tracking-[0.08em] text-[#2a6dd6]">
                   {modelsLabel}
@@ -321,9 +321,9 @@ function FuelPanel({
           ) : null}
         </div>
 
-        {/* CTA Button - full width below grid with green glow */}
+        {/* CTA Button - full width below grid with softer green glow */}
         {item.cta ? (
-          <div className={`mt-3 flex items-center justify-between gap-3 rounded-[10px] border border-green-400 bg-white px-4 py-3 ${greenGlowShadow}`}>
+          <div className="mt-3 flex items-center justify-between gap-3 rounded-[10px] border border-green-400 bg-white px-4 py-3 shadow-md shadow-green-400/30">
             <a
               href="#quote-form"
               data-quote-context={item.title}
@@ -340,7 +340,7 @@ function FuelPanel({
 
         {/* Important Notes - full width below grid */}
         {importantNotes.length ? (
-          <div className={`mt-3 rounded-[12px] border border-[#2a6dd6] bg-white ${blueGlowShadow}`}>
+          <div className={`mt-3 rounded-[12px] border border-[#2a6dd6] bg-white shadow-[0_0_12px_rgba(42,109,214,0.2)]`}>
             {notesLabel ? (
               <div className="border-b border-[#eef2f7] px-4 py-[10px] text-[10px] font-black uppercase tracking-[0.08em] text-[#2a6dd6]">
                 {notesLabel}
@@ -420,11 +420,10 @@ export default function FuelTypesSection({ data, bgImage, strictData = false }: 
                         key={item.title}
                         type="button"
                         onClick={() => setActiveItemIndex(index)}
-                        className={`flex flex-1 items-center justify-center gap-1 md:gap-2 rounded-[8px] px-2 md:px-4 py-3 text-[11px] md:text-[13px] font-bold transition-all duration-200 ${
-                          isActive
+                        className={`flex flex-1 items-center justify-center gap-1 md:gap-2 rounded-[8px] px-2 md:px-4 py-3 text-[11px] md:text-[13px] font-bold transition-all duration-200 ${isActive
                             ? "bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] border-[#2a6dd6] text-white shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)]"
                             : "text-[#475569] hover:bg-[#f8fafc]"
-                        }`}
+                          }`}
                       >
                         {isActive && (
                           <span className="hidden md:inline-flex">

@@ -178,35 +178,7 @@ export default function LiveMarketPricesSection({
 
   return (
     <Section className="bg-[#f5f5f5] sm:px-2 py-7 sm:py-8 lg:py-10">
-      {/* Mobile Image: Full width, appears before the Container on phone screens */}
-      {/* <div className="relative mb-6 h-[340px] w-full overflow-hidden lg:hidden">
-        {sectionImage ? (
-          <Image
-            src={sectionImage}
-            alt={data.imageAlt ?? "Market data visualization"}
-            fill
-            className="object-cover"
-            sizes="100vw"
-            priority
-          />
-        ) : null}
-      </div> */}
-
-      <div className="relative mb-6 h-[340px] w-full overflow-hidden lg:hidden">
-        {sectionImage ? (
-          <Image
-            src="/model.webp"
-            alt={data.imageAlt ?? "Market data visualization"}
-            fill
-            className="object-cover"
-            sizes="100vw"
-            priority
-          />
-        ) : null}
-      </div>
-
-
-      <Container className="max-w-[1400px]">
+      <Container className="max-w-[1400px] px-2">
         <div className=" max-w-190 text-start">
           <div className="section-pill">
             <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
@@ -236,18 +208,6 @@ export default function LiveMarketPricesSection({
 
         <div className="mt-6 grid gap-4 lg:grid-cols-[0.4fr_0.6fr] lg:items-stretch">
           {/* Desktop Image: Hidden on mobile, shown on lg and up */}
-          {/* <div className="relative hidden min-h-55 overflow-hidden lg:min-h-full lg:block">
-            {sectionImage ? (
-              <Image
-                src={sectionImage}
-                alt={data.imageAlt ?? "Market data visualization"}
-                fill
-                className="object-contain"
-                sizes="(max-width: 1024px) 100vw, 40vw"
-              />
-            ) : null}
-          </div> */}
-          {/* Desktop Image: Hidden on mobile, shown on lg and up */}
           <div className="relative hidden min-h-55 overflow-hidden lg:min-h-full lg:block">
             {sectionImage ? (
               <Image
@@ -260,10 +220,10 @@ export default function LiveMarketPricesSection({
             ) : null}
           </div>
 
-          {/* Right Table Container: Fixed height on desktop, flex column layout */}
+          {/* Right Table Container */}
           <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#0b1a2e] via-[#0f2035] to-[#0a1628] shadow-[0_10px_28px_rgba(0,0,0,0.4)] w-full overflow-hidden flex flex-col h-[600px] lg:h-[700px]">
             
-            {/* Header/Nav: Prevents shrinking */}
+            {/* Header/Nav */}
             {!isDocumentMode && filterTabs.length ? (
               <nav className="relative z-10 mb-4 flex-shrink-0" aria-label="Filter live engine data by brand">
                 <div className="rounded-t-xl bg-[#0d1f3c] shadow-[0_10px_24px_rgba(13,31,60,0.15)]">
@@ -334,7 +294,7 @@ export default function LiveMarketPricesSection({
               </div>
             ) : null}
 
-            {/* Scrollable Area Wrapper: Takes up remaining space */}
+            {/* Scrollable Area */}
             <div className="flex-1 flex flex-col overflow-hidden overflow-x-hidden w-full">
               {!isDocumentMode && (
                 <div className="border-b border-[#e4e7ee] bg-[#f9fafc] px-4 py-[10px] text-[11px] font-medium text-[#9aa3b5] flex-shrink-0">
@@ -390,20 +350,30 @@ export default function LiveMarketPricesSection({
                   </div>
                 )}
               </div>
-
             </div>
-            
-            
           </div>
-          
-          
         </div>
+
+        {/* ✅ Mobile Image — now BELOW the table, only visible on phones */}
+        <div className="relative mt-6 h-[480px] w-full overflow-hidden rounded-2xl lg:hidden">
+          {sectionImage ? (
+            <Image
+              src="/model.webp"
+              alt={data.imageAlt ?? "Market data visualization"}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+          ) : null}
+        </div>
+
         <div className="flex justify-end items-center gap-[6px] px-4 py-3 text-[11px] font-medium text-[#9aa3b5] border-t border-white/10">
-              <RefreshIcon />
-              <span>
-                {ui.updatedLabel ?? "Last updated:"} <span className="font-semibold text-[#6b7280]">{formatUpdatedAt(clock)}</span>
-              </span>
-            </div>
+          <RefreshIcon />
+          <span>
+            {ui.updatedLabel ?? "Last updated:"} <span className="font-semibold text-[#6b7280]">{formatUpdatedAt(clock)}</span>
+          </span>
+        </div>
 
         {isDocumentMode ? null : (
           <div className="mt-5">
