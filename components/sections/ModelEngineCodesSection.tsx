@@ -267,6 +267,7 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const guideLookup = useMemo(() => buildGuideLookup(guide), [guide]);
   const headingLines = data.headingLines?.length ? data.headingLines : [strictData ? data.h2 : (guide.h2 || data.h2)].filter(Boolean);
+  const mobileHeadingLine = headingLines[0] ?? "";
   const intro = strictData ? data.h3 : (guide.h3 || data.h3);
   const closingLine = strictData ? (data.closingLine || "") : (guide.closing || data.closingLine || "");
   const ui = data.ui ?? {};
@@ -299,36 +300,53 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
   return (
     <Section id="model-engine-codes" className="bg-[linear-gradient(180deg,#ffffff_0%,#f6f8fb_100%)]">
       <Container className="max-w-[1400px]">
+<<<<<<< HEAD
         <div className="pb-[32px]  max-[720px]:px-[12px] max-[720px]:pb-[25px]">
+=======
+        <div className="py-[42px] px-[18px] pb-[64px] md:py-[42px] md:px-[18px] md:pb-[64px] max-[720px]:px-[12px] max-[720px]:pb-[10px] max-[720px]:pt-[20px]">
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
           <div className="max-w-[1240px] mx-auto">
             <header className="max-w-[1400px]">
               {strictData ? (data.tag ? <div className="inline-flex items-center justify-center min-h-[34px] px-[16px] rounded-full bg-[linear-gradient(180deg,#16355d_0%,#081a34_100%)] text-white text-[12px] font-extrabold tracking-[0.12em] uppercase shadow-[0_8px_20px_rgba(8,26,52,0.14)] mb-[14px]">{data.tag}</div> : null) : <div className="inline-flex items-center justify-center min-h-[34px] px-[16px] rounded-full bg-[linear-gradient(180deg,#16355d_0%,#081a34_100%)] text-white text-[12px] font-extrabold tracking-[0.12em] uppercase shadow-[0_8px_20px_rgba(8,26,52,0.14)] mb-[14px]">{data.tag || guide.tag}</div>}
               <h2 className="mb-[10px] text-[clamp(31px,4vw,52px)] leading-[1.03] tracking-[-0.04em] text-[#10203a] max-[720px]:text-[32px]">
+                <span className="block min-[721px]:hidden">{mobileHeadingLine}</span>
                 {headingLines.map((line, index) => (
-                  <span key={`${line}-${index}`} className="block" style={{ color: headingLines.length > 1 && index === headingLines.length - 1 ? "#15803d" : undefined }}>
+                  <span key={`${line}-${index}`} className="hidden min-[721px]:block" style={{ color: headingLines.length > 1 && index === headingLines.length - 1 ? "#15803d" : undefined }}>
                     {line}
                   </span>
                 ))}
               </h2>
-              <p className="text-[#64748b] text-[16px] leading-[1.55] max-[720px]:text-[15px]">{intro}</p>
+              <p className="text-[#64748b] text-[16px] leading-[1.55] max-[720px]:hidden">{intro}</p>
             </header>
           </div>
         </div>
       </Container>
 
       {renderableGroups.length > 1 && (
+<<<<<<< HEAD
         <div className=" mx-auto  py-[2px] max-[720px]:py-[9px]">
           <div className="max-w-[1240px] mx-auto px-[18px] max-[720px]:px-[5px]">
             <div className="flex gap-[8px] rounded-[16px] bg-black shadow-[inset_0_2px_8px_rgba(0,0,0,0.2)] max-[720px]:gap-[6px] max-[720px]:p-[5px]">
+=======
+        <div className="max-w-[800px] mx-auto bg-[linear-gradient(180deg,#0d1b2e_0%,#081a34_100%)] py-[24px] max-[720px]:bg-transparent max-[720px]:py-[0px] shadow-[0_4px_20px_rgba(8,26,52,0.15)] max-[720px]:shadow-none">
+          <div className="max-w-[1240px] mx-auto px-[18px] max-[720px]:px-0">
+            <div className="flex gap-[8px] rounded-[16px] bg-white/4 shadow-[inset_0_2px_8px_rgba(0,0,0,0.2)] max-[720px]:gap-0 max-[720px]:overflow-hidden max-[720px]:rounded-none max-[720px]:border max-[720px]:border-[#dfe7ef] max-[720px]:bg-white max-[720px]:shadow-[0_8px_18px_rgba(13,27,46,0.06)] max-[720px]:p-0">
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
               {renderableGroups.map((entry, index) => {
                 const isActive = index === safeActiveIndex;
                 return (
                   <button
                     key={entry.group.name}
                     type="button"
+<<<<<<< HEAD
                     className={`flex-1 min-w-0 inline-flex items-center justify-center gap-[8px] py-[12px] px-[16px] rounded-[12px] border border-transparent text-[14px] font-bold tracking-[0.01em] cursor-pointer transition-all duration-200 text-[#bfd0e1] max-[720px]:py-[10px] max-[720px]:px-[12px] max-[720px]:text-[13px] max-[720px]:gap-[6px] ${isActive
                       ? "bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] border-[#2a6dd6] text-white rounded-[6px] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_4px_rgba(42,109,214,0.3),0_0_10px_rgba(42,109,214,0.2),0_0_20px_rgba(42,109,214,0.1),0_3px_8px_rgba(42,109,214,0.2)]"
                       : "bg-transparent hover:text-white hover:bg-white/6"
+=======
+                    className={`flex-1 min-w-0 inline-flex items-center justify-center gap-[8px] py-[12px] px-[16px] rounded-[12px] border border-transparent text-[14px] font-bold tracking-[0.01em] cursor-pointer transition-all duration-200 text-[#bfd0e1] max-[720px]:gap-[6px] max-[720px]:rounded-none max-[720px]:border-y-0 max-[720px]:border-l-0 max-[720px]:px-[10px] max-[720px]:py-[13px] max-[720px]:text-[13px] ${index < renderableGroups.length - 1 ? "max-[720px]:border-r max-[720px]:border-r-[#dfe7ef]" : ""} ${isActive
+                      ? "bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] border-[#2a6dd6] text-white shadow-[0_0_0_2px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)] max-[720px]:shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_0_0_1px_rgba(42,109,214,0.95),0_0_12px_rgba(42,109,214,0.35)]"
+                      : "bg-transparent hover:text-white hover:bg-white/6 max-[720px]:bg-white max-[720px]:text-[#10203a] max-[720px]:shadow-none"
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
                       }`}
                     onClick={() => handleTabClick(index)}
                     aria-selected={isActive}
@@ -347,11 +365,19 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
       )}
 
       <Container className="max-w-[1400px]">
+<<<<<<< HEAD
         <div className="pt-[21px] px-[18px] pb-[64px] max-[720px]:pt-[17px] max-[720px]:px-[12px] max-[720px]:pb-[50px]">
           <div className="max-w-[1240px] mx-auto">
             {activeGroupEntry ? (
               <section className="mt-[12px]">
                 <div className="flex items-center gap-[12px] mb-[12px]">
+=======
+        <div className="py-[42px] px-[18px] pb-[64px] max-[720px]:px-[12px] max-[720px]:pt-[10px] max-[720px]:pb-[50px]">
+          <div className="max-w-[1240px] mx-auto">
+            {activeGroupEntry ? (
+              <section className="mt-[24px]">
+                <div className="flex items-center gap-[12px] mb-[12px] max-[720px]:hidden">
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
                   <span className="w-[38px] h-[38px] rounded-[12px] bg-[#f5f8fc] text-[#0d1b2e] grid place-items-center flex-shrink-0">
                     {getFuelIcon(activeGroupEntry.group.name, "w-[24px] h-[24px]")}
                   </span>
@@ -360,8 +386,11 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
                     <p className="mt-[4px] text-[#64748b] text-[14px] leading-[1.45] max-[720px]:text-[15px]">{activeGroupEntry.group.era}</p>
                   </div>
                 </div>
+                <p className="hidden max-[720px]:block mb-[12px] text-[#64748b] text-[14px] leading-[1.45]">
+                  {activeGroupEntry.group.era}
+                </p>
 
-                <div className="grid gap-[10px] grid-cols-2 max-[920px]:grid-cols-1">
+                <div className="grid gap-[10px] grid-cols-2 max-[920px]:grid-cols-1 max-[720px]:gap-[2px]">
                   {chunkEngines(activeGroupEntry.validEngines).map((row, rowIndex) => {
                     const startIndex = rowIndex * 2;
                     const selectedRowEngineIndex = row.findIndex(
@@ -400,8 +429,8 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
                           className={`min-w-0 ${selected ? "col-span-full" : ""}`}
                         >
                           <button
-                            className={`w-full border border-[#dfe7ef] rounded-[20px] bg-white shadow-[0_12px_30px_rgba(12,29,53,0.06)] grid items-center gap-[10px] text-left text-inherit cursor-pointer transition-all duration-200 hover:bg-[#fbfdff] ${selected
-                              ? "grid-cols-[minmax(0,1fr)_16px] min-h-[60px] py-[10px] px-[14px] rounded-t-[20px] rounded-b-none border-[#b8cadb] shadow-[0_10px_22px_rgba(16,39,68,0.08)] bg-[linear-gradient(180deg,#ffffff_0%,#fbfdff_100%)] max-[720px]:min-h-[60px] max-[720px]:py-[10px] max-[720px]:px-[14px]"
+                            className={`w-full border border-[#dfe7ef] rounded-[20px] bg-white shadow-[0_12px_30px_rgba(12,29,53,0.06)] grid items-center gap-[10px] text-left text-inherit cursor-pointer transition-all duration-200 hover:bg-[#fbfdff] max-[720px]:rounded-none ${selected
+                              ? "grid-cols-[minmax(0,1fr)_16px] min-h-[60px] py-[10px] px-[14px] rounded-t-[20px] rounded-b-none border-[#b8cadb] shadow-[0_10px_22px_rgba(16,39,68,0.08)] bg-[linear-gradient(180deg,#ffffff_0%,#fbfdff_100%)] max-[720px]:min-h-[60px] max-[720px]:py-[10px] max-[720px]:px-[14px] max-[720px]:rounded-none"
                               : "grid-cols-[54px_minmax(0,1fr)_minmax(122px,150px)_16px] min-h-[76px] py-[14px] px-[16px] max-[720px]:grid-cols-[44px_minmax(0,1fr)_minmax(104px,122px)_14px] max-[720px]:gap-[8px] max-[720px]:p-[12px] max-[720px]:min-h-[70px]"
                               }`}
                             type="button"
@@ -409,7 +438,7 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
                             onClick={() => toggleSelection(safeActiveIndex, originalIndex)}
                           >
                             {!selected && (
-                              <span className="w-[48px] h-[48px] rounded-[14px] border border-[#d7e2ec] bg-[linear-gradient(180deg,#eef3f9_0%,#dfe8f2_100%)] text-[#334155] grid place-items-center max-[720px]:w-[40px] max-[720px]:h-[40px] max-[720px]:rounded-[12px]">
+                              <span className="w-[48px] h-[48px] rounded-[14px] border border-[#d7e2ec] bg-[linear-gradient(180deg,#eef3f9_0%,#dfe8f2_100%)] text-[#334155] grid place-items-center max-[720px]:w-[40px] max-[720px]:h-[40px] max-[720px]:rounded-none">
                                 <EngineIcon className="w-[22px] h-[22px] max-[720px]:w-[19px] max-[720px]:h-[19px]" />
                               </span>
                             )}
@@ -465,8 +494,14 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
                               );
 
                               return (
+<<<<<<< HEAD
                                 <div className="grid grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-x-[12px] bg-[linear-gradient(135deg,#081a34_0%,#0d2848_100%)] rounded-b-[18px] shadow-[0_18px_30px_rgba(11,31,57,0.26)] overflow-hidden pt-0 px-[12px] pb-[2px] max-[920px]:grid-cols-1 max-[720px]:px-[10px] max-[720px]:pb-[2px]">
                                   <div className="grid grid-cols-[150px_minmax(0,1fr)] text-white overflow-hidden max-[920px]:grid-cols-[132px_minmax(0,1fr)] max-[720px]:grid-cols-[120px_minmax(0,1fr)] py-2  sm:p-2">
+=======
+                                <div>
+                                  <div className="grid grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-x-[12px] bg-[linear-gradient(135deg,#081a34_0%,#0d2848_100%)] rounded-b-[18px] shadow-[0_18px_30px_rgba(11,31,57,0.26)] overflow-hidden pt-0 px-[12px] pb-[2px] max-[920px]:grid-cols-1 max-[720px]:rounded-none max-[720px]:px-[10px] max-[720px]:pb-[2px]">
+                                    <div className="grid grid-cols-[150px_minmax(0,1fr)] text-white overflow-hidden max-[920px]:grid-cols-[132px_minmax(0,1fr)] max-[720px]:grid-cols-[120px_minmax(0,1fr)]">
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
 
                                     {/* Image Column - Tighter padding */}
                                     <div className="p-[0px] flex items-center">
@@ -485,8 +520,20 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
                                       </div>
                                     </div>
 
+<<<<<<< HEAD
                                     {/* Text Column - Tighter padding and gap */}
                                     <div className="py-[4px] px-[16px] pt-[4px] pl-[12px] grid gap-[3px]">
+=======
+                                      {/* Text Column - Tighter padding and gap */}
+                                      <div className="grid gap-[3px] py-[4px] px-[16px] pt-[4px] pl-[12px] max-[720px]:gap-[8px] max-[720px]:px-[10px] max-[720px]:pt-[6px] max-[720px]:pb-[4px]">
+                                        <div className="grid grid-cols-[minmax(0,1fr)_180px] gap-[8px] items-start max-[920px]:grid-cols-[minmax(0,1fr)_188px] max-[720px]:grid-cols-1">
+                                          <div>
+                                            {/* Reduced margins */}
+                                            <div className="mb-[2px] text-white text-[15px] font-extrabold leading-[1.25] tracking-[-0.02em]">{engineHeading}</div>
+                                            {ui.historyLabel && <span className="block mb-[1px] text-white text-[13px] font-extrabold leading-[1.2] max-[720px]:mb-[6px] max-[720px]:pt-[6px]">{ui.historyLabel}</span>}
+                                            {historyText && <p className="text-[#e1ebf5] text-[11px] leading-[1.4] max-[720px]:leading-[1.5]">{historyText}</p>}
+                                          </div>
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
 
                                       {/* UPDATED: Increased the second column width from 180px to 240px */}
                                       <div className="grid grid-cols-[minmax(0,1fr)_240px] gap-[8px] items-start max-[920px]:grid-cols-[minmax(0,1fr)_248px] max-[720px]:grid-cols-1">
@@ -526,6 +573,7 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
                                             </div>
                                           </div>
 
+<<<<<<< HEAD
                                           {/* Quote Button - Minimal padding */}
                                           {quoteText && (
                                             <a
@@ -549,9 +597,20 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
                                               </span>
                                             </a>
                                           )}
+=======
+                                        {/* Variants Section - Desktop only (hidden on mobile) */}
+                                        <div className="grid gap-[2px] border-t border-white/16 pt-[4px] max-[720px]:hidden">
+                                          {ui.variantsLabel && <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase">{ui.variantsLabel}</small>}
+                                          <div className="flex flex-wrap gap-[6px]">
+                                            {buildVariants(activeEngine, detail).map((variant) => (
+                                              <span key={variant} className="inline-flex items-center justify-center min-h-[20px] px-[8px] rounded-[4px] bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] text-white text-[8px] font-bold leading-[1] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)] max-[720px]:rounded-none">{variant}</span>
+                                            ))}
+                                          </div>
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
                                         </div>
                                       </div>
 
+<<<<<<< HEAD
                                       {/* Variants Section - Desktop only (hidden on mobile) */}
                                       <div className="grid gap-[2px] border-t border-white/16 pt-[4px] max-[720px]:hidden">
                                         {ui.variantsLabel && <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase">{ui.variantsLabel}</small>}
@@ -561,6 +620,125 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
                                           ))}
                                         </div>
                                       </div>
+=======
+                                    {/* Variants Section - Mobile only (below image + text row) */}
+                                    <div className="hidden max-[720px]:grid gap-[6px] border-t border-white/16 pt-[10px] px-[10px] pb-[4px]">
+                                      {ui.variantsLabel && <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase max-[720px]:mb-[2px]">{ui.variantsLabel}</small>}
+                                      <div className="flex flex-wrap gap-[6px]">
+                                        {buildVariants(activeEngine, detail).map((variant) => (
+                                          <span key={variant} className="inline-flex items-center justify-center min-h-[22px] px-[8px] rounded-[3px] bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] text-white text-[8px] font-bold leading-[1] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_10px_rgba(42,109,214,0.8),0_0_25px_rgba(42,109,214,0.6),0_0_50px_rgba(42,109,214,0.4),0_8px_20px_rgba(42,109,214,0.5)] rounded-none">{variant}</span>
+                                        ))}
+                                      </div>
+                                    </div>
+
+                                    {/* Specs & Failures Columns - Tighter top padding */}
+                                    <div className="grid grid-cols-2 gap-[8px] pt-[4px] max-[720px]:pt-[8px]">
+                                      <section className="border border-[#dfe7ef] rounded-[4px] bg-white py-[4px] px-[9px] pb-[4px] max-[720px]:rounded-none">
+                                        {ui.specsTitle && (
+                                          <h4 className="mb-[3px] flex items-center gap-[8px] text-[12px] tracking-[-0.02em] text-[#10203a] max-[720px]:mb-[6px]">
+                                            <span className="w-[24px] h-[24px] rounded-[10px] grid place-items-center flex-shrink-0 bg-[#eef5fb] text-[#274564] max-[720px]:hidden">
+                                              <SpecsIcon />
+                                            </span>
+                                            {ui.specsTitle}
+                                          </h4>
+                                        )}
+                                        <ul className="list-none m-0 pt-4 grid gap-[8px] max-[720px]:pt-[2px] max-[720px]:gap-[10px]">
+                                          {ui.fuelLabel && (
+                                            <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px] max-[720px]:py-[4px]">
+                                              <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.fuelLabel}</span>
+                                              <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{detail?.fuel || activeEngine.fuel}</strong>
+                                            </li>
+                                          )}
+                                          {ui.sizeLabel && (
+                                            <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px] max-[720px]:py-[4px]">
+                                              <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.sizeLabel}</span>
+                                              <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{detail?.size || activeEngine.size}</strong>
+                                            </li>
+                                          )}
+                                          {ui.powerLabel && (
+                                            <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px] max-[720px]:py-[4px]">
+                                              <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.powerLabel}</span>
+                                              <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{detail?.power || activeEngine.power}</strong>
+                                            </li>
+                                          )}
+                                          {ui.yearsLabel && (
+                                            <li className="flex justify-between gap-[10px] py-[1px] border-b border-[#e8eef5] last:border-b-0 last:pb-[1px] max-[720px]:py-[4px]">
+                                              <span className="text-[#64748b] text-[12px] leading-[1.2]">{ui.yearsLabel}</span>
+                                              <strong className="text-[12px] leading-[1.2] text-right text-[#10203a]">{years}</strong>
+                                            </li>
+                                          )}
+                                        </ul>
+                                      </section>
+
+                                      <section className="border border-[#dfe7ef] rounded-[4px] bg-white py-[4px] px-[9px] pb-[4px] max-[720px]:rounded-none">
+                                        {ui.failuresTitle && (
+                                          <h4 className="mb-[3px] flex items-center gap-[8px] text-[12px] tracking-[-0.02em] text-[#10203a] max-[720px]:mb-[6px]">
+                                            <span className="w-[24px] h-[24px] rounded-[10px] grid place-items-center flex-shrink-0 bg-[#fff2f2] text-[#c73a3a] max-[720px]:hidden">
+                                              <WarningIcon />
+                                            </span>
+                                            {ui.failuresTitle}
+                                          </h4>
+                                        )}
+                                        <ul className="list-none m-0 pt-4 grid gap-[2px] max-[720px]:pt-[2px] max-[720px]:gap-[8px]">
+                                          {buildFailures(detail, activeGroupEntry.group.failureNote).map((failure) => (
+                                            <li key={failure} className="relative pl-[12px] text-[#2d3e55] text-[12px] leading-[1.28] before:content-[''] before:absolute before:top-[6px] before:left-0 before:w-[6px] before:h-[6px] before:rounded-full before:bg-[#c73a3a] before:shadow-[0_0_0_3px_rgba(199,58,58,0.14)]">{failure}</li>
+                                          ))}
+                                        </ul>
+                                      </section>
+                                    </div>
+
+                                    {/* Mobile Bottom Section */}
+                                    <div className="hidden max-[720px]:grid gap-[4px] py-[2px] pt-[12px] pb-[2px]">
+                                      {/* Price Box */}
+                                      <div className="relative overflow-hidden rounded-xl border border-green-400 bg-[#0d1526]/50 backdrop-blur-xl shadow-[0_0_15px_rgba(74,222,128,0.5),inset_0_0_12px_rgba(74,222,128,0.3)] max-[720px]:rounded-none">
+                                        <div
+                                          className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none"
+                                          style={{ clipPath: 'polygon(60% 0, 100% 0, 100% 100%, 40% 100%)' }}
+                                        />
+                                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+
+                                        <div className="relative z-10 px-3 py-1.5">
+                                          {ui.summaryPriceLabel && (
+                                            <small className="block text-[#bfd0e1] text-[9px] font-extrabold tracking-[0.12em] uppercase">
+                                              {ui.summaryPriceLabel}
+                                            </small>
+                                          )}
+                                          <strong className="block text-[#42d272] text-[18px] leading-[1] tracking-[-0.05em] my-[1px]">
+                                            {toPriceText(activeEngine.avgRebuiltPrice)}
+                                          </strong>
+                                          {ui.supplyLabel && (
+                                            <span className="block text-[#bfd0e1] text-[9px] leading-[1.4]">
+                                              {ui.supplyLabel}
+                                            </span>
+                                          )}
+                                        </div>
+                                      </div>
+
+                                      {/* Quote CTA */}
+                                      {quoteText && (
+                                        <a
+  className="group flex w-full items-center gap-[8px] bg-transparent py-[2px] px-0 shadow-none transition-opacity hover:opacity-85"
+  href="#quote-form"
+  data-quote-engine-code={repairEngineCodeValue(detail?.code || activeEngine.code)}
+  data-quote-context={activeEngine.compatibleModels}
+>
+  <div className="flex-shrink-0 text-[#2a6dd6] drop-shadow-[0_0_8px_rgba(42,109,214,0.55)]">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+      <circle cx="18" cy="18" r="3.5" fill="#050b14" stroke="currentColor" />
+      <text x="18" y="20" fontSize="7" fontWeight="bold" fill="currentColor" textAnchor="middle" fontFamily="sans-serif">£</text>
+    </svg>
+  </div>
+  <span className="flex-1 text-[11px] font-bold leading-snug text-white">
+    <span className="mr-[6px] inline-block text-[#2a6dd6] drop-shadow-[0_0_8px_rgba(42,109,214,0.55)]" aria-hidden="true">→</span>
+    {quoteText}
+  </span>
+</a>
+                                      )}
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
                                     </div>
                                   </div>
 
@@ -696,7 +874,7 @@ export default function ModelEngineCodesSection({ data, guide, modelName, strict
             ) : null}
 
             {(closingLine || closingAction.title || closingAction.buttonText) && (
-              <div className="mt-[30px] border border-[#0d1b2e] rounded-[22px] bg-white grid grid-cols-[74px_1fr_auto] gap-[16px] items-center p-[18px] shadow-[0_12px_30px_rgba(12,29,53,0.06)] max-[920px]:grid-cols-1">
+              <div className="mt-[30px] border border-[#0d1b2e] rounded-[22px] bg-white grid grid-cols-[74px_1fr_auto] gap-[16px] items-center p-[18px] shadow-[0_12px_30px_rgba(12,29,53,0.06)] max-[920px]:grid-cols-1 max-[720px]:hidden">
                 <div className="w-[58px] h-[58px] rounded-[16px] bg-[#f5f8fc] text-[#0d1b2e] grid place-items-center">
                   <CarIcon />
                 </div>

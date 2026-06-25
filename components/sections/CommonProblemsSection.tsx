@@ -69,6 +69,7 @@ function parseAffectedModelsSummary(affectedModels: string) {
   };
 }
 
+<<<<<<< HEAD
 function VehicleIcon({ className = "h-[18px] w-[18px]" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
@@ -80,6 +81,8 @@ function VehicleIcon({ className = "h-[18px] w-[18px]" }: { className?: string }
   );
 }
 
+=======
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
 function splitHeading(text: string) {
   const accent = "What It Costs to Fix & When Replacement Makes Sense";
   if (text.includes(accent)) {
@@ -284,7 +287,11 @@ function AffectedVehiclesCard({
         {vehicles.slice(0, 4).map((vehicle, index) => (
           <div
             key={`${vehicle}-${index}`}
+<<<<<<< HEAD
             className={`flex items-center rounded-[6px] bg-[#f8f9fa] p-1.5 ${mobile ? "" : ""}`}
+=======
+            className="flex items-center rounded-[6px] border border-[#2a6dd6] bg-[linear-gradient(180deg,#ffffff_0%,#f4f8ff_100%)] p-1.5 shadow-[0_0_0_1px_rgba(42,109,214,0.45),0_0_12px_rgba(42,109,214,0.22),inset_0_1px_0_rgba(255,255,255,0.9)]"
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
           >
             <div className={`flex flex-none items-center justify-center text-[#2563eb] ${mobile ? "h-5 w-5" : "h-7 w-7"}`}>
               <FaCar className={mobile ? "h-[9px] w-[9px]" : "h-[10px] w-[10px]"} />
@@ -332,39 +339,18 @@ function MobileProblemCard({
 
     if (label.includes("full replacement") || label.includes("recommended") || label.includes("best value")) {
       return {
-        border: "border-[#22c55e]",
-        bg: "bg-[#f0fdf4]",
-        headerBg: "bg-[#22c55e]",
-        headerText: "text-white",
-        dealerBg: "bg-[#0d1b2e]",
-        dealerText: "text-white",
-        specialistBg: "bg-[#22c55e]",
-        specialistText: "text-white",
+        accentText: "text-[#15803d]",
       };
     }
 
     if (label.includes("intermediate") || label.includes("moderate")) {
       return {
-        border: "border-[#f59e0b]",
-        bg: "bg-[#fffbeb]",
-        headerBg: "bg-[#f59e0b]",
-        headerText: "text-white",
-        dealerBg: "bg-[#0d1b2e]",
-        dealerText: "text-white",
-        specialistBg: "bg-[#22c55e]",
-        specialistText: "text-white",
+        accentText: "text-[#b45309]",
       };
     }
 
     return {
-      border: "border-[#3b82f6]",
-      bg: "bg-[#eff6ff]",
-      headerBg: "bg-[#3b82f6]",
-      headerText: "text-white",
-      dealerBg: "bg-[#0d1b2e]",
-      dealerText: "text-white",
-      specialistBg: "bg-[#22c55e]",
-      specialistText: "text-white",
+      accentText: "text-[#2563eb]",
     };
   };
 
@@ -444,20 +430,28 @@ function MobileProblemCard({
                 return (
                   <div
                     key={`${option.tier || "repair-option"}-${optionIndex}`}
-                    className={`rounded-[12px] border-2 ${colors.border} ${colors.bg}/20 p-2`}
+                    className="rounded-[12px] border border-[#d9e1ea] bg-white p-2 shadow-[0_4px_14px_rgba(15,23,42,0.07)]"
                   >
-                    <div className={`rounded-[8px] text-black px-3 py-2 mb-3`}>
-                      <div className="font-['Manrope'] text-[13px] font-bold">{option.tier}</div>
+                    <div className="mb-3 rounded-[8px] px-3 py-2 text-black">
+                      <div className={`font-['Manrope'] text-[13px] font-bold ${colors.accentText}`}>{option.tier}</div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-2 mb-3">
-                      <div className={`rounded-[8px] bg-[#173971] ${colors.dealerText} p-2`}>
-                        <div className="text-[10px] font-bold uppercase tracking-[0.05em] opacity-90">DEALER</div>
-                        <div className="mt-1 text-[13px] font-bold">{option.dealerPrice}</div>
+                      <div className="relative overflow-hidden rounded-[8px] border border-[#cfe0ff] bg-[linear-gradient(180deg,rgba(23,57,113,0.92)_0%,rgba(12,32,66,0.96)_100%)] p-2 text-white shadow-[0_8px_16px_rgba(23,57,113,0.22),inset_0_1px_0_rgba(255,255,255,0.16)]">
+                        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0.03)_38%,rgba(255,255,255,0)_62%)]" />
+                        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/65 to-transparent" />
+                        <div className="relative z-10">
+                          <div className="text-[10px] font-bold uppercase tracking-[0.05em] opacity-90">DEALER</div>
+                          <div className="mt-1 text-[13px] font-bold">{option.dealerPrice}</div>
+                        </div>
                       </div>
-                      <div className={`rounded-[8px] bg-[#2c6724] ${colors.specialistText} p-2`}>
-                        <div className="text-[10px] font-bold uppercase tracking-[0.05em] opacity-90">SPECIALIST</div>
-                        <div className="mt-1 text-[13px] font-bold">{option.specialistPrice}</div>
+                      <div className="relative overflow-hidden rounded-[8px] border border-[#bfe8cb] bg-[linear-gradient(180deg,rgba(44,103,36,0.92)_0%,rgba(25,70,33,0.96)_100%)] p-2 text-white shadow-[0_8px_16px_rgba(44,103,36,0.18),inset_0_1px_0_rgba(255,255,255,0.16)]">
+                        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.24)_0%,rgba(255,255,255,0.04)_40%,rgba(255,255,255,0)_65%)]" />
+                        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/65 to-transparent" />
+                        <div className="relative z-10">
+                          <div className="text-[10px] font-bold uppercase tracking-[0.05em] opacity-90">SPECIALIST</div>
+                          <div className="mt-1 text-[13px] font-bold">{option.specialistPrice}</div>
+                        </div>
                       </div>
                     </div>
 
@@ -491,8 +485,9 @@ function MobileProblemCard({
 
 export default function CommonProblemsSection({ data, bgImage }: Props) {
   const [active, setActive] = useState(0);
-  const [openMobile, setOpenMobile] = useState(0);
+  const [openMobile, setOpenMobile] = useState(-1);
   const [isTextExpanded, setIsTextExpanded] = useState(false);
+  const [isDisclaimerExpanded, setIsDisclaimerExpanded] = useState(false);
 
   const current = useMemo(() => data.problems[active] ?? data.problems[0], [active, data.problems]);
   const heading = splitHeading(data.h2);
@@ -819,19 +814,47 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
         {data.finalCta.disclaimer ? (
           <div className="mt-5 rounded-[12px] border border-[#e5e7eb] bg-white px-4 py-3 lg:mt-4">
             <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center">
-              <p className="text-[10.5px] leading-[1.65] text-[#9ca3af] md:text-[11px] md:leading-[1.7]">
-                <strong className="font-semibold text-[#6b7280]">Disclaimer:</strong> {data.finalCta.disclaimer}
-              </p>
+              <div>
+                <p
+                  className="text-[10.5px] leading-[1.65] text-[#9ca3af] md:text-[11px] md:leading-[1.7]"
+                  style={
+                    isDisclaimerExpanded
+                      ? undefined
+                      : {
+                          display: "-webkit-box",
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                        }
+                  }
+                >
+                  <strong className="font-semibold text-[#6b7280]">Disclaimer:</strong> {data.finalCta.disclaimer}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setIsDisclaimerExpanded((current) => !current)}
+                  className="mt-2 text-[10.5px] font-semibold text-[#15803d] transition hover:text-[#166534]"
+                >
+                  {isDisclaimerExpanded ? "View Less" : "View More"}
+                </button>
+              </div>
 
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-                {supportItems.map((item) => (
-                  <div key={item.label} className="flex flex-col items-center gap-2 text-center">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f0fdf4] text-[#15803d]">
-                      {item.icon}
+              <div className="overflow-x-auto">
+                <div className="flex min-w-max items-start gap-2 whitespace-nowrap">
+                  {supportItems.map((item, index) => (
+                    <div key={item.label} className="flex items-center gap-2">
+                      <div className="inline-flex min-w-[68px] flex-col items-center gap-2 text-center">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f0fdf4] text-[#15803d]">
+                          {item.icon}
+                        </div>
+                        <span className="text-[10px] leading-[1.35] text-[#6b7280]">{item.label}</span>
+                      </div>
+                      {index < supportItems.length - 1 ? (
+                        <span className="pt-3 text-[16px] leading-none text-[#cbd5e1]">|</span>
+                      ) : null}
                     </div>
-                    <span className="text-[10px] leading-[1.35] text-[#6b7280]">{item.label}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -841,18 +864,3 @@ export default function CommonProblemsSection({ data, bgImage }: Props) {
   );
 }
 
-function WarningTriangleIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-3 w-3 flex-none" fill="none" aria-hidden="true">
-      <path
-        d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}

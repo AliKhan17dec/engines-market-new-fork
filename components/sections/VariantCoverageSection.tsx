@@ -168,11 +168,8 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
     [data],
   );
 
-  const defaultOpenCard = renderableCards[0]?.slug ?? null;
-  const [openCard, setOpenCard] = useState<string | null>(defaultOpenCard);
-  const [seenCards, setSeenCards] = useState<Record<string, boolean>>(
-    defaultOpenCard ? { [defaultOpenCard]: true } : {},
-  );
+  const [openCard, setOpenCard] = useState<string | null>(null);
+  const [seenCards, setSeenCards] = useState<Record<string, boolean>>({});
 
   const [columns, setColumns] = useState<number>(2);
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -274,7 +271,7 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
             </p>
           </div>
 
-          <div className="mt-9">
+          <div className="mt-6 md:mt-9">
             <div className="grid gap-4 grid-cols-2 xl:grid-cols-5 2xl:grid-cols-6">
               {cardsToDisplay.map((card, index) => {
                 const rowIndex = Math.floor(index / columns);
@@ -299,11 +296,11 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
                         type="button"
                         onClick={() => toggleCard(card.slug)}
                         aria-expanded={isOpen}
-                        className="flex min-h-[230px] w-full flex-col items-center p-2 sm:px-4 sm:py-4 text-center md:min-h-[248px]"
+                        className="flex min-h-[230px] w-full flex-col items-center px-2 pb-2 pt-1.5 sm:px-4 sm:py-4 text-center md:min-h-[248px]"
                       >
-                        <div className="flex min-h-[78px] w-full items-center justify-center">
+                        <div className="flex min-h-[82px] w-full items-center justify-center">
                           {card.image ? (
-                            <div className="relative h-[62px] w-full max-w-[152px]">
+                            <div className="relative h-[68px] w-full max-w-[158px]">
                               <Image
                                 src={card.image}
                                 alt={card.h3}
@@ -319,8 +316,8 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
                           )}
                         </div>
 
-                        <div className="mt-4 w-full max-w-[250px]">
-                          <div className="font-['Manrope'] text-[15px] font-extrabold leading-[1.18] text-[#0d1b2e]">
+                        <div className="mt-3 w-full max-w-[250px]">
+                          <div className="font-['Manrope'] text-[16px] font-extrabold leading-[1.18] text-[#0d1b2e] md:text-[15px]">
                             {card.h3}
                           </div>
                           <p className="mt-2 text-[11.5px] font-semibold leading-[1.4] text-[#4b5563]">
@@ -331,7 +328,7 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
                           </p>
                         </div>
 
-                        <span className="mt-auto inline-flex pt-4 text-[#15803d]">
+                        <span className="mt-auto inline-flex pt-2 text-[#15803d] md:pt-4">
                           <ChevronIcon open={isOpen} animated={animateChevron} />
                         </span>
                       </button>
@@ -427,16 +424,16 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
             </button>
 
             {isDirectoryOpen && (
-              <div className="animate-fade-in-down">
+              <div className="animate-fade-in-down mt-4 max-h-[calc(100vh-10rem)] overflow-y-auto pr-1 scroll-smooth overscroll-contain md:mt-0 md:max-h-none md:overflow-visible md:pr-0">
                 {directoryIntro ? (
-                  <p className="mt-2 max-w-[900px] text-[13px] leading-[1.7] text-slate-600">{directoryIntro}</p>
+                  <p className="max-w-[900px] text-[13px] leading-[1.7] text-slate-600">{directoryIntro}</p>
                 ) : null}
 
                 <div className="mt-5 grid gap-3 lg:grid-cols-3">
                   {renderableDirectoryGroups.map((group) => (
                     <article key={group.title} className="rounded-sm border-[0.5px] border-[#2a6dd6] shadow-[0_0_3px_rgba(42,109,214,0.4),0_0_6px_rgba(42,109,214,0.2),0_2px_4px_rgba(42,109,214,0.15)] bg-white p-4">
                       <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#15803d]">{group.title}</p>
-                      <div className="mt-3 flex flex-wrap gap-[7px]">
+                      <div className="mt-3 grid grid-cols-3 gap-2">
                         {group.items.map((item, index) => {
                           const fullText = [modelName, item].filter(Boolean).join(" ");
                           const isLong = fullText.length > 20;
@@ -445,17 +442,17 @@ export default function VariantCoverageSection({ data, brandName, modelName }: P
                           return (
                             <span
                               key={`${group.title}-${item}-${index}`}
-                              className={`group/marquee relative inline-flex items-center overflow-hidden rounded-full border border-slate-200 bg-slate-50 px-[10px] py-[5px] text-[11px] font-semibold text-slate-700 ${isLong ? 'variant-marquee-box' : ''}`}
+                              className={`group/marquee relative inline-flex min-w-0 w-full items-center justify-center overflow-hidden rounded-[8px] border border-slate-200 bg-slate-50 px-[8px] py-[7px] text-[11px] font-semibold text-slate-700 ${isLong ? 'variant-marquee-box max-w-none' : ''}`}
                               title={fullText}
                             >
                               {!isLong ? (
-                                fullText
+                                <span className="block w-full truncate text-center">{fullText}</span>
                               ) : (
                                 <>
-                                  <span className="whitespace-nowrap transition-opacity duration-300 group-hover/marquee:opacity-0">
+                                  <span className="block w-full whitespace-nowrap text-center transition-opacity duration-300 group-hover/marquee:opacity-0">
                                     {truncatedText}
                                   </span>
-                                  <span className="absolute inset-0 flex items-center px-[10px] opacity-0 transition-opacity duration-300 group-hover/marquee:opacity-100">
+                                  <span className="absolute inset-0 flex items-center px-[8px] opacity-0 transition-opacity duration-300 group-hover/marquee:opacity-100">
                                     <span className="variant-marquee-track">
                                       <span className="pr-8">{fullText}</span>
                                       <span className="pr-8">{fullText}</span>

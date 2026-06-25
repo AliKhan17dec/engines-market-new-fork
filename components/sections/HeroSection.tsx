@@ -262,6 +262,8 @@ function BottomBarIcon({ type }: { type: string }) {
 
 const badgeIcons = [ToolIcon, ShieldIcon, DeliveryIcon, UsersIcon];
 const carIcons = [CarIconOne, CarIconTwo, CarIconThree];
+const PHONE_NUMBER_DISPLAY = "020 3488 4649";
+const PHONE_NUMBER_HREF = "tel:02034884649";
 
 const bottomBarItems = [
   { icon: "lightning", text: "Instant engine replacement quote - 100% free, no obligation" },
@@ -365,6 +367,36 @@ function buildHeroLineTwo(model: HeroModelCard) {
   return "";
 }
 
+function extractStartingPrice(priceRange: string) {
+  const match = priceRange.match(/£\s?[\d,]+/);
+  return match ? match[0].replace(/\s+/g, " ") : "";
+}
+
+function buildCommonCodesLine(model: HeroModelCard) {
+  if (model.engineCodes?.length) {
+    return `Common codes: ${model.engineCodes.join(", ")}`;
+  }
+
+  const detailText = buildHeroLineTwo(model);
+  const match = detailText.match(/Common codes:\s*(.+)$/i);
+
+  return match ? `Common codes: ${match[1].trim()}` : "";
+}
+
+function buildRebuiltUnitsLine(model: HeroModelCard) {
+  const detailText = buildHeroLineTwo(model);
+  const detailMatch = detailText.match(
+    /Rebuilt units from\s+(.+?)(?=\s*(?:[·•]|Common codes:|$))/i,
+  );
+
+  if (detailMatch) {
+    return `Rebuilt units from ${detailMatch[1].trim()}`;
+  }
+
+  const startingPrice = extractStartingPrice(model.priceRange);
+  return startingPrice ? `Rebuilt units from ${startingPrice}` : "";
+}
+
 function splitHighlightLineOne(text: string) {
   const normalized = text.replace(/\s+/g, " ").trim();
   const match = normalized.match(/^(.*?)(\s+[—-]\s+from\s+.+)$/i);
@@ -442,23 +474,24 @@ export default function HeroSection({
   return (
     <section className="overflow-x-hidden bg-[#f8f9fa]">
       <div className="bg-[#0d1b2e] text-white lg:hidden">
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="font-['Manrope'] text-[17px] font-extrabold tracking-[-0.3px] text-white">
+        <div className="flex items-center justify-between gap-2 px-4 py-3">
+          <div className="font-['Manrope'] text-[15px] font-extrabold tracking-[-0.3px] text-white sm:text-[17px]">
             {strictData ? mobileBar.brandText : (mobileBar.brandText ?? "ENGINEMARKET")}
           </div>
 
           <div className="flex items-center gap-2">
             <a
-              href="tel:03330000044"
-              className="inline-flex items-center gap-1.5 rounded-md border border-white/20 bg-white/10 px-3 py-[7px] text-[11px] font-semibold text-white"
+              href={PHONE_NUMBER_HREF}
+              className="inline-flex items-center gap-1.5 rounded-md border border-white/20 bg-white/10 px-2.5 py-[7px] text-[10px] font-semibold tracking-[0.01em] text-white sm:px-3 sm:text-[11.5px]"
+              aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}
             >
               <PhoneIcon />
-              <span>{strictData ? mobileBar.callLabel : (mobileBar.callLabel ?? "Call")}</span>
+              <span>{PHONE_NUMBER_DISPLAY}</span>
             </a>
             <a
               href="#quote-form"
               data-quote-source="hero-mobile"
-              className="rounded-md bg-[#15803d] px-3 py-[7px] font-['Manrope'] text-[11.5px] font-bold text-white"
+              className="rounded-md bg-[#15803d] px-3 py-[7px] font-['Manrope'] text-[11px] font-bold text-white sm:text-[11.5px]"
             >
               {strictData ? mobileBar.quoteLabel : (mobileBar.quoteLabel ?? "GET QUOTES")}
             </a>
@@ -466,7 +499,7 @@ export default function HeroSection({
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-[1400px] min-w-0 items-center sm:gap-8 px-3 py-7 sm:px-6 md:px-8 md:py-8 lg:grid-cols-[55fr_45fr] lg:gap-7 lg:px-8 lg:py-[52px]">
+      <div className="mx-auto grid max-w-[1400px] min-w-0 items-center px-3 py-5 sm:gap-8 sm:px-6 md:px-8 md:py-8 lg:grid-cols-[55fr_45fr] lg:gap-7 lg:px-8 lg:py-[52px]">
         {/* LEFT COLUMN */}
         <div className="flex min-w-0 flex-col">
           <span className="mb-[14px] inline-flex w-fit items-center rounded-[20px] bg-[#0d1b2e] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white md:mb-[18px] md:px-[14px] md:py-[6px] md:text-[10.5px]">
@@ -517,12 +550,20 @@ export default function HeroSection({
                 const shortTitle = stripBrandFromModel(model.h3, brandName);
                 const normalizedPrice = model.priceRange.replace(/^Starting\s+/i, "").replace(/^Available\s+/i, "");
                 const modelHref = brandSlug ? getModelHref(brandSlug, model) : null;
+                const commonCodesLine = buildCommonCodesLine(model);
+                const rebuiltUnitsLine = buildRebuiltUnitsLine(model);
+                const desktopDetailLine =
+                  model.lineOne?.trim() && model.heroLineTwo?.trim()
+                    ? model.heroLineTwo.trim()
+                    : !strictData && buildHeroLineTwo(model)
+                      ? buildHeroLineTwo(model)
+                      : "";
                 const lineOne = model.lineOne?.trim()
                   ? splitHighlightLineOne(model.lineOne)
                   : {
-                    lead: shortTitle,
-                    accent: normalizedPrice ? `- ${normalizedPrice}` : "",
-                  };
+                      lead: shortTitle,
+                      accent: normalizedPrice ? `- ${normalizedPrice}` : "",
+                    };
 
                 return (
                   <div
@@ -530,23 +571,23 @@ export default function HeroSection({
                     className={`py-[10px] md:py-3 ${index < displayModels.length - 1 ? "border-b border-[#f3f4f6]" : ""}`}
                   >
                     <div className="flex min-w-0 items-start overflow-hidden">
-                      <div className="mr-2 flex h-[34px] w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-md md:mr-[10px] md:h-[60px] md:w-[72px]">
+                      <div className="mr-3 flex h-[42px] w-[68px] shrink-0 items-center justify-center overflow-hidden rounded-md md:mr-[10px] md:h-[60px] md:w-[72px]">
                         {model.image ? (
                           <Image
                             src={model.image}
                             alt={model.imageAlt ?? model.h3}
                             width={72}
                             height={40}
-                            sizes="72px"
+                            sizes="(max-width: 767px) 68px, 72px"
                             className="h-full w-full object-contain"
                           />
                         ) : (
-                          <div className="flex h-[22px] w-[38px] items-center text-[#0d1b2e]/50 md:h-[26px] md:w-[44px]">
+                          <div className="flex h-[30px] w-[52px] items-center text-[#0d1b2e]/50 md:h-[26px] md:w-[44px]">
                             <Icon />
                           </div>
                         )}
                       </div>
-                      <div className="min-w-0">
+                      <div className="min-w-0 md:space-y-0">
                         <div className="flex min-w-0 items-center overflow-hidden whitespace-nowrap">
                           {modelHref ? (
                             <Link
@@ -567,13 +608,19 @@ export default function HeroSection({
                             </span>
                           ) : null}
                         </div>
-                        {model.lineOne?.trim() && model.heroLineTwo?.trim() ? (
-                          <p className="mt-1 text-[11px] leading-[1.45] text-[#64748b] md:text-[12px]">
-                            {model.heroLineTwo.trim()}
+                        {commonCodesLine ? (
+                          <p className="text-[11px] leading-[1.45] text-[#64748b] md:hidden">
+                            {commonCodesLine}
                           </p>
-                        ) : !strictData && buildHeroLineTwo(model) ? (
-                          <p className="mt-1 text-[11px] leading-[1.45] text-[#64748b] md:text-[12px]">
-                            {buildHeroLineTwo(model)}
+                        ) : null}
+                        {rebuiltUnitsLine ? (
+                          <p className="text-[11px] leading-[1.45] text-[#64748b] md:hidden">
+                            {rebuiltUnitsLine}
+                          </p>
+                        ) : null}
+                        {desktopDetailLine ? (
+                          <p className="hidden text-[12px] leading-[1.45] text-[#64748b] md:mt-1 md:block">
+                            {desktopDetailLine}
                           </p>
                         ) : null}
                       </div>
@@ -586,15 +633,15 @@ export default function HeroSection({
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="relative flex w-full min-w-0 flex-col items-center justify-center sm:gap-6 overflow-hidden px-3 lg:min-h-0 lg:px-0">
+        <div className="relative flex w-full min-w-0 flex-col items-center justify-center overflow-hidden px-3 pt-1 md:pt-0 lg:min-h-0 lg:px-0">
           {bgImage && showHeroImage ? (
             <div className="relative h-auto w-full max-w-full overflow-hidden rounded-[24px] lg:min-h-[300px]">
-              <div className="relative aspect-[5/3] w-full lg:aspect-auto lg:min-h-[300px]">
+              <div className="relative aspect-[2.05/1] w-full md:aspect-[5/3] lg:aspect-auto lg:min-h-[300px]">
                 <Image
                   src={bgImage}
                   alt={data.imageAlt ?? brandName}
                   fill
-                  className="object-contain p-2"
+                  className="object-contain md:p-2"
                   sizes="(max-width: 767px) 100vw, (min-width: 768px) 600px"
                   onError={() => setShowHeroImage(false)}
                 />

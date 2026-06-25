@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { EngineSizesData } from "@/types/brand";
-import { AdviceCard, WarningCard } from "@/components/ui/CalloutCards";
+import { AdviceCard } from "@/components/ui/CalloutCards";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 
@@ -215,13 +215,19 @@ function SizeAccordionCard({
             </table>
           </div>
 
-          {item.commonFailurePoints?.length && (displayMode !== "document" || ui.warningTitle) ? (
-            <div className="mt-4">
-              <WarningCard
-                label={displayMode === "document" ? (ui.warningLabel || "") : (ui.warningLabel ?? (kind === "hybrid" ? "Important Notes" : "Common Failure Points"))}
-                title={displayMode === "document" ? (ui.warningTitle || "") : (ui.warningTitle ?? (kind === "hybrid" ? "Review these fitment notes before ordering" : "Watch for these known weak points"))}
-                body={item.commonFailurePoints.join(", ")}
-              />
+          {item.commonFailurePoints?.length ? (
+            <div className="mt-4 flex gap-3">
+              <div className="w-[2px] flex-none rounded-full bg-[#f97316]" />
+              <div className="min-w-0">
+                <div className="font-['Manrope'] text-[11px] font-extrabold uppercase tracking-[0.05em] text-[#dc2626]">
+                  {displayMode === "document"
+                    ? (ui.warningLabel || "Common Failure Points")
+                    : (ui.warningLabel ?? (kind === "hybrid" ? "Important Notes" : "Common Failure Points"))}
+                </div>
+                <p className="mt-1 text-[11px] leading-[1.55] text-[#475569]">
+                  {item.commonFailurePoints.join(", ")}
+                </p>
+              </div>
             </div>
           ) : null}
 
@@ -229,10 +235,12 @@ function SizeAccordionCard({
             href="#quote-form"
             data-quote-context={item.title}
             data-quote-source="engine-sizes"
-            className="mt-4 flex items-center justify-between rounded-[8px] border border-[#0d1b2e] bg-white px-3 py-[10px] text-[11.5px] font-bold text-[#0d1b2e] transition hover:bg-[#f8fbff]"
+            className="mt-4 flex w-full items-center justify-between rounded-[8px] border border-[#12294a] bg-[#0d1b2e] px-3 py-[11px] text-[11.5px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_8px_16px_rgba(13,27,46,0.18)] transition hover:bg-[#16304e]"
           >
             <span>{item.cta.replace(/\s*->\s*$/, "")}</span>
-            <ArrowIcon />
+            <span className="text-[#22c55e]">
+              <ArrowIcon />
+            </span>
           </a>
         </div>
       ) : null}
@@ -315,8 +323,8 @@ export default function EngineSizesSection({
 
         {/* Unified Responsive Tab Navigation */}
         <div className="mt-5">
-          <div className="rounded-[10px] bg-[#0d1b2e]">
-            <div className="flex items-stretch gap-[3px]">
+          <div className="overflow-hidden rounded-[8px] border border-[#d9e1ea] bg-white shadow-[0_4px_12px_rgba(13,27,46,0.05)]">
+            <div className="flex items-stretch">
               {groups.map((group, index) => {
                 const isActive = index === activeGroupIndex;
                 const kind = tagVariant(group.title);
@@ -330,10 +338,12 @@ export default function EngineSizesSection({
                       setActiveGroupIndex(index);
                       setOpenItemIndex(0);
                     }}
-                    className={`flex flex-1 items-center justify-center gap-1 md:gap-[8px] rounded-[7px] px-2 md:px-4 py-[10px] md:py-[11px] font-['Manrope'] text-[11px] md:text-[12px] font-bold transition-all duration-200 ${
+                    className={`flex flex-1 items-center justify-center gap-1 border-r border-[#d9e1ea] px-2 py-[10px] font-['Manrope'] text-[11px] font-bold transition-all duration-200 md:gap-[8px] md:px-4 md:py-[11px] md:text-[12px] ${
+                      index === groups.length - 1 ? "border-r-0" : ""
+                    } ${
                       isActive
-                        ? "bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] border-[#2a6dd6] text-white shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_6px_rgba(42,109,214,0.5),0_0_15px_rgba(42,109,214,0.4),0_0_30px_rgba(42,109,214,0.25),0_4px_12px_rgba(42,109,214,0.3)]"
-                        : "bg-transparent text-white/90 hover:text-white"
+                        ? "bg-[linear-gradient(180deg,#1a3a66_0%,#0f2a4e_100%)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_0_0_1px_rgba(42,109,214,0.95),0_0_8px_rgba(42,109,214,0.45),0_4px_12px_rgba(42,109,214,0.28)]"
+                        : "bg-white text-[#0d1b2e] hover:bg-[#f8fafc]"
                     }`}
                   >
                     {isActive && (

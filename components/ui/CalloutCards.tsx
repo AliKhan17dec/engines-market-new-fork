@@ -48,17 +48,28 @@ type AdviceCardProps = {
   linkProps?: LinkProps;
 };
 
-function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
+function ArrowIcon({ className = "h-4 w-4", animateHorizontal = false }: { className?: string; animateHorizontal?: boolean }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
-      <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-      <polyline
-        points="12 5 19 12 12 19"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <g>
+        {animateHorizontal ? (
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0 0;8 0;0 0"
+            dur="1.8s"
+            repeatCount="indefinite"
+          />
+        ) : null}
+        <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+        <polyline
+          points="12 5 19 12 12 19"
+          stroke="currentColor"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
     </svg>
   );
 }
@@ -198,6 +209,7 @@ export function RecommendationCard({
   linkProps,
 }: RecommendationCardProps) {
   return (
+<<<<<<< HEAD
     <div className="rounded-[14px] bg-white px-4 py-4 border border-[#2a6dd6] bg-white shadow-[0_0_12px_rgba(42,109,214,0.2)]">
       <div className="flex flex-col gap-3">
         <div className="flex flex-col">
@@ -214,6 +226,14 @@ export function RecommendationCard({
 
           {/* Body Text: Now full width since CTA is no longer beside it */}
           <p className="mt-0 text-[12px] leading-[1.65] text-w">{body}</p>
+=======
+    <div className="rounded-[14px] border border-[#2a6dd6] bg-white px-4 py-4 shadow-[0_0_0_1px_rgba(42,109,214,0.9),0_0_8px_rgba(42,109,214,0.4),0_0_18px_rgba(42,109,214,0.18),0_8px_18px_rgba(13,27,46,0.08)]">
+      <div className="flex flex-col gap-4">
+        <div className="min-w-0">
+          <div className="text-[12px] font-extrabold uppercase tracking-[0.14em] text-[#1d4ed8]">{label}</div>
+          {title ? <div className="mt-2 text-[18px] font-extrabold leading-[1.28] tracking-[-0.03em] text-[#0d1b2e] md:text-[20px]">{title}</div> : null}
+          <p className="mt-2 text-[14px] leading-[1.7] text-[#334155] md:text-[15px]">{body}</p>
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
           <ChipRow chips={chips} tone="recommendation" />
         </div>
 
@@ -222,10 +242,16 @@ export function RecommendationCard({
           <a
             href={linkProps?.href ?? "#quote-form"}
             {...linkProps}
+<<<<<<< HEAD
             className={`self-end inline-flex min-h-[42px] -mt-6 items-center justify-center gap-2 rounded-[10px] border border-[#0d1b2e] bg-white px-4 text-[11px] font-bold text-[#0d1b2e] transition hover:bg-[#f8fbff] md:min-w-[220px] ${linkProps?.className ?? ""}`}
+=======
+            className={`inline-flex min-h-[46px] w-full items-center justify-between gap-3 rounded-[10px] border border-[#12294a] bg-[#0d1b2e] px-5 text-left text-[12px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_8px_16px_rgba(13,27,46,0.18)] transition hover:bg-[#16304e] ${linkProps?.className ?? ""}`}
+>>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
           >
             <span>{ctaText}</span>
-            <ArrowIcon className="h-[12px] w-[12px]" />
+            <span aria-hidden="true" className="flex flex-none items-center text-[#15803d]">
+              <ArrowIcon className="h-[15px] w-[15px]" animateHorizontal />
+            </span>
           </a>
         ) : null}
       </div>

@@ -177,28 +177,28 @@ export default function HowItWorksSection({ data, bgImage, sectionId }: Props) {
                     className={`relative h-full min-h-[260px] rounded-[18px] transition duration-500 [transform-style:preserve-3d] lg:min-h-[280px] xl:min-h-[290px] ${flipped ? "[transform:rotateY(180deg)]" : ""
                       }`}
                   >
-                    <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-[#dbe4ef] bg-white p-2 sm:p-4 shadow-[0_18px_40px_rgba(13,27,46,0.08)] [backface-visibility:hidden] text-center">
-                      <span className="mt-0 font-['Manrope'] text-left text-2xl font-extrabold uppercase tracking-[0.18em] text-gray-400">
+                    <div className="absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-[#dbe4ef] bg-white px-3 pb-4 pt-3 sm:p-4 shadow-[0_18px_40px_rgba(13,27,46,0.08)] [backface-visibility:hidden] text-center">
+                      <span className="mt-0 hidden font-['Manrope'] text-left text-2xl font-extrabold uppercase tracking-[0.18em] text-gray-400 md:block">
                         0{card.number}
                       </span>
 
-                      <div className={`mx-auto flex items-center justify-center rounded-[14px] p-2 ${card.number === 1 ? "w-70 h-22" : "w-22 h-22"}`}>
+                      <div className="mx-auto mt-1 flex h-[74px] w-full max-w-[140px] items-center justify-center rounded-[14px] p-1 sm:mt-0 sm:p-2">
                         <img
                           src={card.number === 1 ? "/Home/reg-here.webp" : card.number === 2 ? "/Home/save-money.webp" : "/Home/quote-button 1.png"}
                           alt={`Step ${card.number} icon`}
-                          className="h-full w-full object-contain"
+                          className="max-h-[58px] w-auto max-w-full object-contain sm:max-h-full sm:w-full"
                         />
                       </div>
 
-                      <h3 className="mt-3 font-['Manrope'] text-[24px] font-bold leading-[1] text-[#0d1b2e]">
+                      <h3 className="mt-2 px-2 font-['Manrope'] text-[26px] font-bold leading-[1.02] text-[#0d1b2e] md:text-[24px]">
                         {card.front.h3}
                       </h3>
 
-                      <p className="mx-auto mt-4 text-[12px] sm:text-[14px] leading-[1.65] text-[#5a6478]">
+                      <p className="mx-auto mt-3 px-4 text-[14px] leading-[1.65] text-[#5a6478] sm:text-[14px]">
                         {card.front.text}
                       </p>
 
-                      <span className="ml-auto mt-auto inline-flex items-center gap-2 pt-0 text-[14px] font-bold text-[#15803d]">
+                      <span className="ml-auto mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-[#15803d]">
                         <span>See how it works</span>
                         <ArrowIcon />
                       </span>
