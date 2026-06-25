@@ -69,20 +69,6 @@ function parseAffectedModelsSummary(affectedModels: string) {
   };
 }
 
-<<<<<<< HEAD
-function VehicleIcon({ className = "h-[18px] w-[18px]" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
-      <path d="M3 13.5h18l-1.2-4.2c-.2-.7-.9-1.2-1.6-1.2H7.2c-.7 0-1.3.4-1.6 1.1L3 13.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-      <path d="M5.2 13.5V9.4h13.6v4.1" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-      <circle cx="7.5" cy="17.5" r="1.7" fill="currentColor" />
-      <circle cx="16.5" cy="17.5" r="1.7" fill="currentColor" />
-    </svg>
-  );
-}
-
-=======
->>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
 function splitHeading(text: string) {
   const accent = "What It Costs to Fix & When Replacement Makes Sense";
   if (text.includes(accent)) {
@@ -287,11 +273,7 @@ function AffectedVehiclesCard({
         {vehicles.slice(0, 4).map((vehicle, index) => (
           <div
             key={`${vehicle}-${index}`}
-<<<<<<< HEAD
-            className={`flex items-center rounded-[6px] bg-[#f8f9fa] p-1.5 ${mobile ? "" : ""}`}
-=======
             className="flex items-center rounded-[6px] border border-[#2a6dd6] bg-[linear-gradient(180deg,#ffffff_0%,#f4f8ff_100%)] p-1.5 shadow-[0_0_0_1px_rgba(42,109,214,0.45),0_0_12px_rgba(42,109,214,0.22),inset_0_1px_0_rgba(255,255,255,0.9)]"
->>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
           >
             <div className={`flex flex-none items-center justify-center text-[#2563eb] ${mobile ? "h-5 w-5" : "h-7 w-7"}`}>
               <FaCar className={mobile ? "h-[9px] w-[9px]" : "h-[10px] w-[10px]"} />

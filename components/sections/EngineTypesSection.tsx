@@ -139,8 +139,7 @@ function FlipCard({
 
   return (
     <div
-      // 👇 1. Removed 'overflow-hidden' here so the back card's glow shadow isn't clipped by the parent
-      className="rounded-[12px] lg:rounded-[16px] min-h-[180px] lg:min-h-0"
+      className="overflow-hidden rounded-[12px] lg:rounded-[16px]"
       style={{ height: uniformHeight, perspective: "1200px", WebkitPerspective: "1200px" }}
     >
       <div
@@ -157,15 +156,9 @@ function FlipCard({
         >
           <div
             onClick={handleCardClick}
-<<<<<<< HEAD
-            // 👇 2. Added 'overflow-hidden' here to ensure front card content stays within rounded corners
-            className={`flex h-full flex-col cursor-pointer rounded-[12px] border bg-white shadow-[0_4px_12px_rgba(13,27,46,0.08)] transition-all duration-300 hover:shadow-[0_8px_24px_rgba(13,27,46,0.12)] pb-8 lg:pb-0 lg:rounded-[16px] lg:shadow-[0_8px_24px_rgba(13,27,46,0.08)] lg:hover:shadow-[0_12px_32px_rgba(13,27,46,0.15)] overflow-hidden ${featured ? "border-[#dbe5f4]" : "border-[#e5e7eb]"
-              }`}
-=======
             className={`flex h-full cursor-pointer flex-col rounded-[12px] border bg-white shadow-[0_4px_12px_rgba(13,27,46,0.08)] transition-all duration-300 hover:shadow-[0_8px_24px_rgba(13,27,46,0.12)] lg:rounded-[16px] lg:shadow-[0_8px_24px_rgba(13,27,46,0.08)] lg:hover:shadow-[0_12px_32px_rgba(13,27,46,0.15)] ${
               featured ? "border-[#dbe5f4]" : "border-[#e5e7eb]"
             }`}
->>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
           >
             <div className="flex flex-1 gap-3 px-4 py-[18px] lg:px-5 lg:py-5">
               <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-[#e8f4fd] text-[#0d1b2e] lg:h-11 lg:w-11">
@@ -186,46 +179,6 @@ function FlipCard({
               <div className="h-px bg-[#e5e7eb]" />
             </div>
 
-<<<<<<< HEAD
-            {/* Price and CTA Section - Reduced padding */}
-<div className="flex items-center gap-2 px-4 py-2 lg:px-5 lg:py-3">
-
-  {/* Price Label */}
-  <div className="flex items-center">
-    <span className="text-[10.5px] font-medium text-[#6b7280] lg:text-[11.5px]">
-      {priceLabel || price.label}
-    </span>
-  </div>
-
-  {/* Separator */}
-  <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
-
-  {/* Price Range */}
-  <div className="flex items-center justify-start">
-    <span className="font-['Manrope'] text-[14px] font-extrabold text-[#0d1b2e] lg:text-[14px]">
-      {price.main}
-    </span>
-  </div>
-
-  {/* Separator */}
-  <div className="w-px h-5 sm:h-6 bg-slate-300 self-center shrink-0" aria-hidden="true"></div>
-
-  {/* CTA Link */}
-  <div className="flex items-center justify-start">
-    <a
-      href="#quote-form"
-      data-quote-context={type.title}
-      data-quote-source="engine-types"
-      className="inline-flex items-center gap-1.5 text-[11.5px] font-semibold text-[#059669] transition-colors hover:text-[#047857] lg:text-[12px]"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <span>{type.cta}</span>
-      <TbArrowRight className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
-    </a>
-  </div>
-
-</div>
-=======
             <div className="px-4 py-3 lg:px-5 lg:py-3.5">
               <div className="text-[10.5px] font-medium text-[#6b7280] lg:text-[11px]">
                 {(priceLabel || price.label).replace(/:$/, "")}:
@@ -257,7 +210,6 @@ function FlipCard({
                 </a>
               </div>
             </div>
->>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
           </div>
         </div>
 
@@ -269,43 +221,6 @@ function FlipCard({
             WebkitBackfaceVisibility: "hidden",
           }}
         >
-<<<<<<< HEAD
-          {/* 👇 Outer wrapper: Holds the background, border, and glow shadow */}
-          <div className="h-full rounded-[12px] border-[0.5px] border-[#2969af] bg-[#0d1b2e] lg:rounded-[16px] shadow-[0_0_0_1px_rgba(42,109,214,1),0_0_5px_rgba(42,109,214,0.4),0_0_12px_rgba(42,109,214,0.3),0_0_20px_rgba(42,109,214,0.2),0_3px_10px_rgba(42,109,214,0.25)]">
-
-            {/* 👇 Inner wrapper: Handles scrolling and padding */}
-            <div className="h-full overflow-y-auto scrollbar-dark rounded-[12px] lg:rounded-[16px] px-4 py-4 pb-8 lg:pb-0 lg:px-5 lg:py-4">
-
-              <div className="mb-2 flex items-center justify-between gap-3">
-                <span className="inline-flex rounded-full border border-white/20 bg-white/8 px-[8px] py-[1px] text-[8.5px] font-bold uppercase tracking-[0.7px] text-white/82">
-                  {badge}
-                </span>
-                <button
-                  type="button"
-                  onClick={onToggle}
-                  className="inline-flex items-center gap-1 text-[8.5px] font-bold text-[#475569] hover:text-white transition-colors"
-                >
-                  <TbRefresh className="h-3.5 w-3.5" />
-                  <span>{backActionLabel}</span>
-                </button>
-              </div>
-
-              <p className="text-[12.5px] leading-[1.6] text-[#e2e8f0] lg:text-[13px]">
-                {backDescription}
-              </p>
-
-              {backBullets.length ? (
-                <ul className="mt-2 space-y-1.5 text-[11px] leading-[1.55] text-[#cbd5e1] lg:text-[11.5px]">
-                  {backBullets.map((bullet) => (
-                    <li key={bullet} className="flex gap-2">
-                      <span className="mt-[4px] h-[5px] w-[5px] flex-none rounded-full bg-[#22c55e]" />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-
-=======
           <div className="scrollbar-dark h-full overflow-y-auto rounded-[12px] border border-[#1e3a5f] bg-[#0d1b2e] px-4 py-4 shadow-[0_2px_8px_rgba(13,27,46,0.15)] lg:rounded-[16px] lg:px-5 lg:py-4 lg:shadow-[0_8px_24px_rgba(13,27,46,0.18)]">
             <div className="mb-2 flex items-center justify-between gap-3">
               <span className={`inline-flex rounded-full border px-[8px] py-[1px] text-[8.5px] font-bold uppercase tracking-[0.7px] ${badgeClass}`}>
@@ -319,8 +234,22 @@ function FlipCard({
                 <TbRefresh className="h-3.5 w-3.5" />
                 <span>{backActionLabel}</span>
               </button>
->>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
             </div>
+
+            <p className="text-[12.5px] leading-[1.6] text-[#e2e8f0] lg:text-[13px]">
+              {backDescription}
+            </p>
+
+            {backBullets.length ? (
+              <ul className="mt-2 space-y-1.5 text-[11px] leading-[1.55] text-[#cbd5e1] lg:text-[11.5px]">
+                {backBullets.map((bullet) => (
+                  <li key={bullet} className="flex gap-2">
+                    <span className="mt-[4px] h-[5px] w-[5px] flex-none rounded-full bg-[#22c55e]" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </div>
       </div>
@@ -341,12 +270,7 @@ export default function EngineTypesSection({
   sectionId,
 }: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-<<<<<<< HEAD
-  // Reduced default height threshold
-  const [uniformHeight, setUniformHeight] = useState(160);
-=======
   const [uniformHeight, setUniformHeight] = useState(228);
->>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const headingLines = data.headingLines?.length ? data.headingLines : data.h2.split(/\s+-\s+/);
   const brandLabel = inferBrandLabel(data.h2);
@@ -357,12 +281,7 @@ export default function EngineTypesSection({
   useEffect(() => {
     const calculateMaxHeight = () => {
       const heights = cardRefs.current.map((ref) => ref?.scrollHeight ?? 0);
-<<<<<<< HEAD
-      // Reduced fallback height from 200 to 160
-      const maxHeight = Math.max(...heights, 160);
-=======
       const maxHeight = Math.max(...heights, 228);
->>>>>>> 5437972 (Update BMW 1 Series testing page UI refinements)
       setUniformHeight(maxHeight);
     };
 
@@ -411,12 +330,12 @@ export default function EngineTypesSection({
         </div>
       ) : null}
 
-      <Container className="relative max-w-[1400px] px-2">
+      <Container className="relative max-w-[1400px]">
         <div className="section-pill mb-[14px]">
           <span>{data.tag}</span>
         </div>
 
-        <h2 className=" font-['Manrope'] text-[26px] font-extrabold leading-[1.14] tracking-[-0.7px] text-[#0d1b2e] md:text-[30px] lg:text-[36px]">
+        <h2 className="max-w-[920px] font-['Manrope'] text-[26px] font-extrabold leading-[1.14] tracking-[-0.7px] text-[#0d1b2e] md:text-[30px] lg:text-[36px]">
           {headingLines.map((line, index) => (
             <span
               key={`${line}-${index}`}
@@ -430,7 +349,7 @@ export default function EngineTypesSection({
           <div className="h-[3px] w-12 rounded-full bg-[#22c55e]" />
         </div>
 
-        <p className="mt-[12px] text-[13px] leading-[1.7] text-[#64748b] lg:text-[15px]">
+        <p className="mt-[12px] max-w-[760px] text-[13px] leading-[1.7] text-[#64748b] lg:text-[15px]">
           {data.intro}
         </p>
 
